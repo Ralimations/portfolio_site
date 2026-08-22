@@ -121,6 +121,35 @@ export const projects: Project[] = [
     status: "In progress",
   },
   {
+    id: "ralskies-showcase",
+    slug: "ralskies-showcase",
+    title: "Ralskies Artist Portfolio",
+    category: "web",
+    shortDescription:
+      "Live web development showcase for presenting artist portfolio work through a polished, public-facing Vercel site.",
+    description: [
+      "Ralskies is a live artist portfolio site used as a public web development showcase.",
+      "The project gives visitors a focused place to review creative work, presentation style, and front-end execution, with room to expand as more web projects are added.",
+    ],
+    technologies: [
+      { label: "Frontend", items: ["Responsive UI", "Portfolio Layout", "Web Presentation"] },
+      { label: "Platform", items: ["Vercel", "Public Web Hosting"] },
+      { label: "Practices", items: ["Visual QA", "Content Organization", "Portfolio Maintenance"] },
+    ],
+    contributions: [
+      "Built and maintains the public-facing portfolio showcase.",
+      "Organized the site around visual presentation and quick project review.",
+      "Prepared it as a live reference point for future web development work.",
+    ],
+    architecture: ["Portfolio content", "Responsive layout", "Public web route", "Vercel hosting", "Future project additions"],
+    outcomes: ["Provides a live web-development reference that can expand as more portfolio sites are added."],
+    assetFolder: "ralskies-showcase",
+    year: "2026",
+    featured: true,
+    status: "Live showcase",
+    demoUrl: "https://ralskies.vercel.app/",
+  },
+  {
     id: "mobile-job-portal",
     slug: "mobile-job-portal",
     title: "Mobile Job Portal",

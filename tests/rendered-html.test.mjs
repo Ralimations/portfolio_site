@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
-import { readFile } from "node:fs/promises";
+import { access, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import test from "node:test";
 
 async function render() {
@@ -35,8 +37,12 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(html, /Featured Projects/);
   assert.match(html, /Filter by discipline\./);
   assert.match(html, /Smart Shelf/);
+  assert.match(html, /Ralskies Artist Portfolio/);
+  assert.match(html, /https:\/\/github\.com\/Ralimations/);
+  assert.match(html, /https:\/\/www\.linkedin\.com\/in\/ral-angelo-lluisma/);
   assert.match(html, /Project Details/);
-  assert.match(html, /mailto:hello@example\.com/);
+  assert.match(html, /Ral Angelo Lluisma portfolio/);
+  assert.doesNotMatch(html, /hello@example\.com/);
   assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
   assert.doesNotMatch(html, /react-loading-skeleton/);
 });
@@ -52,6 +58,7 @@ test("keeps portfolio content and metadata aligned", async () => {
   assert.match(layout, /Minimalist Modern developer portfolio/);
   assert.match(layout, /embedded systems, IoT, AI experiments/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
+  assert.doesNotMatch(packageJson, /@openai\/sites-vite-plugin/);
 
   assert.match(page, /const technicalAreas = \[/);
   assert.match(page, /const skills = \[/);
@@ -76,11 +83,67 @@ test("keeps project data content-driven and asset-folder aware", async () => {
 
   assert.match(projectData, /projectCategories/);
   assert.match(projectData, /assetFolder: "smart-shelf"/);
+  assert.match(projectData, /assetFolder: "ralskies-showcase"/);
+  assert.match(projectData, /demoUrl: "https:\/\/ralskies\.vercel\.app\/"/);
   assert.match(projectData, /featured: true/);
-  assert.match(assetHelper, /import\.meta\.glob/);
-  assert.match(assetHelper, /public\/projects/);
+  assert.match(assetHelper, /generatedProjectMediaManifest/);
+  assert.doesNotMatch(assetHelper, /images:\s*\[/);
   assert.match(detailPage, /generateStaticParams/);
   assert.match(detailPage, /ProjectCarousel/);
   assert.match(detailPage, /My Contribution/);
   assert.match(detailPage, /Technologies Used/);
+});
+
+test("keeps local project media scaffolding aligned", async () => {
+  const [projectData, hostingConfig, mediaReadme, dataReadme, viteConfig] = await Promise.all([
+    readFile(new URL("../app/data/projects.ts", import.meta.url), "utf8"),
+    readFile(new URL("../.openai/hosting.json", import.meta.url), "utf8"),
+    readFile(new URL("../public/projects/README.md", import.meta.url), "utf8"),
+    readFile(new URL("../app/data/README.md", import.meta.url), "utf8"),
+    readFile(new URL("../vite.config.ts", import.meta.url), "utf8"),
+  ]);
+
+  const assetFolders = [...projectData.matchAll(/assetFolder:\s*"([^"]+)"/g)].map((match) => match[1]);
+  assert.equal(new Set(assetFolders).size, assetFolders.length);
+  assert.ok(assetFolders.length >= 5);
+
+  assert.doesNotMatch(hostingConfig, /project_id|site_id/i);
+  assert.doesNotMatch(viteConfig, /@openai\/sites-vite-plugin|sites\(\)/);
+  assert.match(viteConfig, /\*\*\/\.qa\/\*\*/);
+  assert.match(mediaReadme, /Project folders in this directory are matched to `assetFolder` values/);
+  assert.match(dataReadme, /`projects\.ts` is the source of truth/);
+
+  await Promise.all(
+    assetFolders.map((folder) =>
+      access(new URL(`../public/projects/${folder}/gallery/.gitkeep`, import.meta.url)),
+    ),
+  );
+});
+
+test("generates project media manifest from filesystem folders", async () => {
+  const { generateProjectMediaManifest } = await import("../scripts/generate-project-media-manifest.mjs");
+  const testRoot = path.join(tmpdir(), `portfolio-media-${process.pid}-${Date.now()}`);
+  const projectsRoot = path.join(testRoot, "projects");
+  const outputPath = path.join(testRoot, "project-media-manifest.generated.ts");
+
+  try {
+    await mkdir(path.join(projectsRoot, "smart-shelf", "gallery"), { recursive: true });
+    await writeFile(path.join(projectsRoot, "smart-shelf", "cover.webp"), "cover");
+    await writeFile(path.join(projectsRoot, "smart-shelf", "gallery", "02-dashboard.webp"), "two");
+    await writeFile(path.join(projectsRoot, "smart-shelf", "gallery", "01-hardware.webp"), "one");
+
+    const manifest = await generateProjectMediaManifest({ projectsRoot, outputPath });
+    const generatedFile = await readFile(outputPath, "utf8");
+
+    assert.deepEqual(manifest["smart-shelf"], {
+      cover: "/projects/smart-shelf/cover.webp",
+      gallery: [
+        "/projects/smart-shelf/gallery/01-hardware.webp",
+        "/projects/smart-shelf/gallery/02-dashboard.webp",
+      ],
+    });
+    assert.match(generatedFile, /generatedProjectMediaManifest/);
+  } finally {
+    await rm(testRoot, { recursive: true, force: true });
+  }
 });

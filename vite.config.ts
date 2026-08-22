@@ -1,7 +1,7 @@
-import { sites } from "@openai/sites-vite-plugin";
 import vinext from "vinext";
 import { defineConfig } from "vite";
 import hostingConfig from "./.openai/hosting.json";
+import { generateProjectMediaManifest } from "./scripts/generate-project-media-manifest.mjs";
 
 const SITE_CREATOR_PLACEHOLDER_DATABASE_ID =
   "00000000-0000-4000-8000-000000000000";
@@ -34,6 +34,8 @@ const localBindingConfig = {
 };
 
 export default defineConfig(async () => {
+  await generateProjectMediaManifest();
+
   // Keep Wrangler and Miniflare state project-local. These are non-secret tool
   // settings; application environment belongs in ignored `.env*` files.
   process.env.WRANGLER_WRITE_LOGS ??= "false";
@@ -44,12 +46,31 @@ export default defineConfig(async () => {
   const { cloudflare } = await import("@cloudflare/vite-plugin");
 
   return {
-    server: isCodexSeatbeltSandbox
-      ? { watch: { useFsEvents: false, usePolling: true } }
-      : undefined,
+    server: {
+      watch: {
+        ignored: ["**/.qa/**", "**/.wrangler/**", "**/dist/**", "**/.vinext/**", "**/.vercel/**"],
+        ...(isCodexSeatbeltSandbox ? { useFsEvents: false, usePolling: true } : {}),
+      },
+    },
     plugins: [
+      {
+        name: "project-media-manifest",
+        async buildStart() {
+          await generateProjectMediaManifest();
+        },
+        configureServer(server) {
+          const projectsPath = "public/projects";
+
+          server.watcher.add(projectsPath);
+          server.watcher.on("all", async (_event, changedPath) => {
+            if (changedPath.split("\\").join("/").includes(projectsPath)) {
+              await generateProjectMediaManifest();
+              server.ws.send({ type: "full-reload" });
+            }
+          });
+        },
+      },
       vinext(),
-      sites(),
       cloudflare({
         viteEnvironment: { name: "rsc", childEnvironments: ["ssr"] },
         config: localBindingConfig,

@@ -6,9 +6,13 @@
     "node": ">=22.13.0"
   },
   "scripts": {
+    "media:generate": "node scripts/generate-project-media-manifest.mjs",
+    "predev": "npm run media:generate",
     "dev": "vinext dev",
+    "prebuild": "npm run media:generate",
     "build": "vinext build",
     "start": "vinext start",
+    "prelint": "npm run media:generate",
     "test": "npm run build && node --test tests/rendered-html.test.mjs",
     "lint": "eslint . --ignore-pattern dist --ignore-pattern .next",
     "db:generate": "drizzle-kit generate"
@@ -22,7 +26,6 @@
     "@cloudflare/vite-plugin": "1.37.1",
     "@eslint/js": "9.39.4",
     "@next/eslint-plugin-next": "16.2.6",
-    "@openai/sites-vite-plugin": "0.1.0",
     "@tailwindcss/postcss": "4.2.1",
     "@types/node": "22.19.19",
     "@types/react": "19.2.14",

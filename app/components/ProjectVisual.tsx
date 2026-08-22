@@ -27,7 +27,7 @@ export function ProjectVisual({ media, title, categoryLabel, priority = false }:
       role="img"
       aria-label={`${title} placeholder visual`}
     >
-      <div className="absolute -left-12 top-8 h-40 w-40 rounded-full bg-[rgba(0,82,255,0.12)] blur-2xl" />
+      <div className="absolute left-4 top-8 h-36 w-36 rounded-full bg-[rgba(0,82,255,0.12)] blur-2xl" />
       <div className="absolute right-8 top-8 h-28 w-28 rounded-[2rem] gradient-surface opacity-90 shadow-[var(--shadow-accent)]" />
       <div className="absolute bottom-9 left-9 h-32 w-32 rounded-full border border-dashed border-[rgba(0,82,255,0.35)] animate-rotate-slow" />
       <div className="absolute bottom-5 right-5 rounded-2xl border border-[var(--border)] bg-white/90 px-4 py-3 shadow-lg backdrop-blur">

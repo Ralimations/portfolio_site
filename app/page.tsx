@@ -1,12 +1,14 @@
 import Link from "next/link";
-import { ActionLink, AccentMark, SectionLabel } from "@/app/components/DesignPrimitives";
+import { ActionLink, AccentMark, SectionLabel, SiteFooter } from "@/app/components/DesignPrimitives";
 import { ProjectExplorer } from "@/app/components/ProjectExplorer";
+import { ProjectVisual } from "@/app/components/ProjectVisual";
+import { profile } from "@/app/data/profile";
 import { getCategoryLabel, projects } from "@/app/data/projects";
 import { getProjectsWithMedia } from "@/app/lib/project-assets";
 
 const technicalAreas = [
   { value: "05", label: "Technical disciplines" },
-  { value: "03", label: "Featured builds" },
+  { value: "04", label: "Featured builds" },
   { value: "30s", label: "Project scan target" },
   { value: "100%", label: "Contribution focused" },
 ];
@@ -18,35 +20,45 @@ const skills = [
   },
   {
     title: "Programming / Development",
-    items: ["TypeScript", "JavaScript", "Python", "React", "System design basics"],
+    items: ["React", "TypeScript", "JavaScript", "Python", "Node.js", "FastAPI"],
   },
   {
     title: "AI / ML",
-    items: ["Computer vision", "Detection workflows", "Model testing", "Data review", "AI-assisted tools"],
+    items: ["Computer vision", "LM Studio", "Ollama", "Streamlit prototypes", "Model testing"],
   },
   {
     title: "Tools",
-    items: ["Git", "VS Code", "Docker basics", "CAD workflows", "Technical documentation"],
+    items: ["Git/GitHub", "Vite", "Electron", "PowerShell", "ExcelJS", "Technical documentation"],
   },
 ];
 
 const experience = [
   {
-    role: "Engineering Portfolio Development",
-    organization: "Independent Projects",
-    date: "2025 - Present",
+    role: "Information Technology Intern",
+    organization: "MELD CX",
+    date: "Jan 2026 - May 2026",
     points: [
-      "Built project work across embedded systems, AI experiments, web interfaces, and small software utilities.",
-      "Focused on concise documentation, practical prototypes, and maintainable technical presentation.",
+      "Supported front-end development, responsiveness, usability, and visual consistency fixes.",
+      "Worked with Streamlit apps, offline AI-box setup, local LLM workflows, and computer-vision validation.",
+      "Prepared troubleshooting guides, validation procedures, presentations, and Scrum meeting notes.",
     ],
   },
   {
-    role: "Academic and Technical Build Work",
-    organization: "Project-Based Engineering Practice",
-    date: "Recent",
+    role: "BS Computer Applications",
+    organization: "Mindanao State University - Iligan Institute of Technology",
+    date: "Graduated July 2026",
     points: [
-      "Worked with hardware/software integration, responsive interfaces, and prototype validation.",
-      "Organized project evidence so contributions, technologies, and outcomes are easy to review.",
+      "Studied IoT programming, applied IoT, AI in IoT, operating systems, firmware, PLC programming, microcontrollers, and robotics fundamentals.",
+      "Completed AutoMatTsek, a modular IoT stock monitoring and pricing display thesis focused on retail shelf data visibility.",
+    ],
+  },
+  {
+    role: "Senior Animator",
+    organization: "Vexel Studios",
+    date: "Aug 2023 - Jul 2025",
+    points: [
+      "Led a remote production team, assigned deliverables, reviewed progress, and kept projects moving against quality standards and deadlines.",
+      "Managed files, updates, and commission-based deliverables while maintaining clear remote communication.",
     ],
   },
 ];
@@ -130,12 +142,12 @@ export default function Home() {
       <section className="px-5 py-24 sm:py-32 lg:py-36">
         <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
           <div>
-            <SectionLabel>Developer / Embedded Systems & IoT Engineer</SectionLabel>
+            <SectionLabel>{profile.descriptor}</SectionLabel>
             <h1 className="font-display mt-8 max-w-4xl text-[3.3rem] leading-[1.02] tracking-[-0.02em] sm:text-7xl lg:text-[5.25rem]">
               Ral Angelo Lluisma builds technical work with <span className="gradient-text">visible proof.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--muted-foreground)] sm:text-xl">
-              I work across embedded systems, IoT, AI experiments, web interfaces, mobile-oriented flows, and practical software tools. The portfolio keeps each project scannable: what it does, what I contributed, and what I used.
+              I work across embedded systems, IoT, AI experiments, front-end development, workflow tools, and technical documentation. The portfolio keeps each project scannable: what it does, what I contributed, and what I used.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="#projects">View Projects</ActionLink>
@@ -167,7 +179,7 @@ export default function Home() {
           </div>
           <div className="soft-card rounded-[2rem] p-8 sm:p-10">
             <p className="text-lg leading-8 text-[var(--muted-foreground)]">
-              My work sits between physical systems and software: microcontrollers, sensors, connected prototypes, AI-assisted experimentation, interfaces, and tools that make technical workflows easier to use. I enjoy projects where hardware behavior, data flow, and user-facing clarity all have to line up.
+              My work sits between physical systems and software: microcontrollers, sensors, connected prototypes, AI-assisted experimentation, interfaces, and tools that make technical workflows easier to use. I studied Computer Applications at MSU-IIT and enjoy projects where hardware behavior, data flow, and user-facing clarity all have to line up.
             </p>
           </div>
         </div>
@@ -188,19 +200,43 @@ export default function Home() {
           </div>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {featuredProjects.map((project) => (
-              <article key={project.id} className="rounded-[1.6rem] bg-gradient-to-br from-[var(--accent)] via-[var(--accent-secondary)] to-[var(--accent)] p-[1px]">
-                <div className="h-full rounded-[calc(1.6rem-1px)] bg-white p-7 text-[var(--foreground)]">
-                  <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
-                    {getCategoryLabel(project.category)}
-                  </p>
-                  <h3 className="mt-4 text-2xl font-semibold tracking-[-0.02em]">{project.title}</h3>
-                  <p className="mt-4 leading-7 text-[var(--muted-foreground)]">{project.shortDescription}</p>
+              <article key={project.id} className="group rounded-[1.6rem] bg-gradient-to-br from-[var(--accent)] via-[var(--accent-secondary)] to-[var(--accent)] p-[1px] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-accent-lg)]">
+                <div className="h-full overflow-hidden rounded-[calc(1.6rem-1px)] bg-white text-[var(--foreground)]">
+                  <div className="aspect-[16/10] border-b border-[var(--border)]">
+                    <ProjectVisual
+                      media={project.media}
+                      title={project.title}
+                      categoryLabel={getCategoryLabel(project.category)}
+                    />
+                  </div>
+                  <div className="grid gap-5 p-7">
+                    <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
+                      {getCategoryLabel(project.category)}
+                    </p>
+                    <div>
+                      <h3 className="text-2xl font-semibold tracking-[-0.02em]">{project.title}</h3>
+                      <p className="mt-4 leading-7 text-[var(--muted-foreground)]">{project.shortDescription}</p>
+                    </div>
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies
+                        .flatMap((group) => group.items)
+                        .slice(0, 4)
+                        .map((technology) => (
+                          <span
+                            key={technology}
+                            className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)]"
+                          >
+                            {technology}
+                          </span>
+                        ))}
+                    </div>
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition hover:gap-3"
+                    className="inline-flex items-center gap-2 justify-self-start text-sm font-semibold text-[var(--accent)] transition hover:gap-3"
                   >
                     Open case <span aria-hidden="true">-&gt;</span>
                   </Link>
+                  </div>
                 </div>
               </article>
             ))}
@@ -295,16 +331,17 @@ export default function Home() {
               Open to technical roles and collaboration.
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              The portfolio is ready for real resume, GitHub, LinkedIn, and email links as soon as those URLs are confirmed.
+              Connect through GitHub or LinkedIn. Email can be added once the preferred public address is confirmed.
             </p>
           </div>
           <div className="grid gap-3">
-            <ActionLink href="mailto:hello@example.com">Email</ActionLink>
-            <ActionLink href="https://github.com/" variant="secondary" external>GitHub</ActionLink>
-            <ActionLink href="https://www.linkedin.com/" variant="secondary" external>LinkedIn</ActionLink>
+            <ActionLink href={profile.githubUrl} external>GitHub</ActionLink>
+            <ActionLink href={profile.linkedInUrl} variant="secondary" external>LinkedIn</ActionLink>
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

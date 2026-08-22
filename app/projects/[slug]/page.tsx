@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ActionLink, SectionLabel } from "@/app/components/DesignPrimitives";
+import { ActionLink, SectionLabel, SiteFooter } from "@/app/components/DesignPrimitives";
 import { ProjectCarousel } from "@/app/components/ProjectCarousel";
 import { getCategoryLabel, getProjectBySlug, projects } from "@/app/data/projects";
 import { getProjectMedia } from "@/app/lib/project-assets";
@@ -187,6 +187,8 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           </div>
         </div>
       </section>
+
+      <SiteFooter />
     </main>
   );
 }

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { profile } from "@/app/data/profile";
 
 type SectionLabelProps = {
   children: React.ReactNode;
@@ -9,14 +10,14 @@ export function SectionLabel({ children, inverted = false }: SectionLabelProps) 
   return (
     <div
       className={[
-        "inline-flex items-center gap-3 rounded-full border px-5 py-2",
+        "inline-flex max-w-full items-center gap-3 rounded-full border px-5 py-2",
         inverted
           ? "border-white/15 bg-white/10 text-white"
           : "border-[rgba(0,82,255,0.25)] bg-[rgba(0,82,255,0.06)] text-[var(--accent)]",
       ].join(" ")}
     >
       <span className="h-2 w-2 rounded-full bg-[var(--accent)] animate-pulse-dot" />
-      <span className="font-code text-xs uppercase tracking-[0.15em]">{children}</span>
+      <span className="font-code min-w-0 text-[10px] uppercase tracking-[0.12em] sm:text-xs sm:tracking-[0.15em]">{children}</span>
     </div>
   );
 }
@@ -77,5 +78,28 @@ export function AccentMark() {
     <span className="grid h-10 w-10 place-items-center rounded-2xl gradient-surface shadow-[var(--shadow-accent)]" aria-hidden="true">
       <span className="h-3 w-3 rounded-full bg-white" />
     </span>
+  );
+}
+
+export function SiteFooter() {
+  return (
+    <footer className="border-t border-[var(--border)] px-5 py-8">
+      <div className="mx-auto flex max-w-6xl flex-col gap-4 text-sm text-[var(--muted-foreground)] sm:flex-row sm:items-center sm:justify-between">
+        <p>Ral Angelo Lluisma portfolio</p>
+        <div className="flex flex-wrap gap-4 font-medium">
+          {profile.email ? (
+            <a className="transition hover:text-[var(--foreground)]" href={`mailto:${profile.email}`}>
+              Email
+            </a>
+          ) : null}
+          <a className="transition hover:text-[var(--foreground)]" href={profile.githubUrl} target="_blank" rel="noreferrer noopener">
+            GitHub
+          </a>
+          <a className="transition hover:text-[var(--foreground)]" href={profile.linkedInUrl} target="_blank" rel="noreferrer noopener">
+            LinkedIn
+          </a>
+        </div>
+      </div>
+    </footer>
   );
 }
