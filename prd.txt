@@ -723,18 +723,28 @@ Mobile navigation should collapse into a mobile-friendly menu.
 
 # 20. Visual Design Direction
 
-The existing visual identity will remain based on **Bauhaus / Constructivist Modernism**.
+The visual identity should move to **Minimalist Modern**.
 
 The UI should feel:
 
-* Geometric
-* Technical
-* Bold
-* Architectural
-* Functional
-* Deliberate
+* Professional
+* Design-forward
+* Confident
+* Sophisticated
+* Refined
+* Alive
+* Premium
+* Contemporary
 
-The design should use geometric elements as part of the composition while maintaining clarity and usability.
+The core visual principle is:
+
+> **Clarity through structure, character through bold detail.**
+
+The design should use generous whitespace, strong typography, precise composition, and concentrated accent color rather than heavy decoration.
+
+The portfolio should feel like the intersection of a high-tech SaaS product and a creative engineering portfolio: clean enough for recruiters to scan quickly, but distinctive enough to feel intentionally designed.
+
+The design should avoid becoming sterile, generic, overly corporate, or visually noisy.
 
 ---
 
@@ -742,123 +752,274 @@ The design should use geometric elements as part of the composition while mainta
 
 ## Core Colors
 
+The color system should use a warm near-monochrome foundation with one concentrated electric accent.
+
 **Background**
 
-`#F0F0F0`
+`#FAFAFA`
 
-**Foreground / Black**
+**Foreground**
 
-`#121212`
+`#0F172A`
 
-**Red**
+**Muted Surface**
 
-`#D02020`
+`#F1F5F9`
 
-**Blue**
+**Muted Foreground**
 
-`#1040C0`
+`#64748B`
 
-**Yellow**
+**Accent**
 
-`#F0C020`
+`#0052FF`
+
+**Accent Secondary**
+
+`#4D7CFF`
+
+**Accent Foreground**
+
+`#FFFFFF`
+
+**Border**
+
+`#E2E8F0`
+
+**Card**
+
+`#FFFFFF`
+
+**Focus Ring**
+
+`#0052FF`
+
+The signature accent treatment should be:
+
+```css
+linear-gradient(to right, #0052FF, #4D7CFF)
+```
+
+or:
+
+```css
+linear-gradient(135deg, #0052FF, #4D7CFF)
+```
+
+The accent gradient should appear on primary CTAs, selected states, icon containers, featured-card borders, key headline words, trend/status indicators, and final CTA elements.
+
+Accent color should be used sparingly and deliberately.
 
 ---
 
 ## Typography
 
-Primary font:
+The typography system should use three fonts:
 
-**Outfit**
+### Display
 
-Weights:
+**Calistoga**
 
-* 400
-* 500
-* 700
-* 900
+Fallback:
 
-Headings should be bold and highly visible.
+`Georgia, serif`
 
-Body text should prioritize readability.
+Used for:
+
+* Hero headline
+* Major section headlines
+* High-emphasis editorial headings
+
+### UI / Body
+
+**Inter**
+
+Fallback:
+
+`system-ui, sans-serif`
+
+Used for:
+
+* Body copy
+* Navigation
+* Buttons
+* Cards
+* Project metadata
+* Project descriptions
+
+### Monospace Accent
+
+**JetBrains Mono**
+
+Fallback:
+
+`monospace`
+
+Used for:
+
+* Section labels
+* Badges
+* Technical callouts
+* Small metadata labels
+
+Type hierarchy should prioritize readable body text and memorable headings.
+
+Hero and section headlines may use gradient text highlights for one key word or phrase.
 
 ---
 
-## Geometry
+## Layout and Spacing
 
-Visual elements should primarily use:
+Whitespace is a primary design tool.
 
-* Circles
-* Squares
-* Rectangles
-* Triangles
+Sections should use generous vertical padding and calm pacing while keeping card interiors dense enough to scan quickly.
 
-Corners should generally use either:
+Recommended patterns:
 
-* No rounding
+* Primary content container: `max-w-6xl`
+* Hero grid: asymmetric, such as `1.1fr / 0.9fr`
+* Section spacing: large vertical rhythm, approximately `py-28` to `py-44` where appropriate
+* Grid gaps: `gap-5` to `gap-8`
+* Mobile layouts should remain generous but simplified
 
-or
-
-* Completely circular forms
-
-Intermediate rounded-card styling should be avoided.
+Strategic asymmetry should be used to create visual tension without making the page difficult to scan.
 
 ---
 
-## Borders
+## Section Labels
 
-Major UI elements should use strong black borders.
+Every major section should begin with a consistent label badge:
 
-Typical widths:
+* Rounded pill shape
+* Subtle accent border
+* Accent-tinted background
+* Small accent dot, optionally pulsing
+* Uppercase monospace label
+* Wide letter spacing
 
-* 2px mobile
-* 4px desktop
+This creates orientation and rhythm throughout the page.
 
 ---
 
-## Shadows
+## Surfaces, Borders, and Shadows
 
-Use hard offset shadows.
+Cards and surfaces should feel refined rather than poster-like.
 
-Do not use soft blurred shadows.
+Recommended surface style:
+
+* White card background
+* `1px` subtle border using `#E2E8F0`
+* Rounded corners, usually `12px` to `16px`
+* Soft layered shadows
+* Stronger accent-tinted shadows only for featured or interactive elements
+
+Recommended shadows:
+
+* Subtle lift: `0 1px 3px rgba(0,0,0,0.06)`
+* Standard card: `0 4px 6px rgba(0,0,0,0.07)`
+* Elevated card: `0 10px 15px rgba(0,0,0,0.08)`
+* Hero or featured surface: `0 20px 25px rgba(0,0,0,0.1)`
+* Accent shadow: `0 4px 14px rgba(0,82,255,0.25)`
+* Strong accent shadow: `0 8px 24px rgba(0,82,255,0.35)`
+
+---
+
+## Texture and Depth
+
+The design should avoid flat sterility through subtle texture:
+
+* Low-opacity dot patterns in dark inverted sections
+* Radial accent glows at very low opacity
+* Gradient overlays in hero and featured sections
+* Layered card shadows
+
+Texture should be felt more than noticed.
+
+---
+
+## Inverted Contrast Sections
+
+At least one major section should use `#0F172A` as a dark background with light text.
+
+Good candidates:
+
+* Featured projects
+* Technical stats
+* Final CTA
+* Project detail hero
+
+Dark sections may use subtle dot patterns and radial accent glows for depth.
 
 ---
 
 # 22. Interaction Design
 
-Interactions should feel mechanical and responsive.
+Interactions should feel smooth, confident, and purposeful.
+
+Motion should communicate state, hierarchy, and polish rather than act as decoration.
 
 Recommended behavior:
 
 ### Buttons
 
-On click:
+Primary buttons should use the Electric Blue gradient.
 
-* Slight downward/right translation
-* Shadow disappears momentarily
+On hover:
 
-### Project Cards
+* Slight upward lift
+* Accent-tinted shadow
+* Subtle brightness increase
+* Optional arrow movement to the right
+
+On active:
+
+* Slight scale down, approximately `scale(0.98)`
+
+### Cards
 
 On hover:
 
 * Small upward movement
-* Optional visual accent
+* Deeper shadow
+* Optional subtle gradient overlay
+* Optional icon scale on feature cards
 
-### Images
+### Project Cards
 
-Optional treatment:
+Project cards should remain clean and scannable.
 
-* Grayscale normally
-* Full color on hover
+Featured project cards may use gradient borders or accent glows.
+
+Images should show the real project clearly and may use subtle hover treatments if they do not reduce readability.
 
 ### Filters
 
 Category selection should transition quickly and clearly indicate the active category.
 
-Animations should remain approximately:
+Active filters should use the accent gradient, accent border, or an unmistakable selected state.
 
-**200–300ms**
+### Section Entrances
 
-Avoid long, floating, or overly organic animation.
+Content may fade upward into view with staggered timing.
+
+Recommended entrance motion:
+
+* Duration: approximately `700ms`
+* Movement: approximately `28px` upward
+* Easing: smooth ease-out curve
+* Respect reduced-motion preferences
+
+### Continuous Motion
+
+Continuous motion should be slow and subtle.
+
+Acceptable uses:
+
+* Pulsing dots in section labels or status badges
+* Floating hero cards
+* Slowly rotating decorative rings
+
+Continuous motion must stop or simplify for users who prefer reduced motion.
 
 ---
 
@@ -1000,7 +1161,7 @@ The minimum complete version of the portfolio must include:
 * GitHub / professional links
 * Contact information
 * Responsive layout
-* Existing Bauhaus design language
+* Minimalist Modern design language
 
 ---
 
@@ -1272,15 +1433,16 @@ Optional enhancements:
 * Click-to-enlarge
 * Image captions
 
-The carousel should remain visually consistent with the Bauhaus design system.
+The carousel should remain visually consistent with the Minimalist Modern design system.
 
 Controls should use the same:
 
-* Thick borders
-* Hard shadows
-* Primary colors
-* Geometric forms
-* Mechanical interaction behavior
+* Electric Blue accent gradient
+* Clear rounded interactive targets
+* Visible focus rings
+* Smooth hover and active states
+* Refined shadows
+* Accessible labels
 
 as the rest of the interface.
 
