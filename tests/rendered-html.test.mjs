@@ -1,11 +1,6 @@
 import assert from "node:assert/strict";
-import { access, readFile, readdir } from "node:fs/promises";
+import { readFile } from "node:fs/promises";
 import test from "node:test";
-
-const developmentPreviewMeta =
-  /<meta(?=[^>]*\bname=["']codex-preview["'])(?=[^>]*\bcontent=["']development["'])[^>]*>/i;
-const templateRoot = new URL("../", import.meta.url);
-const previewRoot = new URL("../app/_sites-preview/", import.meta.url);
 
 async function render() {
   const workerUrl = new URL("../dist/server/index.js", import.meta.url);
@@ -28,64 +23,63 @@ async function render() {
   );
 }
 
-test("server-renders the starter loading skeleton", async () => {
+test("server-renders the portfolio landing page", async () => {
   const response = await render();
   assert.equal(response.status, 200);
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, developmentPreviewMeta);
-  assert.match(html, /<title>Your site is taking shape<\/title>/i);
-  assert.match(html, /Building your site/);
-  assert.match(html, /Your site is taking shape/);
-  assert.match(
-    html,
-    /Your first version will appear here automatically when it’s ready\./,
-  );
-  assert.doesNotMatch(html, /Codex/);
-  assert.match(html, /react-loading-skeleton/);
-  assert.match(html, /role="status"/);
+  assert.match(html, /<title>Ral Angelo Lluisma \| Portfolio<\/title>/i);
+  assert.match(html, /Developer \/ Embedded Systems &amp; IoT Engineer/);
+  assert.match(html, /Project-first portfolio/);
+  assert.match(html, /Featured Projects/);
+  assert.match(html, /Filter by discipline\./);
+  assert.match(html, /Smart Shelf/);
+  assert.match(html, /Project Details/);
+  assert.match(html, /mailto:hello@example\.com/);
+  assert.doesNotMatch(html, /Your site is taking shape|Building your site/);
+  assert.doesNotMatch(html, /react-loading-skeleton/);
 });
 
-test("keeps the loading skeleton scoped and disposable", async () => {
-  const [preview, css, page, layout, packageJson, files] = await Promise.all([
-    readFile(new URL("SkeletonPreview.tsx", previewRoot), "utf8"),
-    readFile(new URL("preview.css", previewRoot), "utf8"),
+test("keeps portfolio content and metadata aligned", async () => {
+  const [page, layout, packageJson] = await Promise.all([
     readFile(new URL("../app/page.tsx", import.meta.url), "utf8"),
     readFile(new URL("../app/layout.tsx", import.meta.url), "utf8"),
     readFile(new URL("../package.json", import.meta.url), "utf8"),
-    readdir(previewRoot),
   ]);
 
-  assert.deepEqual(files.sort(), ["SkeletonPreview.tsx", "preview.css"]);
-  assert.match(preview, /from "react-loading-skeleton"/);
-  assert.match(preview, /baseColor="#eceae7"/);
-  assert.match(preview, /highlightColor="#f9f8f6"/);
-  assert.match(preview, /duration=\{2\.8\}/);
-  assert.match(preview, /sites-skeleton-search-placeholder/);
-  assert.match(packageJson, /"react-loading-skeleton": "3\.5\.0"/);
+  assert.match(layout, /title:\s*"Ral Angelo Lluisma \| Portfolio"/);
+  assert.match(layout, /embedded systems, IoT, AI experiments/);
+  assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
 
-  const shellIndex = preview.indexOf('className="sites-skeleton-shell"');
-  const statusIndex = preview.indexOf('className="sites-skeleton-status"');
-  assert.ok(shellIndex >= 0 && statusIndex > shellIndex);
-  assert.match(css, /position:\s*fixed/);
-  assert.match(css, /inset:\s*0/);
-  assert.match(css, /opacity:\s*0\.52/);
-  assert.match(css, /prefers-reduced-motion:\s*reduce/);
-  assert.doesNotMatch(css, /#020617|canvas|pets|progress/i);
-  assert.doesNotMatch(
-    preview,
-    /loading-spinner|status-mark|status-progress|canvas|cookie|random/i,
-  );
+  assert.match(page, /const technicalAreas = \[/);
+  assert.match(page, /const skills = \[/);
+  assert.match(page, /const experience = \[/);
+  assert.match(page, /ProjectExplorer/);
+  assert.match(page, /Featured Projects/);
+  assert.match(page, /id="about"/);
+  assert.match(page, /id="skills"/);
+  assert.match(page, /id="projects"/);
+  assert.match(page, /id="experience"/);
+  assert.match(page, /id="contact"/);
+  assert.doesNotMatch(page, /SkeletonPreview|react-loading-skeleton/);
+  assert.doesNotMatch(packageJson, /"react-loading-skeleton"/);
+});
 
-  assert.match(page, /export const metadata:\s*Metadata/);
-  assert.match(page, /"codex-preview": "development"/);
-  assert.match(page, /<SkeletonPreview \/>/);
-  assert.match(layout, /title:\s*"Starter Project"/);
-  assert.doesNotMatch(layout, /codex-preview|_sites-preview|themeColor|\bViewport\b/);
-  assert.doesNotMatch(css, /(^|\s)(html|body)\s*\{/m);
+test("keeps project data content-driven and asset-folder aware", async () => {
+  const [projectData, assetHelper, detailPage] = await Promise.all([
+    readFile(new URL("../app/data/projects.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/lib/project-assets.ts", import.meta.url), "utf8"),
+    readFile(new URL("../app/projects/[slug]/page.tsx", import.meta.url), "utf8"),
+  ]);
 
-  await assert.rejects(
-    access(new URL("public/_sites-preview", templateRoot)),
-  );
+  assert.match(projectData, /projectCategories/);
+  assert.match(projectData, /assetFolder: "smart-shelf"/);
+  assert.match(projectData, /featured: true/);
+  assert.match(assetHelper, /import\.meta\.glob/);
+  assert.match(assetHelper, /public\/projects/);
+  assert.match(detailPage, /generateStaticParams/);
+  assert.match(detailPage, /ProjectCarousel/);
+  assert.match(detailPage, /My Contribution/);
+  assert.match(detailPage, /Technologies Used/);
 });
