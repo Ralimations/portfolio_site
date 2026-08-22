@@ -98,7 +98,7 @@ export const projects: Project[] = [
     title: "Portfolio Website",
     category: "web",
     shortDescription:
-      "Bauhaus-inspired professional portfolio built around structured project data, fast scanning, and maintainable case studies.",
+      "Minimalist Modern professional portfolio built around structured project data, fast scanning, and maintainable case studies.",
     description: [
       "This portfolio is a content-driven site for presenting embedded, AI, web, mobile, and software projects in a recruiter-friendly format.",
       "The implementation separates project metadata from reusable UI, making future updates mostly a data and asset-management task.",
@@ -111,7 +111,7 @@ export const projects: Project[] = [
     contributions: [
       "Defined the project data model and category structure.",
       "Built filtered project browsing and detail views.",
-      "Preserved the Bauhaus visual direction while improving hierarchy.",
+      "Translated the visual system into a refined Minimalist Modern interface.",
     ],
     architecture: ["Project metadata", "Asset discovery", "Filtered cards", "Detail route", "Carousel media"],
     outcomes: ["Turns the portfolio from a placeholder shell into a maintainable project showcase."],

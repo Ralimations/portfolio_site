@@ -31,7 +31,7 @@ test("server-renders the portfolio landing page", async () => {
   const html = await response.text();
   assert.match(html, /<title>Ral Angelo Lluisma \| Portfolio<\/title>/i);
   assert.match(html, /Developer \/ Embedded Systems &amp; IoT Engineer/);
-  assert.match(html, /Project-first portfolio/);
+  assert.match(html, /visible proof/);
   assert.match(html, /Featured Projects/);
   assert.match(html, /Filter by discipline\./);
   assert.match(html, /Smart Shelf/);
@@ -49,6 +49,7 @@ test("keeps portfolio content and metadata aligned", async () => {
   ]);
 
   assert.match(layout, /title:\s*"Ral Angelo Lluisma \| Portfolio"/);
+  assert.match(layout, /Minimalist Modern developer portfolio/);
   assert.match(layout, /embedded systems, IoT, AI experiments/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
 

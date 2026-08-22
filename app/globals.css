@@ -1,15 +1,37 @@
-@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;700;900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Calistoga&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 :root {
-  --background: #f0f0f0;
-  --foreground: #121212;
+  --background: #fafafa;
+  --foreground: #0f172a;
+  --muted: #f1f5f9;
+  --muted-foreground: #64748b;
+  --accent: #0052ff;
+  --accent-secondary: #4d7cff;
+  --accent-foreground: #ffffff;
+  --border: #e2e8f0;
+  --card: #ffffff;
+  --ring: #0052ff;
+  --font-display: "Calistoga", Georgia, serif;
+  --font-body: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --shadow-card: 0 10px 30px rgba(15, 23, 42, 0.08);
+  --shadow-card-hover: 0 22px 55px rgba(15, 23, 42, 0.13);
+  --shadow-accent: 0 10px 28px rgba(0, 82, 255, 0.25);
+  --shadow-accent-lg: 0 18px 45px rgba(0, 82, 255, 0.34);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Outfit", Arial, Helvetica, sans-serif;
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-secondary: var(--accent-secondary);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 * {
@@ -24,12 +46,11 @@ body {
   min-height: 100vh;
   overflow-x: hidden;
   background:
-    linear-gradient(90deg, rgba(18, 18, 18, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(18, 18, 18, 0.05) 1px, transparent 1px),
+    radial-gradient(circle at 15% 0%, rgba(0, 82, 255, 0.08), transparent 28rem),
+    radial-gradient(circle at 90% 10%, rgba(77, 124, 255, 0.08), transparent 24rem),
     var(--background);
-  background-size: 28px 28px;
   color: var(--foreground);
-  font-family: "Outfit", Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
 
 a {
@@ -43,7 +64,7 @@ a {
 }
 
 :focus-visible {
-  outline: 4px solid #1040c0;
+  outline: 3px solid var(--ring);
   outline-offset: 4px;
 }
 
@@ -59,6 +80,109 @@ a {
 }
 
 ::selection {
-  background: #f0c020;
-  color: #121212;
+  background: rgba(0, 82, 255, 0.18);
+  color: var(--foreground);
+}
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-code {
+  font-family: var(--font-mono);
+}
+
+.gradient-text {
+  background: linear-gradient(to right, var(--accent), var(--accent-secondary));
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.gradient-surface {
+  background: linear-gradient(135deg, var(--accent), var(--accent-secondary));
+}
+
+.soft-card {
+  border: 1px solid var(--border);
+  background: var(--card);
+  box-shadow: var(--shadow-card);
+}
+
+.dark-texture {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 18%, rgba(0, 82, 255, 0.18), transparent 24rem),
+    radial-gradient(circle at 86% 74%, rgba(77, 124, 255, 0.14), transparent 22rem),
+    var(--foreground);
+}
+
+.dark-texture::before {
+  position: absolute;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.42) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.035;
+}
+
+.dark-texture > * {
+  position: relative;
+  z-index: 1;
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes slow-rotate {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+
+  50% {
+    opacity: 0.58;
+    transform: scale(1.35);
+  }
+}
+
+.animate-float-slow {
+  animation: float-y 5s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-y 6s ease-in-out infinite;
+}
+
+.animate-rotate-slow {
+  animation: slow-rotate 60s linear infinite;
+}
+
+.animate-pulse-dot {
+  animation: pulse-dot 2.2s ease-in-out infinite;
 }

@@ -23,16 +23,16 @@ export function ProjectVisual({ media, title, categoryLabel, priority = false }:
 
   return (
     <div
-      className="relative flex h-full min-h-[220px] overflow-hidden bg-[#F0F0F0]"
+      className="relative flex h-full min-h-[220px] overflow-hidden bg-[var(--muted)]"
       role="img"
       aria-label={`${title} placeholder visual`}
     >
-      <div className="absolute left-5 top-5 h-20 w-20 rounded-full border-4 border-black bg-[#D02020]" />
-      <div className="absolute right-7 top-10 h-24 w-24 rotate-45 border-4 border-black bg-[#F0C020]" />
-      <div className="absolute bottom-8 left-10 h-0 w-0 border-x-[46px] border-b-[82px] border-x-transparent border-b-[#1040C0]" />
-      <div className="absolute bottom-5 right-5 border-4 border-black bg-white px-4 py-3 shadow-[6px_6px_0_0_#121212]">
-        <p className="text-xs font-black uppercase tracking-[0.2em]">{categoryLabel}</p>
-        <p className="mt-1 text-xl font-black uppercase leading-none">{title}</p>
+      <div className="absolute -left-12 top-8 h-40 w-40 rounded-full bg-[rgba(0,82,255,0.12)] blur-2xl" />
+      <div className="absolute right-8 top-8 h-28 w-28 rounded-[2rem] gradient-surface opacity-90 shadow-[var(--shadow-accent)]" />
+      <div className="absolute bottom-9 left-9 h-32 w-32 rounded-full border border-dashed border-[rgba(0,82,255,0.35)] animate-rotate-slow" />
+      <div className="absolute bottom-5 right-5 rounded-2xl border border-[var(--border)] bg-white/90 px-4 py-3 shadow-lg backdrop-blur">
+        <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--accent)]">{categoryLabel}</p>
+        <p className="mt-1 text-xl font-semibold tracking-[-0.02em]">{title}</p>
       </div>
     </div>
   );

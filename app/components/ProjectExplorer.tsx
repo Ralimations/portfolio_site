@@ -42,8 +42,10 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
               type="button"
               onClick={() => setActiveCategory(category.id)}
               className={[
-                "border-4 border-black px-4 py-3 text-sm font-black uppercase tracking-wider shadow-[5px_5px_0_0_#121212] transition duration-200 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F0C020] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none",
-                isActive ? "bg-[#F0C020] text-[#121212]" : "bg-white text-[#121212] hover:bg-[#F0F0F0]",
+                "min-h-11 rounded-full border px-4 py-2 font-code text-xs uppercase tracking-[0.12em] transition-all duration-200 active:scale-[0.98]",
+                isActive
+                  ? "gradient-surface border-transparent text-white shadow-[var(--shadow-accent)]"
+                  : "border-[var(--border)] bg-white text-[var(--muted-foreground)] hover:-translate-y-0.5 hover:border-[rgba(0,82,255,0.28)] hover:text-[var(--foreground)] hover:shadow-md",
               ].join(" ")}
               aria-pressed={isActive}
             >
@@ -53,17 +55,17 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
         })}
       </div>
 
-      <p className="text-sm font-black uppercase tracking-[0.2em]" aria-live="polite">
+      <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--muted-foreground)]" aria-live="polite">
         {filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"} shown
       </p>
 
-      <div className="grid gap-7 lg:grid-cols-3">
+      <div className="grid gap-6 lg:grid-cols-3">
         {filteredProjects.map((project, index) => (
           <article
             key={project.id}
-            className="group grid overflow-hidden border-4 border-black bg-white text-[#121212] shadow-[8px_8px_0_0_#121212] transition duration-200 hover:-translate-y-1"
+            className="soft-card group grid overflow-hidden rounded-[1.5rem] text-[var(--foreground)] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)]"
           >
-            <div className="aspect-[4/3] border-b-4 border-black">
+            <div className="aspect-[4/3] overflow-hidden border-b border-[var(--border)]">
               <ProjectVisual
                 media={project.media}
                 title={project.title}
@@ -73,16 +75,16 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
             </div>
             <div className="grid gap-5 p-5">
               <div className="flex items-start justify-between gap-4">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#D02020]">
+                <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
                   {getCategoryLabel(project.category)}
                 </p>
-                <p className="border-2 border-black bg-[#F0F0F0] px-2 py-1 text-xs font-black uppercase">
+                <p className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-1 text-xs font-semibold text-[var(--muted-foreground)]">
                   {project.year}
                 </p>
               </div>
               <div>
-                <h3 className="text-3xl font-black uppercase leading-none">{project.title}</h3>
-                <p className="mt-4 text-base font-medium leading-relaxed">{project.shortDescription}</p>
+                <h3 className="text-2xl font-semibold tracking-[-0.02em]">{project.title}</h3>
+                <p className="mt-4 leading-7 text-[var(--muted-foreground)]">{project.shortDescription}</p>
               </div>
               <div className="flex flex-wrap gap-2">
                 {project.technologies
@@ -91,7 +93,7 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
                   .map((technology) => (
                     <span
                       key={technology}
-                      className="border-2 border-black bg-[#F0F0F0] px-2 py-1 text-xs font-black uppercase"
+                      className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)]"
                     >
                       {technology}
                     </span>
@@ -99,9 +101,9 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
               </div>
               <Link
                 href={`/projects/${project.slug}`}
-                className="justify-self-start border-4 border-black bg-[#1040C0] px-4 py-3 text-sm font-black uppercase tracking-wider text-white shadow-[5px_5px_0_0_#121212] transition duration-200 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#F0C020] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
+                className="group/link justify-self-start rounded-xl px-4 py-3 text-sm font-semibold text-[var(--accent)] transition hover:bg-[rgba(0,82,255,0.06)]"
               >
-                Project Details
+                Project Details <span className="inline-block transition group-hover/link:translate-x-1" aria-hidden="true">-&gt;</span>
               </Link>
             </div>
           </article>

@@ -4,7 +4,7 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Ral Angelo Lluisma | Portfolio",
   description:
-    "A Bauhaus-inspired developer portfolio for embedded systems, IoT, AI experiments, web work, mobile flows, and software tools.",
+    "A Minimalist Modern developer portfolio for embedded systems, IoT, AI experiments, web work, mobile flows, and software tools.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",

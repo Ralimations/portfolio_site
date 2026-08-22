@@ -1,36 +1,32 @@
 import Link from "next/link";
+import { ActionLink, AccentMark, SectionLabel } from "@/app/components/DesignPrimitives";
 import { ProjectExplorer } from "@/app/components/ProjectExplorer";
 import { getCategoryLabel, projects } from "@/app/data/projects";
 import { getProjectsWithMedia } from "@/app/lib/project-assets";
 
 const technicalAreas = [
-  "Embedded Systems / IoT",
-  "AI / Machine Learning",
-  "Web Development",
-  "Mobile Development",
-  "Software Tools",
+  { value: "05", label: "Technical disciplines" },
+  { value: "03", label: "Featured builds" },
+  { value: "30s", label: "Project scan target" },
+  { value: "100%", label: "Contribution focused" },
 ];
 
 const skills = [
   {
     title: "Embedded / Hardware",
     items: ["Microcontrollers", "Sensors", "IoT hardware", "Circuit prototyping", "Hardware integration"],
-    accent: "red",
   },
   {
     title: "Programming / Development",
     items: ["TypeScript", "JavaScript", "Python", "React", "System design basics"],
-    accent: "blue",
   },
   {
     title: "AI / ML",
     items: ["Computer vision", "Detection workflows", "Model testing", "Data review", "AI-assisted tools"],
-    accent: "yellow",
   },
   {
     title: "Tools",
     items: ["Git", "VS Code", "Docker basics", "CAD workflows", "Technical documentation"],
-    accent: "black",
   },
 ];
 
@@ -55,46 +51,6 @@ const experience = [
   },
 ];
 
-function ShapeMark() {
-  return (
-    <div className="flex items-center gap-2" aria-label="Ral Angelo Lluisma">
-      <span className="h-5 w-5 rounded-full border-2 border-black bg-[#D02020]" />
-      <span className="h-5 w-5 border-2 border-black bg-[#F0C020]" />
-      <span className="h-0 w-0 border-x-[11px] border-b-[20px] border-x-transparent border-b-[#1040C0]" />
-    </div>
-  );
-}
-
-function MechanicalLink({
-  href,
-  children,
-  tone = "white",
-}: {
-  href: string;
-  children: React.ReactNode;
-  tone?: "white" | "red" | "blue" | "black" | "yellow";
-}) {
-  const toneClass = {
-    white: "bg-white text-[#121212] shadow-[5px_5px_0_0_#121212]",
-    red: "bg-[#D02020] text-white shadow-[5px_5px_0_0_#121212]",
-    blue: "bg-[#1040C0] text-white shadow-[5px_5px_0_0_#121212]",
-    black: "bg-[#121212] text-white shadow-[5px_5px_0_0_#D02020]",
-    yellow: "bg-[#F0C020] text-[#121212] shadow-[5px_5px_0_0_#121212]",
-  }[tone];
-
-  return (
-    <a
-      href={href}
-      className={[
-        "inline-flex items-center justify-center border-4 border-black px-5 py-4 text-sm font-black uppercase tracking-wider transition duration-200 focus-visible:outline focus-visible:outline-4 focus-visible:outline-offset-4 focus-visible:outline-[#1040C0] active:translate-x-[3px] active:translate-y-[3px] active:shadow-none",
-        toneClass,
-      ].join(" ")}
-    >
-      {children}
-    </a>
-  );
-}
-
 function Header() {
   const links = [
     { href: "#about", label: "About" },
@@ -105,28 +61,28 @@ function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-20 border-b-4 border-black bg-[#F0F0F0]">
-      <nav className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 sm:px-6 lg:px-8">
-        <a href="#top" className="flex min-w-0 items-center gap-4">
-          <ShapeMark />
-          <span className="truncate text-sm font-black uppercase tracking-[0.2em]">Ral Angelo Lluisma</span>
+    <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[rgba(250,250,250,0.82)] backdrop-blur-xl">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
+        <a href="#top" className="flex min-w-0 items-center gap-3">
+          <AccentMark />
+          <span className="truncate text-sm font-semibold tracking-[-0.01em]">Ral Angelo Lluisma</span>
         </a>
 
-        <div className="hidden items-center gap-5 text-xs font-black uppercase tracking-widest lg:flex">
+        <div className="hidden items-center gap-7 text-sm font-medium text-[var(--muted-foreground)] lg:flex">
           {links.map((link) => (
-            <a key={link.href} className="hover:text-[#D02020]" href={link.href}>
+            <a key={link.href} className="transition hover:text-[var(--foreground)]" href={link.href}>
               {link.label}
             </a>
           ))}
         </div>
 
         <details className="relative lg:hidden">
-          <summary className="cursor-pointer border-4 border-black bg-[#F0C020] px-3 py-2 text-xs font-black uppercase tracking-widest shadow-[4px_4px_0_0_#121212]">
+          <summary className="cursor-pointer rounded-xl border border-[var(--border)] bg-white px-4 py-2 text-sm font-semibold shadow-sm">
             Menu
           </summary>
-          <div className="absolute right-0 top-14 grid w-56 gap-1 border-4 border-black bg-white p-3 shadow-[6px_6px_0_0_#121212]">
+          <div className="absolute right-0 top-14 grid w-56 gap-1 rounded-2xl border border-[var(--border)] bg-white p-3 shadow-xl">
             {links.map((link) => (
-              <a key={link.href} href={link.href} className="px-3 py-2 text-sm font-black uppercase">
+              <a key={link.href} href={link.href} className="rounded-xl px-3 py-2 text-sm font-semibold text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]">
                 {link.label}
               </a>
             ))}
@@ -137,18 +93,27 @@ function Header() {
   );
 }
 
-function HeroGeometry() {
+function HeroGraphic() {
   return (
-    <div className="relative min-h-[380px] overflow-hidden border-l-0 border-t-4 border-black bg-[#1040C0] lg:min-h-[640px] lg:border-l-4 lg:border-t-0">
-      <div className="absolute left-8 top-8 h-28 w-28 rounded-full border-4 border-black bg-[#F0C020] shadow-[8px_8px_0_0_#121212]" />
-      <div className="absolute right-10 top-20 h-36 w-36 rotate-45 border-4 border-black bg-[#D02020] shadow-[8px_8px_0_0_#121212]" />
-      <div className="absolute bottom-14 left-10 h-40 w-40 border-4 border-black bg-white shadow-[8px_8px_0_0_#121212]" />
-      <div className="absolute bottom-28 right-12 h-0 w-0 border-x-[68px] border-b-[118px] border-x-transparent border-b-[#F0C020] drop-shadow-[6px_6px_0_#121212]" />
-      <div className="absolute inset-x-6 bottom-6 border-4 border-black bg-white p-5 shadow-[8px_8px_0_0_#121212]">
-        <p className="text-sm font-black uppercase tracking-[0.2em]">Project-first portfolio</p>
-        <p className="mt-2 text-2xl font-black uppercase leading-none">
-          Hardware, software, AI, and interface work presented as evidence.
-        </p>
+    <div className="relative hidden min-h-[560px] lg:block">
+      <div className="absolute inset-6 rounded-[2rem] border border-[var(--border)] bg-white/70 shadow-[var(--shadow-card)] backdrop-blur">
+        <div className="absolute inset-8 rounded-[2rem] bg-[radial-gradient(circle_at_35%_25%,rgba(0,82,255,0.12),transparent_35%),radial-gradient(circle_at_78%_68%,rgba(77,124,255,0.18),transparent_38%)]" />
+        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[rgba(0,82,255,0.35)] animate-rotate-slow" />
+        <div className="absolute left-16 top-20 h-28 w-28 rounded-[2rem] gradient-surface shadow-[var(--shadow-accent)] animate-float-slow" />
+        <div className="absolute right-16 top-16 rounded-2xl border border-[var(--border)] bg-white p-5 shadow-xl animate-float-slower">
+          <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--muted-foreground)]">Signal</p>
+          <p className="mt-2 text-3xl font-semibold tracking-[-0.02em]">IoT + AI</p>
+        </div>
+        <div className="absolute bottom-20 left-14 rounded-2xl border border-[var(--border)] bg-white p-5 shadow-xl animate-float-slower">
+          <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--accent)]">Evidence</p>
+          <p className="mt-2 max-w-48 text-lg font-semibold leading-snug">Projects explain what changed, what I built, and what I used.</p>
+        </div>
+        <div className="absolute bottom-24 right-16 grid grid-cols-3 gap-3">
+          {Array.from({ length: 9 }).map((_, index) => (
+            <span key={index} className="h-2 w-2 rounded-full bg-[rgba(0,82,255,0.32)]" />
+          ))}
+        </div>
+        <div className="absolute bottom-12 right-10 h-24 w-24 rounded-[1.5rem] bg-[var(--foreground)] shadow-2xl" />
       </div>
     </div>
   );
@@ -159,135 +124,127 @@ export default function Home() {
   const featuredProjects = projectsWithMedia.filter((project) => project.featured);
 
   return (
-    <main id="top" className="min-h-screen bg-[#F0F0F0] text-[#121212]">
+    <main id="top" className="min-h-screen text-[var(--foreground)]">
       <Header />
 
-      <section className="border-b-4 border-black">
-        <div className="mx-auto grid max-w-7xl lg:grid-cols-[1.04fr_0.96fr]">
-          <div className="px-4 py-14 sm:px-6 sm:py-20 lg:px-8 lg:py-24">
-            <p className="mb-6 inline-block border-4 border-black bg-white px-3 py-2 text-xs font-black uppercase tracking-[0.24em] shadow-[5px_5px_0_0_#121212]">
-              Developer / Embedded Systems & IoT Engineer
-            </p>
-            <h1 className="max-w-4xl text-5xl font-black uppercase leading-[0.88] sm:text-7xl lg:text-8xl">
-              Ral Angelo Lluisma
+      <section className="px-5 py-24 sm:py-32 lg:py-36">
+        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+          <div>
+            <SectionLabel>Developer / Embedded Systems & IoT Engineer</SectionLabel>
+            <h1 className="font-display mt-8 max-w-4xl text-[3.3rem] leading-[1.02] tracking-[-0.02em] sm:text-7xl lg:text-[5.25rem]">
+              Ral Angelo Lluisma builds technical work with <span className="gradient-text">visible proof.</span>
             </h1>
-            <p className="mt-8 max-w-2xl text-lg font-medium leading-relaxed sm:text-xl">
-              I build across embedded systems, IoT, AI experiments, web interfaces, mobile-oriented flows, and practical software tools.
-              This portfolio keeps the work visual, scannable, and focused on what I contributed.
+            <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--muted-foreground)] sm:text-xl">
+              I work across embedded systems, IoT, AI experiments, web interfaces, mobile-oriented flows, and practical software tools. The portfolio keeps each project scannable: what it does, what I contributed, and what I used.
             </p>
-            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-              <MechanicalLink href="#projects" tone="red">
-                View Projects
-              </MechanicalLink>
-              <MechanicalLink href="#contact">Contact</MechanicalLink>
+            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+              <ActionLink href="#projects">View Projects</ActionLink>
+              <ActionLink href="#contact" variant="secondary">Contact</ActionLink>
             </div>
           </div>
-          <HeroGeometry />
+          <HeroGraphic />
         </div>
       </section>
 
-      <section className="border-b-4 border-black bg-[#F0C020]">
-        <div className="mx-auto grid max-w-7xl divide-y-4 divide-black border-x-4 border-black sm:grid-cols-2 sm:divide-x-4 sm:divide-y-0 lg:grid-cols-5">
-          {technicalAreas.map((area, index) => (
-            <div key={area} className="min-h-32 p-5">
-              <p className="text-4xl font-black leading-none">{String(index + 1).padStart(2, "0")}</p>
-              <p className="mt-3 text-base font-black uppercase leading-tight tracking-wider">{area}</p>
-            </div>
+      <section className="px-5 pb-24">
+        <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
+          {technicalAreas.map((item) => (
+            <article key={item.label} className="soft-card rounded-2xl p-6">
+              <p className="font-display gradient-text text-5xl leading-none">{item.value}</p>
+              <p className="mt-3 font-code text-xs uppercase tracking-[0.15em] text-[var(--muted-foreground)]">{item.label}</p>
+            </article>
           ))}
         </div>
       </section>
 
-      <section id="about" className="border-b-4 border-black px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+      <section id="about" className="px-5 py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.28em]">About</p>
-            <h2 className="mt-4 text-4xl font-black uppercase leading-none sm:text-6xl">
-              Hardware and software in one frame.
+            <SectionLabel>About</SectionLabel>
+            <h2 className="font-display mt-6 text-4xl leading-tight tracking-[-0.01em] sm:text-5xl">
+              Hardware and software in one calm, readable frame.
             </h2>
           </div>
-          <p className="max-w-3xl text-xl font-medium leading-relaxed">
-            My work sits between physical systems and software: microcontrollers, sensors, connected prototypes, AI-assisted experimentation,
-            interfaces, and tools that make technical workflows easier to use. I enjoy projects where hardware behavior, data flow, and user-facing
-            clarity all have to line up.
-          </p>
+          <div className="soft-card rounded-[2rem] p-8 sm:p-10">
+            <p className="text-lg leading-8 text-[var(--muted-foreground)]">
+              My work sits between physical systems and software: microcontrollers, sensors, connected prototypes, AI-assisted experimentation, interfaces, and tools that make technical workflows easier to use. I enjoy projects where hardware behavior, data flow, and user-facing clarity all have to line up.
+            </p>
+          </div>
         </div>
       </section>
 
-      <section className="border-b-4 border-black bg-[#D02020] px-4 py-14 text-white sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="flex flex-col justify-between gap-6 md:flex-row md:items-end">
+      <section className="dark-texture px-5 py-28 text-white sm:py-36">
+        <div className="mx-auto max-w-6xl">
+          <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.28em]">Featured Projects</p>
-              <h2 className="mt-4 max-w-4xl text-4xl font-black uppercase leading-none sm:text-6xl">
-                Strongest examples first.
+              <SectionLabel inverted>Featured Projects</SectionLabel>
+              <h2 className="font-display mt-6 max-w-3xl text-4xl leading-tight sm:text-5xl">
+                Strongest examples, presented first.
               </h2>
             </div>
-            <div className="h-24 w-24 rotate-45 border-4 border-black bg-[#F0C020] shadow-[8px_8px_0_0_#121212]" />
+            <p className="max-w-md text-lg leading-8 text-white/70">
+              Featured work uses the same project data model as the full library, but earns more visual weight.
+            </p>
           </div>
-          <div className="mt-10 grid gap-7 lg:grid-cols-3">
+          <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {featuredProjects.map((project) => (
-              <article key={project.id} className="border-4 border-black bg-white p-5 text-[#121212] shadow-[8px_8px_0_0_#121212]">
-                <p className="text-xs font-black uppercase tracking-[0.2em] text-[#1040C0]">
-                  {getCategoryLabel(project.category)}
-                </p>
-                <h3 className="mt-4 text-3xl font-black uppercase leading-none">{project.title}</h3>
-                <p className="mt-4 text-base font-medium leading-relaxed">{project.shortDescription}</p>
-                <Link
-                  href={`/projects/${project.slug}`}
-                  className="mt-6 inline-flex border-4 border-black bg-[#F0C020] px-4 py-3 text-sm font-black uppercase tracking-wider shadow-[5px_5px_0_0_#121212] transition active:translate-x-[3px] active:translate-y-[3px] active:shadow-none"
-                >
-                  Open Case
-                </Link>
+              <article key={project.id} className="rounded-[1.6rem] bg-gradient-to-br from-[var(--accent)] via-[var(--accent-secondary)] to-[var(--accent)] p-[1px]">
+                <div className="h-full rounded-[calc(1.6rem-1px)] bg-white p-7 text-[var(--foreground)]">
+                  <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--accent)]">
+                    {getCategoryLabel(project.category)}
+                  </p>
+                  <h3 className="mt-4 text-2xl font-semibold tracking-[-0.02em]">{project.title}</h3>
+                  <p className="mt-4 leading-7 text-[var(--muted-foreground)]">{project.shortDescription}</p>
+                  <Link
+                    href={`/projects/${project.slug}`}
+                    className="mt-7 inline-flex items-center gap-2 text-sm font-semibold text-[var(--accent)] transition hover:gap-3"
+                  >
+                    Open case <span aria-hidden="true">-&gt;</span>
+                  </Link>
+                </div>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section id="projects" className="border-b-4 border-black px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto max-w-7xl">
-          <div className="mb-10 grid gap-6 lg:grid-cols-[0.75fr_1.25fr] lg:items-end">
+      <section id="projects" className="px-5 py-28 sm:py-36">
+        <div className="mx-auto max-w-6xl">
+          <div className="mb-12 grid gap-8 lg:grid-cols-[0.85fr_1.15fr] lg:items-end">
             <div>
-              <p className="text-sm font-black uppercase tracking-[0.28em]">Projects</p>
-              <h2 className="mt-4 text-4xl font-black uppercase leading-none sm:text-6xl">
+              <SectionLabel>Projects</SectionLabel>
+              <h2 className="font-display mt-6 text-4xl leading-tight tracking-[-0.01em] sm:text-5xl">
                 Filter by discipline.
               </h2>
             </div>
-            <p className="text-lg font-medium leading-relaxed">
-              Every project card shows the result first, then the most important technologies. Open a project for contribution notes,
-              architecture, media, and links.
+            <p className="text-lg leading-8 text-[var(--muted-foreground)]">
+              Every project card starts with the outcome, then exposes category, year, status, and the most relevant technologies without turning the page into a technical archive.
             </p>
           </div>
           <ProjectExplorer projects={projectsWithMedia} />
         </div>
       </section>
 
-      <section id="skills" className="border-b-4 border-black bg-[#1040C0] px-4 py-14 text-white sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+      <section id="skills" className="px-5 py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.28em]">Skills</p>
-            <h2 className="mt-4 text-4xl font-black uppercase leading-none sm:text-6xl">
+            <SectionLabel>Skills</SectionLabel>
+            <h2 className="font-display mt-6 text-4xl leading-tight tracking-[-0.01em] sm:text-5xl">
               Practical areas, no fake percentages.
             </h2>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
             {skills.map((group) => (
-              <article key={group.title} className="border-4 border-black bg-white p-5 text-[#121212] shadow-[8px_8px_0_0_#121212]">
-                <div className="mb-6 flex items-center justify-between">
-                  <h3 className="text-2xl font-black uppercase">{group.title}</h3>
-                  <span
-                    className={[
-                      "h-7 w-7 border-2 border-black",
-                      group.accent === "red" ? "rounded-full bg-[#D02020]" : "",
-                      group.accent === "blue" ? "bg-[#1040C0]" : "",
-                      group.accent === "yellow" ? "rotate-45 bg-[#F0C020]" : "",
-                      group.accent === "black" ? "rounded-full bg-[#121212]" : "",
-                    ].join(" ")}
-                  />
+              <article key={group.title} className="soft-card group rounded-2xl p-7 transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-card-hover)]">
+                <div className="mb-6 flex items-center justify-between gap-4">
+                  <h3 className="text-xl font-semibold tracking-[-0.01em]">{group.title}</h3>
+                  <span className="grid h-11 w-11 place-items-center rounded-xl gradient-surface shadow-[var(--shadow-accent)] transition group-hover:scale-110">
+                    <span className="h-2.5 w-2.5 rounded-full bg-white" />
+                  </span>
                 </div>
                 <div className="flex flex-wrap gap-2">
                   {group.items.map((item) => (
-                    <span key={item} className="border-2 border-black bg-[#F0F0F0] px-2 py-1 text-xs font-black uppercase">
+                    <span key={item} className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)]">
                       {item}
                     </span>
                   ))}
@@ -298,28 +255,28 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="experience" className="border-b-4 border-black px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.72fr_1.28fr]">
+      <section id="experience" className="px-5 py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.28em]">Experience</p>
-            <h2 className="mt-4 text-4xl font-black uppercase leading-none sm:text-6xl">
+            <SectionLabel>Experience</SectionLabel>
+            <h2 className="font-display mt-6 text-4xl leading-tight tracking-[-0.01em] sm:text-5xl">
               Background in short form.
             </h2>
           </div>
           <div className="grid gap-5">
             {experience.map((item) => (
-              <article key={item.role} className="border-4 border-black bg-white p-6 shadow-[8px_8px_0_0_#121212]">
+              <article key={item.role} className="soft-card rounded-2xl p-7">
                 <div className="flex flex-col gap-3 sm:flex-row sm:items-start sm:justify-between">
                   <div>
-                    <h3 className="text-2xl font-black uppercase">{item.role}</h3>
-                    <p className="mt-1 text-base font-bold">{item.organization}</p>
+                    <h3 className="text-xl font-semibold tracking-[-0.01em]">{item.role}</h3>
+                    <p className="mt-1 text-sm font-medium text-[var(--muted-foreground)]">{item.organization}</p>
                   </div>
-                  <p className="border-2 border-black bg-[#F0C020] px-3 py-2 text-xs font-black uppercase">{item.date}</p>
+                  <p className="font-code rounded-full border border-[rgba(0,82,255,0.18)] bg-[rgba(0,82,255,0.06)] px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-[var(--accent)]">{item.date}</p>
                 </div>
-                <ul className="mt-5 grid gap-3">
+                <ul className="mt-6 grid gap-3">
                   {item.points.map((point) => (
-                    <li key={point} className="flex gap-3 text-base font-medium leading-relaxed">
-                      <span className="mt-2 h-2 w-2 shrink-0 bg-[#D02020]" />
+                    <li key={point} className="flex gap-3 leading-7 text-[var(--muted-foreground)]">
+                      <span className="mt-2.5 h-2 w-2 shrink-0 rounded-full bg-[var(--accent)]" />
                       <span>{point}</span>
                     </li>
                   ))}
@@ -330,27 +287,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="contact" className="bg-[#F0C020] px-4 py-14 sm:px-6 lg:px-8 lg:py-20">
-        <div className="mx-auto grid max-w-7xl gap-8 border-4 border-black bg-[#F0F0F0] p-6 shadow-[8px_8px_0_0_#121212] lg:grid-cols-[1fr_0.8fr] lg:items-center">
+      <section id="contact" className="px-5 py-28">
+        <div className="dark-texture mx-auto grid max-w-6xl gap-10 rounded-[2rem] px-6 py-12 text-white shadow-[var(--shadow-card-hover)] sm:px-10 lg:grid-cols-[1fr_0.72fr] lg:items-center">
           <div>
-            <p className="text-sm font-black uppercase tracking-[0.28em]">Contact</p>
-            <h2 className="mt-4 text-4xl font-black uppercase leading-none sm:text-6xl">
+            <SectionLabel inverted>Contact</SectionLabel>
+            <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">
               Open to technical roles and collaboration.
             </h2>
-            <p className="mt-6 max-w-2xl text-lg font-medium leading-relaxed">
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
               The portfolio is ready for real resume, GitHub, LinkedIn, and email links as soon as those URLs are confirmed.
             </p>
           </div>
           <div className="grid gap-3">
-            <MechanicalLink href="mailto:hello@example.com" tone="black">
-              Email
-            </MechanicalLink>
-            <MechanicalLink href="https://github.com/" tone="white">
-              GitHub
-            </MechanicalLink>
-            <MechanicalLink href="https://www.linkedin.com/" tone="blue">
-              LinkedIn
-            </MechanicalLink>
+            <ActionLink href="mailto:hello@example.com">Email</ActionLink>
+            <ActionLink href="https://github.com/" variant="secondary" external>GitHub</ActionLink>
+            <ActionLink href="https://www.linkedin.com/" variant="secondary" external>LinkedIn</ActionLink>
           </div>
         </div>
       </section>

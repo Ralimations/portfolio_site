@@ -27,14 +27,14 @@ export function ProjectCarousel({ images, title }: ProjectCarouselProps) {
   if (!currentImage) {
     return (
       <div
-        className="relative min-h-[320px] overflow-hidden border-4 border-black bg-[#F0F0F0] shadow-[8px_8px_0_0_#121212]"
+        className="relative min-h-[320px] overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--muted)] shadow-[var(--shadow-card)]"
         role="img"
         aria-label={`${title} project media placeholder`}
       >
-        <div className="absolute left-8 top-8 h-28 w-28 rounded-full border-4 border-black bg-[#D02020]" />
-        <div className="absolute right-10 top-12 h-32 w-32 rotate-45 border-4 border-black bg-[#F0C020]" />
-        <div className="absolute bottom-10 left-12 h-0 w-0 border-x-[66px] border-b-[116px] border-x-transparent border-b-[#1040C0]" />
-        <p className="absolute bottom-6 right-6 border-4 border-black bg-white px-5 py-4 text-xl font-black uppercase shadow-[6px_6px_0_0_#121212]">
+        <div className="absolute left-8 top-8 h-32 w-32 rounded-full bg-[rgba(0,82,255,0.12)] blur-2xl" />
+        <div className="absolute right-10 top-12 h-32 w-32 rounded-[2rem] gradient-surface shadow-[var(--shadow-accent)]" />
+        <div className="absolute bottom-10 left-12 h-40 w-40 rounded-full border border-dashed border-[rgba(0,82,255,0.35)] animate-rotate-slow" />
+        <p className="absolute bottom-6 right-6 rounded-2xl border border-[var(--border)] bg-white px-5 py-4 text-xl font-semibold shadow-lg">
           Media pending
         </p>
       </div>
@@ -67,7 +67,7 @@ export function ProjectCarousel({ images, title }: ProjectCarouselProps) {
         touchStartX.current = null;
       }}
     >
-      <div className="relative overflow-hidden border-4 border-black bg-white shadow-[8px_8px_0_0_#121212]">
+      <div className="relative overflow-hidden rounded-[2rem] border border-[var(--border)] bg-white shadow-[var(--shadow-card)]">
         <img
           src={currentImage.src}
           alt={currentImage.alt}
@@ -80,7 +80,7 @@ export function ProjectCarousel({ images, title }: ProjectCarouselProps) {
             <button
               type="button"
               onClick={goToPrevious}
-              className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-black bg-[#F0C020] text-2xl font-black shadow-[4px_4px_0_0_#121212] transition active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+              className="grid h-12 w-12 place-items-center rounded-full bg-white/90 text-xl font-semibold text-[var(--accent)] shadow-lg backdrop-blur transition hover:-translate-y-0.5 active:scale-[0.98]"
               aria-label="Previous project image"
             >
               &lt;
@@ -88,7 +88,7 @@ export function ProjectCarousel({ images, title }: ProjectCarouselProps) {
             <button
               type="button"
               onClick={goToNext}
-              className="flex h-12 w-12 items-center justify-center rounded-full border-4 border-black bg-[#F0C020] text-2xl font-black shadow-[4px_4px_0_0_#121212] transition active:translate-x-[2px] active:translate-y-[2px] active:shadow-none"
+              className="grid h-12 w-12 place-items-center rounded-full bg-white/90 text-xl font-semibold text-[var(--accent)] shadow-lg backdrop-blur transition hover:-translate-y-0.5 active:scale-[0.98]"
               aria-label="Next project image"
             >
               &gt;
@@ -98,8 +98,8 @@ export function ProjectCarousel({ images, title }: ProjectCarouselProps) {
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
-        <p className="text-sm font-black uppercase tracking-[0.18em]">{currentImage.name}</p>
-        <p className="border-4 border-black bg-[#F0C020] px-3 py-2 text-sm font-black uppercase">
+        <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--muted-foreground)]">{currentImage.name}</p>
+        <p className="font-code rounded-full border border-[rgba(0,82,255,0.18)] bg-[rgba(0,82,255,0.06)] px-3 py-2 text-xs uppercase tracking-[0.12em] text-[var(--accent)]">
           {currentIndex + 1} / {images.length}
         </p>
       </div>
