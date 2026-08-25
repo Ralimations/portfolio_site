@@ -93,7 +93,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
       <section className="px-5 py-24">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.75fr_1.25fr]">
           <div>
-            <SectionLabel>Summary</SectionLabel>
+            <SectionLabel>Overview</SectionLabel>
             <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">What it does.</h2>
           </div>
           <div className="soft-card space-y-5 rounded-[2rem] p-8 text-lg leading-8 text-[var(--muted-foreground)] sm:p-10">
@@ -101,6 +101,19 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="px-5 pb-24">
+        <div className="mx-auto grid max-w-6xl gap-5 md:grid-cols-2">
+          <article className="soft-card rounded-2xl p-7">
+            <SectionLabel>Problem</SectionLabel>
+            <p className="mt-5 text-lg leading-8 text-[var(--muted-foreground)]">{project.problem ?? project.description[0]}</p>
+          </article>
+          <article className="soft-card rounded-2xl p-7">
+            <SectionLabel>Solution</SectionLabel>
+            <p className="mt-5 text-lg leading-8 text-[var(--muted-foreground)]">{project.solution ?? project.description[1] ?? project.description[0]}</p>
+          </article>
         </div>
       </section>
 
@@ -148,7 +161,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         <section className="px-5 py-24">
           <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.75fr_1.25fr]">
             <div>
-              <SectionLabel>Technical Overview</SectionLabel>
+            <SectionLabel>Architecture / Workflow</SectionLabel>
               <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">How it flows.</h2>
             </div>
             <ol className="grid gap-4 md:grid-cols-3">
@@ -159,6 +172,22 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
                 </li>
               ))}
             </ol>
+          </div>
+        </section>
+      ) : null}
+
+      {(project.testing || project.challenges || project.learned || project.outcomes) ? (
+        <section className="px-5 py-24">
+          <div className="mx-auto max-w-6xl">
+            <SectionLabel>Testing & Validation</SectionLabel>
+            <div className="mt-8 grid gap-5 md:grid-cols-3">
+              {(project.testing ?? ["Reviewed behavior across available sample inputs and documented observed results."]).map((item) => (
+                <div key={item} className="soft-card rounded-2xl p-6 text-lg leading-7 text-[var(--muted-foreground)]">{item}</div>
+              ))}
+              {project.challenges?.map((item) => <div key={item} className="soft-card rounded-2xl border-l-4 border-[var(--accent)] p-6 text-lg leading-7 text-[var(--muted-foreground)]">Challenge: {item}</div>)}
+              {project.learned?.map((item) => <div key={item} className="soft-card rounded-2xl p-6 text-lg leading-7 text-[var(--muted-foreground)]">Learned: {item}</div>)}
+              {project.outcomes?.map((item) => <div key={item} className="soft-card rounded-2xl p-6 text-lg leading-7 text-[var(--muted-foreground)]">Outcome: {item}</div>)}
+            </div>
           </div>
         </section>
       ) : null}

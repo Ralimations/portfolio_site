@@ -1,5 +1,6 @@
 export const projectCategories = [
   { id: "all", label: "All Projects", shortLabel: "All" },
+  { id: "ai-automation", label: "AI & Automation", shortLabel: "AI + Automation" },
   { id: "embedded-iot", label: "Embedded / IoT", shortLabel: "Embedded" },
   { id: "ai-ml", label: "AI / ML", shortLabel: "AI / ML" },
   { id: "web", label: "Web Development", shortLabel: "Web" },
@@ -20,6 +21,7 @@ export type Project = {
   slug: string;
   title: string;
   category: ConcreteProjectCategory;
+  capabilityTags: string[];
   shortDescription: string;
   description: string[];
   technologies: TechnologyGroup[];
@@ -33,6 +35,11 @@ export type Project = {
   documentationUrl?: string;
   architecture?: string[];
   outcomes?: string[];
+  problem?: string;
+  solution?: string;
+  testing?: string[];
+  challenges?: string[];
+  learned?: string[];
 };
 
 export const projects: Project[] = [
@@ -41,6 +48,7 @@ export const projects: Project[] = [
     slug: "smart-shelf",
     title: "Smart Shelf",
     category: "embedded-iot",
+    capabilityTags: ["Embedded Systems", "Data Processing", "Hardware Integration", "Dashboard"],
     shortDescription:
       "IoT retail shelf concept that monitors stock through load cells, RFID-aware item tracking, and connected embedded hardware.",
     description: [
@@ -69,6 +77,7 @@ export const projects: Project[] = [
     slug: "ai-group-detection",
     title: "AI Group Detection",
     category: "ai-ml",
+    capabilityTags: ["Computer Vision", "AI Experiment", "Data Processing", "Testing"],
     shortDescription:
       "Computer vision experiment for identifying grouped people and reviewing detection output through a simple interface.",
     description: [
@@ -97,6 +106,7 @@ export const projects: Project[] = [
     slug: "portfolio-site",
     title: "Portfolio Website",
     category: "web",
+    capabilityTags: ["Frontend", "Structured Data", "Documentation", "Accessibility"],
     shortDescription:
       "Minimalist Modern professional portfolio built around structured project data, fast scanning, and maintainable case studies.",
     description: [
@@ -125,6 +135,7 @@ export const projects: Project[] = [
     slug: "ralskies-showcase",
     title: "Ralskies Artist Portfolio",
     category: "web",
+    capabilityTags: ["Frontend", "Workflow Design", "Visual QA", "Responsive UI"],
     shortDescription:
       "Live web development showcase for presenting artist portfolio work through a polished, public-facing Vercel site.",
     description: [
@@ -154,6 +165,7 @@ export const projects: Project[] = [
     slug: "mobile-job-portal",
     title: "Mobile Job Portal",
     category: "mobile",
+    capabilityTags: ["Frontend", "Workflow Design", "Testing"],
     shortDescription:
       "Mobile-oriented job portal concept with screens for browsing roles, reviewing details, and managing user profile flow.",
     description: [
@@ -182,6 +194,7 @@ export const projects: Project[] = [
     slug: "automation-utilities",
     title: "Automation Utilities",
     category: "software",
+    capabilityTags: ["Automation", "Data Processing", "Validation", "Documentation"],
     shortDescription:
       "Small software tools and scripts for cleaning repetitive tasks, validating files, and making technical workflows easier to repeat.",
     description: [

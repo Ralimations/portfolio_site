@@ -6,30 +6,40 @@ import { profile } from "@/app/data/profile";
 import { getCategoryLabel, projects } from "@/app/data/projects";
 import { getProjectsWithMedia } from "@/app/lib/project-assets";
 
-const technicalAreas = [
-  { value: "05", label: "Technical disciplines" },
-  { value: "04", label: "Featured builds" },
-  { value: "30s", label: "Project scan target" },
-  { value: "100%", label: "Contribution focused" },
-];
-
 const skills = [
   {
-    title: "Embedded / Hardware",
-    items: ["Microcontrollers", "Sensors", "IoT hardware", "Circuit prototyping", "Hardware integration"],
+    title: "AI & Automation",
+    items: ["AI-assisted development", "Local LLM workflows", "Workflow design", "Structured AI output", "Data processing", "AI validation", "Human-in-the-loop workflows"],
   },
   {
-    title: "Programming / Development",
-    items: ["React", "TypeScript", "JavaScript", "Python", "Node.js", "FastAPI"],
+    title: "Software Development",
+    items: ["JavaScript", "TypeScript", "Python", "React", "Vite", "Node.js", "HTML", "CSS", "Git / GitHub"],
   },
   {
-    title: "AI / ML",
-    items: ["Computer vision", "LM Studio", "Ollama", "Streamlit prototypes", "Model testing"],
+    title: "Data & Systems",
+    items: ["Excel / ExcelJS", "SQLite", "MySQL", "Structured data workflows", "Dashboard development", "Data validation"],
   },
   {
-    title: "Tools",
-    items: ["Git/GitHub", "Vite", "Electron", "PowerShell", "ExcelJS", "Technical documentation"],
+    title: "Testing & QA",
+    items: ["Functional testing", "Debugging", "Troubleshooting", "Smoke checks", "Validation workflows", "Documentation"],
   },
+  {
+    title: "Embedded / IoT",
+    items: ["ESP32", "Arduino", "RFID", "HX711 / load cells", "Sensors", "Circuit reading", "Hardware/software integration"],
+  },
+  {
+    title: "Technical / Engineering",
+    items: ["Requirements analysis", "Project reporting", "System troubleshooting", "Onshape / CAD", "Drone building", "Soldering / wiring", "3D printing exposure"],
+  },
+];
+
+const training = [
+  "Data Annotation & Preparation",
+  "Drone Building",
+  "Drone Flight / Piloting",
+  "Soldering, wiring, and circuit / board reading",
+  "Onshape CAD / 3D modeling exposure",
+  "Bambu Lab / 3D printing workflow exposure",
 ];
 
 const experience = [
@@ -66,6 +76,7 @@ const experience = [
 function Header() {
   const links = [
     { href: "#about", label: "About" },
+    { href: "#ai-automation", label: "AI + Automation" },
     { href: "#projects", label: "Projects" },
     { href: "#skills", label: "Skills" },
     { href: "#experience", label: "Experience" },
@@ -133,8 +144,6 @@ function HeroGraphic() {
 
 export default function Home() {
   const projectsWithMedia = getProjectsWithMedia(projects);
-  const featuredProjects = projectsWithMedia.filter((project) => project.featured);
-
   return (
     <main id="top" className="min-h-screen text-[var(--foreground)]">
       <Header />
@@ -144,28 +153,21 @@ export default function Home() {
           <div>
             <SectionLabel>{profile.descriptor}</SectionLabel>
             <h1 className="font-display mt-8 max-w-4xl text-[3.3rem] leading-[1.02] tracking-[-0.02em] sm:text-7xl lg:text-[5.25rem]">
-              Ral Angelo Lluisma builds technical work with <span className="gradient-text">visible proof.</span>
+              Practical systems, implemented with <span className="gradient-text">visible proof.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--muted-foreground)] sm:text-xl">
-              I work across embedded systems, IoT, AI experiments, front-end development, workflow tools, and technical documentation. The portfolio keeps each project scannable: what it does, what I contributed, and what I used.
+              Computer Applications graduate building practical AI-assisted applications, automation workflows, dashboards, integrations, and technical systems. I turn requirements into understandable workflows, then test and document the implementation.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="#projects">View Projects</ActionLink>
-              <ActionLink href="#contact" variant="secondary">Contact</ActionLink>
+              <ActionLink href="#ai-automation" variant="secondary">View AI & Automation Work</ActionLink>
+            </div>
+            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-[var(--muted-foreground)]">
+              <a className="hover:text-[var(--accent)]" href={profile.githubUrl} target="_blank" rel="noreferrer noopener">GitHub</a>
+              <a className="hover:text-[var(--accent)]" href={profile.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
             </div>
           </div>
           <HeroGraphic />
-        </div>
-      </section>
-
-      <section className="px-5 pb-24">
-        <div className="mx-auto grid max-w-6xl gap-4 sm:grid-cols-2 lg:grid-cols-4">
-          {technicalAreas.map((item) => (
-            <article key={item.label} className="soft-card rounded-2xl p-6">
-              <p className="font-display gradient-text text-5xl leading-none">{item.value}</p>
-              <p className="mt-3 font-code text-xs uppercase tracking-[0.15em] text-[var(--muted-foreground)]">{item.label}</p>
-            </article>
-          ))}
         </div>
       </section>
 
@@ -185,21 +187,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="dark-texture px-5 py-28 text-white sm:py-36">
+      <section id="ai-automation" className="dark-texture px-5 py-28 text-white sm:py-36">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div>
-              <SectionLabel inverted>Featured Projects</SectionLabel>
+              <SectionLabel inverted>AI Implementation & Automation</SectionLabel>
               <h2 className="font-display mt-6 max-w-3xl text-4xl leading-tight sm:text-5xl">
-                Strongest examples, presented first.
+                Practical workflows, presented first.
               </h2>
             </div>
             <p className="max-w-md text-lg leading-8 text-white/70">
-              Featured work uses the same project data model as the full library, but earns more visual weight.
+              Verified work involving AI experimentation, automation, structured data, workflow design, and validation.
             </p>
           </div>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {featuredProjects.map((project) => (
+            {projectsWithMedia.filter((project) => project.capabilityTags.some((tag) => ["AI Experiment", "Automation", "Workflow Design"].includes(tag))).slice(0, 3).map((project) => (
               <article key={project.id} className="group rounded-[1.6rem] bg-gradient-to-br from-[var(--accent)] via-[var(--accent-secondary)] to-[var(--accent)] p-[1px] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-accent-lg)]">
                 <div className="h-full overflow-hidden rounded-[calc(1.6rem-1px)] bg-white text-[var(--foreground)]">
                   <div className="aspect-[16/10] border-b border-[var(--border)]">
@@ -218,10 +220,7 @@ export default function Home() {
                       <p className="mt-4 leading-7 text-[var(--muted-foreground)]">{project.shortDescription}</p>
                     </div>
                     <div className="flex flex-wrap gap-2">
-                      {project.technologies
-                        .flatMap((group) => group.items)
-                        .slice(0, 4)
-                        .map((technology) => (
+                      {project.capabilityTags.slice(0, 4).map((technology) => (
                           <span
                             key={technology}
                             className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)]"
@@ -261,6 +260,45 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="px-5 py-28">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <SectionLabel>How I Work With AI</SectionLabel>
+            <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">AI assists the work. Engineering judgment owns it.</h2>
+          </div>
+          <div className="soft-card rounded-[2rem] p-8 sm:p-10">
+            <p className="text-lg leading-8 text-[var(--muted-foreground)]">
+              My process moves from requirements and planning to workflow design, AI-assisted implementation, code review, testing, debugging, validation, and documentation. I use AI for implementation assistance, research, debugging, review, prototyping, and documentation while remaining responsible for architecture decisions and final quality.
+            </p>
+            <div className="mt-8 flex flex-wrap items-center gap-2 font-code text-[10px] uppercase tracking-[0.12em] text-[var(--accent)] sm:gap-3 sm:text-xs">
+              {['Requirements', 'Planning', 'Workflow', 'Implement', 'Test', 'Validate', 'Document'].map((step, index) => (
+                <span key={step} className="inline-flex items-center gap-2">
+                  <span className="rounded-full border border-[rgba(0,82,255,0.2)] bg-[rgba(0,82,255,0.06)] px-3 py-2">{step}</span>
+                  {index < 6 ? <span aria-hidden="true">-&gt;</span> : null}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="dark-texture px-5 py-28 text-white">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <SectionLabel inverted>Implementation Mindset</SectionLabel>
+            <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">Turning broad processes into structured systems.</h2>
+          </div>
+          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+            {['Business problem', 'Requirements', 'Workflow', 'Implementation', 'Testing', 'Documentation', 'Iteration'].map((step, index) => (
+              <div key={step} className="rounded-2xl border border-white/10 bg-white/10 p-5">
+                <p className="font-code text-xs text-white/50">0{index + 1}</p>
+                <p className="mt-4 text-lg font-semibold">{step}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <section id="skills" className="px-5 py-28">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
@@ -287,6 +325,21 @@ export default function Home() {
                 </div>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+
+      <section id="training" className="px-5 py-24">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div>
+            <SectionLabel>Training & Credentials</SectionLabel>
+            <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">MELDCX SPARK Program.</h2>
+          </div>
+          <div className="soft-card rounded-[2rem] p-8 sm:p-10">
+            <p className="text-lg leading-8 text-[var(--muted-foreground)]">Relevant hands-on exposure across data preparation, drone systems, hardware assembly, and technical tooling.</p>
+            <div className="mt-7 flex flex-wrap gap-2">
+              {training.map((item) => <span key={item} className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-2 text-sm font-medium text-[var(--muted-foreground)]">{item}</span>)}
+            </div>
           </div>
         </div>
       </section>
@@ -328,10 +381,10 @@ export default function Home() {
           <div>
             <SectionLabel inverted>Contact</SectionLabel>
             <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">
-              Open to technical roles and collaboration.
+              Let&apos;s build practical systems.
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              Connect through GitHub or LinkedIn. Email can be added once the preferred public address is confirmed.
+              Open to opportunities involving AI implementation, automation, software development, technical operations, and systems integration.
             </p>
           </div>
           <div className="grid gap-3">

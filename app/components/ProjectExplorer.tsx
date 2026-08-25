@@ -87,10 +87,7 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
                 <p className="mt-4 leading-7 text-[var(--muted-foreground)]">{project.shortDescription}</p>
               </div>
               <div className="flex flex-wrap gap-2">
-                {project.technologies
-                  .flatMap((group) => group.items)
-                  .slice(0, 6)
-                  .map((technology) => (
+                {project.capabilityTags.slice(0, 6).map((technology) => (
                     <span
                       key={technology}
                       className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-1.5 text-xs font-medium text-[var(--muted-foreground)]"
@@ -105,6 +102,11 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
               >
                 Project Details <span className="inline-block transition group-hover/link:translate-x-1" aria-hidden="true">-&gt;</span>
               </Link>
+              {project.demoUrl ? (
+                <a href={project.demoUrl} target="_blank" rel="noreferrer noopener" className="justify-self-start rounded-xl px-4 py-3 text-sm font-semibold text-[var(--muted-foreground)] transition hover:bg-[var(--muted)] hover:text-[var(--foreground)]">
+                  Live Demo <span aria-hidden="true">-&gt;</span>
+                </a>
+              ) : null}
             </div>
           </article>
         ))}

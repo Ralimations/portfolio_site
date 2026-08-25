@@ -31,10 +31,10 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Ral Angelo Lluisma \| Portfolio<\/title>/i);
-  assert.match(html, /Developer \/ Embedded Systems &amp; IoT Engineer/);
+  assert.match(html, /<title>Ral Angelo Lluisma \| AI Implementation &amp; Automation Portfolio<\/title>/i);
+  assert.match(html, /AI Implementation • Automation • Software Systems/);
   assert.match(html, /visible proof/);
-  assert.match(html, /Featured Projects/);
+  assert.match(html, /AI Implementation &amp; Automation/);
   assert.match(html, /Filter by discipline\./);
   assert.match(html, /Smart Shelf/);
   assert.match(html, /Ralskies Artist Portfolio/);
@@ -54,22 +54,24 @@ test("keeps portfolio content and metadata aligned", async () => {
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
-  assert.match(layout, /title:\s*"Ral Angelo Lluisma \| Portfolio"/);
-  assert.match(layout, /Minimalist Modern developer portfolio/);
-  assert.match(layout, /embedded systems, IoT, AI experiments/);
+  assert.match(layout, /title:\s*"Ral Angelo Lluisma \| AI Implementation & Automation Portfolio"/);
+  assert.match(layout, /Computer Applications graduate building practical AI-assisted applications/);
+  assert.match(layout, /AI implementation, automation, software systems/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
   assert.doesNotMatch(packageJson, /@openai\/sites-vite-plugin/);
 
-  assert.match(page, /const technicalAreas = \[/);
   assert.match(page, /const skills = \[/);
   assert.match(page, /const experience = \[/);
   assert.match(page, /ProjectExplorer/);
-  assert.match(page, /Featured Projects/);
+  assert.match(page, /AI Implementation & Automation/);
+  assert.match(page, /How I Work With AI/);
+  assert.match(page, /Implementation Mindset/);
   assert.match(page, /id="about"/);
   assert.match(page, /id="skills"/);
   assert.match(page, /id="projects"/);
   assert.match(page, /id="experience"/);
   assert.match(page, /id="contact"/);
+  assert.doesNotMatch(page, /Technical disciplines|Featured builds|Project scan target|Contribution focused/);
   assert.doesNotMatch(page, /SkeletonPreview|react-loading-skeleton/);
   assert.doesNotMatch(packageJson, /"react-loading-skeleton"/);
 });
