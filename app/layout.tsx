@@ -2,24 +2,24 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ral Angelo Lluisma | AI Implementation & Automation Portfolio",
+  title: "Ral Angelo Lluisma | Technical Portfolio",
   description:
-    "Ral Angelo Lluisma is a Computer Applications graduate building practical AI-assisted applications, automation workflows, dashboards, integrations, embedded systems, and software tools.",
+    "Ral Angelo Lluisma is a Computer Applications graduate and technical generalist working across software, web, mobile, AI/ML, automation, embedded systems, and technical documentation.",
   icons: {
     icon: "/favicon.svg",
     shortcut: "/favicon.svg",
   },
   openGraph: {
-    title: "Ral Angelo Lluisma | AI Implementation & Automation Portfolio",
+    title: "Ral Angelo Lluisma | Technical Portfolio",
     description:
-      "Project-first portfolio for AI implementation, automation, software systems, embedded / IoT work, and practical technical workflows.",
+      "Project-first portfolio for software, web, mobile, AI/ML, automation, embedded / IoT, QA, and technical systems work.",
     type: "website",
   },
   twitter: {
     card: "summary",
-    title: "Ral Angelo Lluisma | AI Implementation & Automation Portfolio",
+    title: "Ral Angelo Lluisma | Technical Portfolio",
     description:
-      "Project-first portfolio for AI implementation, automation, software systems, embedded / IoT work, and practical technical workflows.",
+      "Project-first portfolio for software, web, mobile, AI/ML, automation, embedded / IoT, QA, and technical systems work.",
   },
 };
 

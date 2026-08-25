@@ -76,7 +76,6 @@ const experience = [
 function Header() {
   const links = [
     { href: "#about", label: "About" },
-    { href: "#ai-automation", label: "AI + Automation" },
     { href: "#projects", label: "Projects" },
     { href: "#skills", label: "Skills" },
     { href: "#experience", label: "Experience" },
@@ -116,32 +115,6 @@ function Header() {
   );
 }
 
-function HeroGraphic() {
-  return (
-    <div className="relative hidden min-h-[560px] lg:block">
-      <div className="absolute inset-6 rounded-[2rem] border border-[var(--border)] bg-white/70 shadow-[var(--shadow-card)] backdrop-blur">
-        <div className="absolute inset-8 rounded-[2rem] bg-[radial-gradient(circle_at_35%_25%,rgba(0,82,255,0.12),transparent_35%),radial-gradient(circle_at_78%_68%,rgba(77,124,255,0.18),transparent_38%)]" />
-        <div className="absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full border border-dashed border-[rgba(0,82,255,0.35)] animate-rotate-slow" />
-        <div className="absolute left-16 top-20 h-28 w-28 rounded-[2rem] gradient-surface shadow-[var(--shadow-accent)] animate-float-slow" />
-        <div className="absolute right-16 top-16 rounded-2xl border border-[var(--border)] bg-white p-5 shadow-xl animate-float-slower">
-          <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--muted-foreground)]">Signal</p>
-          <p className="mt-2 text-3xl font-semibold tracking-[-0.02em]">IoT + AI</p>
-        </div>
-        <div className="absolute bottom-20 left-14 rounded-2xl border border-[var(--border)] bg-white p-5 shadow-xl animate-float-slower">
-          <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--accent)]">Evidence</p>
-          <p className="mt-2 max-w-48 text-lg font-semibold leading-snug">Projects explain what changed, what I built, and what I used.</p>
-        </div>
-        <div className="absolute bottom-24 right-16 grid grid-cols-3 gap-3">
-          {Array.from({ length: 9 }).map((_, index) => (
-            <span key={index} className="h-2 w-2 rounded-full bg-[rgba(0,82,255,0.32)]" />
-          ))}
-        </div>
-        <div className="absolute bottom-12 right-10 h-24 w-24 rounded-[1.5rem] bg-[var(--foreground)] shadow-2xl" />
-      </div>
-    </div>
-  );
-}
-
 export default function Home() {
   const projectsWithMedia = getProjectsWithMedia(projects);
   return (
@@ -149,25 +122,24 @@ export default function Home() {
       <Header />
 
       <section className="px-5 py-24 sm:py-32 lg:py-36">
-        <div className="mx-auto grid max-w-6xl items-center gap-14 lg:grid-cols-[1.1fr_0.9fr]">
+        <div className="mx-auto max-w-6xl">
           <div>
             <SectionLabel>{profile.descriptor}</SectionLabel>
             <h1 className="font-display mt-8 max-w-4xl text-[3.3rem] leading-[1.02] tracking-[-0.02em] sm:text-7xl lg:text-[5.25rem]">
-              Practical systems, implemented with <span className="gradient-text">visible proof.</span>
+              Ral Angelo Lluisma
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--muted-foreground)] sm:text-xl">
-              Computer Applications graduate building practical AI-assisted applications, automation workflows, dashboards, integrations, and technical systems. I turn requirements into understandable workflows, then test and document the implementation.
+              Computer Applications graduate from MSU-IIT. I work across software, web and mobile development, AI/ML experiments, automation, data workflows, embedded systems, QA, UI/UX, and technical documentation.
             </p>
             <div className="mt-10 flex flex-col gap-3 sm:flex-row">
               <ActionLink href="#projects">View Projects</ActionLink>
-              <ActionLink href="#ai-automation" variant="secondary">View AI & Automation Work</ActionLink>
+              <ActionLink href="#about" variant="secondary">About My Background</ActionLink>
             </div>
             <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-[var(--muted-foreground)]">
               <a className="hover:text-[var(--accent)]" href={profile.githubUrl} target="_blank" rel="noreferrer noopener">GitHub</a>
               <a className="hover:text-[var(--accent)]" href={profile.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
             </div>
           </div>
-          <HeroGraphic />
         </div>
       </section>
 
@@ -176,7 +148,7 @@ export default function Home() {
           <div>
             <SectionLabel>About</SectionLabel>
             <h2 className="font-display mt-6 text-4xl leading-tight tracking-[-0.01em] sm:text-5xl">
-              Hardware and software in one calm, readable frame.
+              About Me
             </h2>
           </div>
           <div className="soft-card rounded-[2rem] p-8 sm:p-10">
@@ -187,21 +159,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="ai-automation" className="dark-texture px-5 py-28 text-white sm:py-36">
+      <section id="selected-work" className="dark-texture px-5 py-28 text-white sm:py-36">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div>
-              <SectionLabel inverted>AI Implementation & Automation</SectionLabel>
+              <SectionLabel inverted>Selected Work</SectionLabel>
               <h2 className="font-display mt-6 max-w-3xl text-4xl leading-tight sm:text-5xl">
-                Practical workflows, presented first.
+                Selected Projects
               </h2>
             </div>
             <p className="max-w-md text-lg leading-8 text-white/70">
-              Verified work involving AI experimentation, automation, structured data, workflow design, and validation.
+              The strongest and most complete projects are presented first, with the full library available below.
             </p>
           </div>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
-            {projectsWithMedia.filter((project) => project.capabilityTags.some((tag) => ["AI Experiment", "Automation", "Workflow Design"].includes(tag))).slice(0, 3).map((project) => (
+            {projectsWithMedia.filter((project) => project.featured).slice(0, 3).map((project) => (
               <article key={project.id} className="group rounded-[1.6rem] bg-gradient-to-br from-[var(--accent)] via-[var(--accent-secondary)] to-[var(--accent)] p-[1px] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-accent-lg)]">
                 <div className="h-full overflow-hidden rounded-[calc(1.6rem-1px)] bg-white text-[var(--foreground)]">
                   <div className="aspect-[16/10] border-b border-[var(--border)]">
@@ -249,7 +221,7 @@ export default function Home() {
             <div>
               <SectionLabel>Projects</SectionLabel>
               <h2 className="font-display mt-6 text-4xl leading-tight tracking-[-0.01em] sm:text-5xl">
-                Filter by discipline.
+                Projects
               </h2>
             </div>
             <p className="text-lg leading-8 text-[var(--muted-foreground)]">
@@ -263,12 +235,12 @@ export default function Home() {
       <section className="px-5 py-28">
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
-            <SectionLabel>How I Work With AI</SectionLabel>
-            <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">AI assists the work. Engineering judgment owns it.</h2>
+            <SectionLabel>AI in My Workflow</SectionLabel>
+            <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">One tool within a broader development process.</h2>
           </div>
           <div className="soft-card rounded-[2rem] p-8 sm:p-10">
             <p className="text-lg leading-8 text-[var(--muted-foreground)]">
-              My process moves from requirements and planning to workflow design, AI-assisted implementation, code review, testing, debugging, validation, and documentation. I use AI for implementation assistance, research, debugging, review, prototyping, and documentation while remaining responsible for architecture decisions and final quality.
+              I use AI-assisted tools for research, prototyping, implementation help, debugging, and documentation. Requirements, architecture, code review, testing, validation, and final quality still require my own judgment.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-2 font-code text-[10px] uppercase tracking-[0.12em] text-[var(--accent)] sm:gap-3 sm:text-xs">
               {['Requirements', 'Planning', 'Workflow', 'Implement', 'Test', 'Validate', 'Document'].map((step, index) => (
@@ -304,7 +276,7 @@ export default function Home() {
           <div>
             <SectionLabel>Skills</SectionLabel>
             <h2 className="font-display mt-6 text-4xl leading-tight tracking-[-0.01em] sm:text-5xl">
-              Practical areas, no fake percentages.
+              Skills
             </h2>
           </div>
           <div className="grid gap-5 md:grid-cols-2">
@@ -349,7 +321,7 @@ export default function Home() {
           <div>
             <SectionLabel>Experience</SectionLabel>
             <h2 className="font-display mt-6 text-4xl leading-tight tracking-[-0.01em] sm:text-5xl">
-              Background in short form.
+              Experience
             </h2>
           </div>
           <div className="grid gap-5">
@@ -381,10 +353,10 @@ export default function Home() {
           <div>
             <SectionLabel inverted>Contact</SectionLabel>
             <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">
-              Let&apos;s build practical systems.
+              Let&apos;s connect.
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              Open to opportunities involving AI implementation, automation, software development, technical operations, and systems integration.
+              Open to opportunities across software, web, mobile, AI/ML, automation, embedded systems, QA, technical operations, and related technical work.
             </p>
           </div>
           <div className="grid gap-3">

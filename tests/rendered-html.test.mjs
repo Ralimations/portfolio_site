@@ -31,11 +31,11 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(response.headers.get("content-type") ?? "", /^text\/html\b/i);
 
   const html = await response.text();
-  assert.match(html, /<title>Ral Angelo Lluisma \| AI Implementation &amp; Automation Portfolio<\/title>/i);
-  assert.match(html, /AI Implementation • Automation • Software Systems/);
-  assert.match(html, /visible proof/);
-  assert.match(html, /AI Implementation &amp; Automation/);
-  assert.match(html, /Filter by discipline\./);
+  assert.match(html, /<title>Ral Angelo Lluisma \| Technical Portfolio<\/title>/i);
+  assert.match(html, /Computer Applications Graduate • Technical Generalist/);
+  assert.match(html, /Ral Angelo Lluisma/);
+  assert.match(html, /Selected Work/);
+  assert.match(html, /Projects/);
   assert.match(html, /Smart Shelf/);
   assert.match(html, /Ralskies Artist Portfolio/);
   assert.match(html, /https:\/\/github\.com\/Ralimations/);
@@ -54,17 +54,16 @@ test("keeps portfolio content and metadata aligned", async () => {
     readFile(new URL("../package.json", import.meta.url), "utf8"),
   ]);
 
-  assert.match(layout, /title:\s*"Ral Angelo Lluisma \| AI Implementation & Automation Portfolio"/);
-  assert.match(layout, /Computer Applications graduate building practical AI-assisted applications/);
-  assert.match(layout, /AI implementation, automation, software systems/);
+  assert.match(layout, /title:\s*"Ral Angelo Lluisma \| Technical Portfolio"/);
+  assert.match(layout, /Computer Applications graduate and technical generalist/);
+  assert.match(layout, /software, web, mobile, AI\/ML, automation/);
   assert.doesNotMatch(layout, /Starter Project|codex-preview|_sites-preview/);
   assert.doesNotMatch(packageJson, /@openai\/sites-vite-plugin/);
 
   assert.match(page, /const skills = \[/);
   assert.match(page, /const experience = \[/);
   assert.match(page, /ProjectExplorer/);
-  assert.match(page, /AI Implementation & Automation/);
-  assert.match(page, /How I Work With AI/);
+  assert.match(page, /AI in My Workflow/);
   assert.match(page, /Implementation Mindset/);
   assert.match(page, /id="about"/);
   assert.match(page, /id="skills"/);
@@ -107,7 +106,7 @@ test("keeps local project media scaffolding aligned", async () => {
 
   const assetFolders = [...projectData.matchAll(/assetFolder:\s*"([^"]+)"/g)].map((match) => match[1]);
   assert.equal(new Set(assetFolders).size, assetFolders.length);
-  assert.ok(assetFolders.length >= 5);
+  assert.ok(assetFolders.length >= 4);
 
   assert.doesNotMatch(hostingConfig, /project_id|site_id/i);
   assert.doesNotMatch(viteConfig, /@openai\/sites-vite-plugin|sites\(\)/);
