@@ -4,5 +4,5 @@ export const profile = {
   descriptor: "Computer Applications Graduate • Technical Generalist",
   githubUrl: "https://github.com/Ralimations",
   linkedInUrl: "https://www.linkedin.com/in/ral-angelo-lluisma",
-  email: null,
+  email: "ralangelolluisma@gmail.com",
 } as const;

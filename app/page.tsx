@@ -8,69 +8,122 @@ import { getProjectsWithMedia } from "@/app/lib/project-assets";
 
 const skills = [
   {
-    title: "AI & Automation",
-    items: ["AI-assisted development", "Local LLM workflows", "Workflow design", "Structured AI output", "Data processing", "AI validation", "Human-in-the-loop workflows"],
+    "title": "Programming & Development",
+    "items": [
+      "React",
+      "TypeScript",
+      "JavaScript",
+      "Python",
+      "Node.js",
+      "Electron",
+      "PowerShell",
+      "Git / GitHub"
+    ]
   },
   {
-    title: "Software Development",
-    items: ["JavaScript", "TypeScript", "Python", "React", "Vite", "Node.js", "HTML", "CSS", "Git / GitHub"],
+    "title": "Data & Analytics",
+    "items": [
+      "Excel / ExcelJS",
+      "SQLite / MySQL",
+      "Streamlit",
+      "Recharts",
+      "Local LLM / API integration"
+    ]
   },
   {
-    title: "Data & Systems",
-    items: ["Excel / ExcelJS", "SQLite", "MySQL", "Structured data workflows", "Dashboard development", "Data validation"],
+    "title": "AI, QA & Operations",
+    "items": [
+      "Local LLM / API testing",
+      "Prompt & structured-output QA",
+      "Playwright GUI checks",
+      "Smoke / build verification",
+      "Troubleshooting",
+      "Runbooks",
+      "Local deployment",
+      "LM Studio",
+      "Ollama"
+    ]
   },
   {
-    title: "Testing & QA",
-    items: ["Functional testing", "Debugging", "Troubleshooting", "Smoke checks", "Validation workflows", "Documentation"],
+    "title": "Computer Vision",
+    "items": [
+      "OpenCV",
+      "TensorFlow / TFLite",
+      "Label Studio",
+      "YOLO / OpenVINO exposure",
+      "Data preparation & annotation"
+    ]
   },
   {
-    title: "Embedded / IoT",
-    items: ["ESP32", "Arduino", "RFID", "HX711 / load cells", "Sensors", "Circuit reading", "Hardware/software integration"],
+    "title": "IoT & Hardware",
+    "items": [
+      "ESP32",
+      "RFID",
+      "Arduino",
+      "Serial communication",
+      "Drone building & piloting",
+      "Autodesk EAGLE",
+      "Onshape",
+      "PCB layout"
+    ]
   },
   {
-    title: "Technical / Engineering",
-    items: ["Requirements analysis", "Project reporting", "System troubleshooting", "Onshape / CAD", "Drone building", "Soldering / wiring", "3D printing exposure"],
-  },
+    "title": "Creative & Design",
+    "items": [
+      "Mine-imator",
+      "Animation production",
+      "Music production",
+      "Vocal mixing",
+      "Graphics design & branding training"
+    ]
+  }
 ];
 
 const training = [
-  "Data Annotation & Preparation",
-  "Drone Building",
-  "Drone Flight / Piloting",
-  "Soldering, wiring, and circuit / board reading",
-  "Onshape CAD / 3D modeling exposure",
-  "Bambu Lab / 3D printing workflow exposure",
+  {
+    "title": "Data Preparation and Annotation Microcredential",
+    "organization": "SPARK-Skunkworks, in partnership with TESDA",
+    "date": "May 18-29, 2026",
+    "description": "Extracted video frames, organized computer-vision datasets, annotated object-detection bounding boxes, checked dataset quality, and trained a custom object-detection model."
+  },
+  {
+    "title": "Drone Design and Construction, Drone Operations, and Pilot Training",
+    "organization": "SPARK-Skunkworks, in partnership with TESDA",
+    "date": "June 16 - July 6, 2026",
+    "description": "Studied drone components and designed a custom frame in Onshape. Practiced in Uncrashed and with a whoop drone, then completed field exercises using Line-of-Sight and First-Person View modes."
+  },
+  {
+    "title": "Graphics Design & Branding Training",
+    "organization": "SEVEN Studios",
+    "date": null,
+    "description": null
+  }
 ];
 
 const experience = [
   {
-    role: "Information Technology Intern",
-    organization: "MELD CX",
-    date: "Jan 2026 - May 2026",
-    points: [
-      "Supported front-end development, responsiveness, usability, and visual consistency fixes.",
-      "Worked with Streamlit apps, offline AI-box setup, local LLM workflows, and computer-vision validation.",
-      "Prepared troubleshooting guides, validation procedures, presentations, and Scrum meeting notes.",
-    ],
+    "role": "Information Technology Intern, Front-End Development",
+    "organization": "MELD CX · Cagayan de Oro City, Philippines",
+    "date": "January - May 2026 · 700 hours",
+    "points": [
+      "Translated UI/UX concepts into functional front-end components and resolved layout, responsiveness, and usability issues.",
+      "Fixed front-end bugs and refined interface behavior and visual consistency using feedback from senior developers and stakeholders.",
+      "Configured and tested local LLMs with LM Studio and Ollama for offline inference and AI-box experiments; prototyped Streamlit interfaces connected to local LLM endpoints.",
+      "Evaluated model responses, resource usage, and deployment constraints across hardware and software configurations.",
+      "Supported software and computer-vision workflows through application setup, testing, validation, and troubleshooting.",
+      "Produced troubleshooting guides, validation procedures, technical documentation, presentations, and Scrum meeting minutes."
+    ]
   },
   {
-    role: "BS Computer Applications",
-    organization: "Mindanao State University - Iligan Institute of Technology",
-    date: "Graduated July 2026",
-    points: [
-      "Studied IoT programming, applied IoT, AI in IoT, operating systems, firmware, PLC programming, microcontrollers, and robotics fundamentals.",
-      "Completed AutoMatTsek, a modular IoT stock monitoring and pricing display thesis focused on retail shelf data visibility.",
-    ],
-  },
-  {
-    role: "Senior Animator",
-    organization: "Vexel Studios",
-    date: "Aug 2023 - Jul 2025",
-    points: [
-      "Led a remote production team, assigned deliverables, reviewed progress, and kept projects moving against quality standards and deadlines.",
-      "Managed files, updates, and commission-based deliverables while maintaining clear remote communication.",
-    ],
-  },
+    "role": "Senior Animator",
+    "organization": "Vexel Studios · Netherlands (Remote)",
+    "date": "August 2023 - July 2025",
+    "points": [
+      "Led a team producing commission-based media projects in Mine-imator.",
+      "Managed deliverables against quality standards and deadlines.",
+      "Mentored junior animators, produced animations, and conducted progress reviews for junior and peer animators."
+    ]
+  }
 ];
 
 function Header() {
@@ -128,7 +181,7 @@ export default function Home() {
             <SectionLabel>Software · Systems · Real-world solutions</SectionLabel>
             <h1 className="font-display hero-title">Ral Angelo<br />Lluisma<span className="text-[var(--accent)]">.</span></h1>
             <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--muted-foreground)]">
-              I connect software, data, and physical systems to make technical workflows easier to use.
+              I build front-end interfaces, local AI prototypes, and automation tools, with a background in IoT and embedded systems.
             </p>
             <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <ActionLink href="#projects">View Projects</ActionLink>
@@ -164,7 +217,7 @@ export default function Home() {
           </div>
           <div className="soft-card rounded-[2rem] p-8 sm:p-10">
             <p className="text-lg leading-8 text-[var(--muted-foreground)]">
-              My work sits between physical systems and software: microcontrollers, sensors, connected prototypes, AI-assisted experimentation, interfaces, and tools that make technical workflows easier to use. I studied Computer Applications at MSU-IIT and enjoy projects where hardware behavior, data flow, and user-facing clarity all have to line up.
+              I graduated from MSU-IIT with a BS in Computer Applications in July 2026, concentrating on IoT, embedded systems, firmware programming, and data communication. During my 700-hour MELD CX internship, I worked on front-end interfaces, local LLM experiments, Streamlit prototypes, testing, and technical documentation. I also bring remote team leadership experience from Vexel Studios and create vocal covers and music content through Ralskies.
             </p>
           </div>
         </div>
@@ -251,7 +304,7 @@ export default function Home() {
           </div>
           <div className="soft-card rounded-[2rem] p-8 sm:p-10">
             <p className="text-lg leading-8 text-[var(--muted-foreground)]">
-              I use AI-assisted tools for research, prototyping, implementation help, debugging, and documentation. Requirements, architecture, code review, testing, validation, and final quality still require my own judgment.
+              I configure and test locally hosted models with LM Studio and Ollama, connect local LLM endpoints to Streamlit interfaces, and evaluate prompt responses, resource usage, and deployment constraints. My QA work includes structured-output checks, Playwright GUI checks, and smoke/build verification.
             </p>
             <div className="mt-8 flex flex-wrap items-center gap-2 font-code text-[10px] uppercase tracking-[0.12em] text-[var(--accent)] sm:gap-3 sm:text-xs">
               {['Requirements', 'Planning', 'Workflow', 'Implement', 'Test', 'Validate', 'Document'].map((step, index) => (
@@ -316,14 +369,32 @@ export default function Home() {
         <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
           <div>
             <SectionLabel>Training & Credentials</SectionLabel>
-            <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">MELDCX SPARK Program.</h2>
+            <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">Training & microcredentials.</h2>
           </div>
-          <div className="soft-card rounded-[2rem] p-8 sm:p-10">
-            <p className="text-lg leading-8 text-[var(--muted-foreground)]">Relevant hands-on exposure across data preparation, drone systems, hardware assembly, and technical tooling.</p>
-            <div className="mt-7 flex flex-wrap gap-2">
-              {training.map((item) => <span key={item} className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-2 text-sm font-medium text-[var(--muted-foreground)]">{item}</span>)}
-            </div>
+          <div className="grid gap-5">
+            {training.map((item) => (
+              <article key={item.title} className="soft-card rounded-[2rem] p-8 sm:p-10">
+                <h3 className="text-xl font-semibold">{item.title}</h3>
+                <p className="mt-3 text-sm font-medium text-[var(--muted-foreground)]">{item.organization}</p>
+                {item.date ? <p className="mt-2 text-sm text-[var(--accent)]">{item.date}</p> : null}
+                {item.description ? <p className="mt-5 leading-7 text-[var(--muted-foreground)]">{item.description}</p> : null}
+              </article>
+            ))}
           </div>
+        </div>
+      </section>
+
+      <section id="education" className="px-5 py-24">
+        <div className="mx-auto grid max-w-6xl gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+          <div><SectionLabel>Education</SectionLabel><h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">Computer Applications.</h2></div>
+          <article className="soft-card rounded-[2rem] p-8 sm:p-10">
+            <h3 className="text-xl font-semibold">Bachelor of Science in Computer Applications</h3>
+            <p className="mt-3 leading-7 text-[var(--muted-foreground)]">Mindanao State University - Iligan Institute of Technology · Iligan City, Philippines</p>
+            <p className="mt-3 font-medium text-[var(--accent)]">Graduated July 2026</p>
+            <p className="mt-6 leading-7 text-[var(--muted-foreground)]"><strong>Concentrations:</strong> Internet of Things, Embedded Systems, Firmware Programming, and Data Communication.</p>
+            <p className="mt-4 leading-7 text-[var(--muted-foreground)]"><strong>Thesis:</strong> AutoMatTsek - A Modular IoT-Based On-Shelf Stock Monitoring and Pricing Display System.</p>
+            <p className="mt-4 leading-7 text-[var(--muted-foreground)]"><strong>Related coursework:</strong> Programming for IoT, Applied IoT, Artificial Intelligence in IoT, Fundamentals of Robotics Systems, Microcontrollers, Digital Techniques, Computer Architecture, Firmware, PLC Programming, Operating Systems, and Technopreneurship.</p>
+          </article>
         </div>
       </section>
 
@@ -367,11 +438,12 @@ export default function Home() {
               Let&apos;s connect.
             </h2>
             <p className="mt-6 max-w-2xl text-lg leading-8 text-white/70">
-              Open to opportunities across software, web, mobile, AI/ML, automation, embedded systems, QA, technical operations, and related technical work.
+              Let’s talk about front-end development, software and automation, AI prototyping, QA, or technical operations. You can also reach out about creative collaborations.
             </p>
           </div>
           <div className="grid gap-3">
-            <ActionLink href={profile.githubUrl} external>GitHub</ActionLink>
+            <ActionLink href={`mailto:${profile.email}`}>Email me</ActionLink>
+            <ActionLink href={profile.githubUrl} variant="secondary" external>GitHub</ActionLink>
             <ActionLink href={profile.linkedInUrl} variant="secondary" external>LinkedIn</ActionLink>
           </div>
         </div>

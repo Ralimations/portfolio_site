@@ -182,7 +182,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
           <div className="mx-auto max-w-6xl">
             <SectionLabel>Testing & Validation</SectionLabel>
             <div className="mt-8 grid gap-5 md:grid-cols-3">
-              {(project.testing ?? ["Reviewed behavior across available sample inputs and documented observed results."]).map((item) => (
+              {(project.testing ?? []).map((item) => (
                 <div key={item} className="soft-card rounded-2xl p-6 text-lg leading-7 text-[var(--muted-foreground)]">{item}</div>
               ))}
               {project.challenges?.map((item) => <div key={item} className="soft-card rounded-2xl border-l-4 border-[var(--accent)] p-6 text-lg leading-7 text-[var(--muted-foreground)]">Challenge: {item}</div>)}

@@ -10,19 +10,40 @@ export const generatedProjectMediaManifest: Record<string, GeneratedProjectMedia
   "ai-group-detection": {
     "gallery": []
   },
+  "am-transmitter": {
+    "gallery": []
+  },
+  "aria-studio": {
+    "gallery": []
+  },
   "automation-utilities": {
+    "gallery": []
+  },
+  "guided-pose": {
     "gallery": []
   },
   "mobile-job-portal": {
     "gallery": []
   },
+  "pcb-design": {
+    "gallery": []
+  },
   "portfolio-site": {
+    "gallery": []
+  },
+  "ralskies-shorts-manager": {
     "gallery": []
   },
   "ralskies-showcase": {
     "gallery": []
   },
   "smart-shelf": {
+    "gallery": []
+  },
+  "streamlit-analytics-chatbot": {
+    "gallery": []
+  },
+  "variable-power-supply": {
     "gallery": []
   }
 };
