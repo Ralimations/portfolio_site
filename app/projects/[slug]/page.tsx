@@ -57,11 +57,12 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
 
   return (
     <main className="min-h-screen text-[var(--foreground)]">
-      <header className="border-b border-[var(--border)] bg-[rgba(250,250,250,0.82)] backdrop-blur-xl">
+      <a href="#project-content" className="skip-link">Skip to content</a>
+      <header className="site-header">
         <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
           <Link
             href="/#projects"
-            className="inline-flex min-h-11 items-center rounded-xl border border-[var(--border)] bg-white px-4 py-2 text-sm font-semibold text-[var(--foreground)] shadow-sm transition hover:-translate-y-0.5 hover:bg-[var(--muted)]"
+            className="neo-control"
           >
             Back to Projects
           </Link>
@@ -69,7 +70,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
         </nav>
       </header>
 
-      <section className="px-5 py-20 sm:py-28">
+      <section id="project-content" tabIndex={-1} className="px-5 py-20 sm:py-28">
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
           <div>
             <SectionLabel>{getCategoryLabel(project.category)}</SectionLabel>
@@ -81,7 +82,7 @@ export default async function ProjectPage({ params }: ProjectPageProps) {
               <span className="font-code rounded-full border border-[var(--border)] bg-white px-4 py-2 text-xs uppercase tracking-[0.12em] text-[var(--muted-foreground)]">
                 {project.year}
               </span>
-              <span className="font-code rounded-full border border-[rgba(0,82,255,0.18)] bg-[rgba(0,82,255,0.06)] px-4 py-2 text-xs uppercase tracking-[0.12em] text-[var(--accent)]">
+              <span className="font-code rounded-full border border-[var(--border)] bg-[var(--muted)] px-4 py-2 text-xs uppercase tracking-[0.12em] text-[var(--accent)]">
                 {project.status}
               </span>
             </div>

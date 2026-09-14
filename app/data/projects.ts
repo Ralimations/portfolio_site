@@ -46,13 +46,13 @@ export const projects: Project[] = [
   {
     id: "smart-shelf",
     slug: "smart-shelf",
-    title: "Smart Shelf",
+    title: "IoT Smart Shelf Stock Monitoring System",
     category: "embedded-iot",
     capabilityTags: ["Embedded Systems", "Data Processing", "Hardware Integration", "Dashboard"],
     shortDescription:
       "IoT retail shelf concept that monitors stock through load cells, RFID-aware item tracking, and connected embedded hardware.",
     description: [
-      "Smart Shelf is an embedded retail inventory system designed to make product availability visible without manual shelf checks.",
+      "This IoT smart shelf stock monitoring system is an embedded retail inventory project designed to make product availability visible without manual shelf checks.",
       "The project combines sensor readings, microcontroller logic, and a connected data layer so stock changes can be captured and reviewed quickly.",
     ],
     technologies: [
@@ -94,13 +94,13 @@ export const projects: Project[] = [
   }, {
     id: "ralskies-showcase",
     slug: "ralskies-showcase",
-    title: "Ralskies Artist Portfolio",
+    title: "Public Artist Website",
     category: "web",
     capabilityTags: ["Frontend", "Workflow Design", "Visual QA", "Responsive UI"],
     shortDescription:
       "Live web development showcase for presenting artist portfolio work through a polished, public-facing Vercel site.",
     description: [
-      "Ralskies is a live artist portfolio site used as a public web development showcase.",
+      "This public artist website is a live web development showcase for presenting creative work, collaboration details, and front-end execution.",
       "The project gives visitors a focused place to review creative work, presentation style, and front-end execution, with room to expand as more web projects are added.",
     ],
     technologies: [
@@ -124,13 +124,13 @@ export const projects: Project[] = [
   {
     id: "morphscale",
     slug: "morphscale",
-    title: "Morphscale",
+    title: "Mobile Job Portal Concept",
     category: "mobile",
     capabilityTags: ["Frontend", "Workflow Design", "Testing"],
     shortDescription:
       "Mobile-oriented job portal concept with screens for browsing roles, reviewing details, and managing user profile flow.",
     description: [
-      "Morphscale is a mobile application concept for browsing job listings and moving through a simplified application journey.",
+      "This mobile job portal concept focuses on browsing job listings, reviewing role details, and moving through a simplified application journey.",
       "The project emphasizes mobile layout decisions, clear navigation, and interface states that fit smaller screens.",
     ],
     technologies: [

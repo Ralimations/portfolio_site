@@ -36,8 +36,8 @@ test("server-renders the portfolio landing page", async () => {
   assert.match(html, /Ral Angelo Lluisma/);
   assert.match(html, /Selected Work/);
   assert.match(html, /Projects/);
-  assert.match(html, /Smart Shelf/);
-  assert.match(html, /Ralskies Artist Portfolio/);
+  assert.match(html, /IoT Smart Shelf Stock Monitoring System/);
+  assert.match(html, /Public Artist Website/);
   assert.match(html, /https:\/\/github\.com\/Ralimations/);
   assert.match(html, /https:\/\/www\.linkedin\.com\/in\/ral-angelo-lluisma/);
   assert.match(html, /Project Details/);

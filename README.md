@@ -1,6 +1,6 @@
 # Ral Angelo Lluisma Portfolio
 
-Minimalist Modern developer portfolio built with Vinext, Vite, React, and Tailwind CSS.
+Accessible neumorphic developer portfolio built with Vinext, Vite, React, and Tailwind CSS.
 
 The project is intended to be maintained locally and deployed through:
 
@@ -79,8 +79,9 @@ The app derives cover and gallery images automatically.
 
 - `cover.webp` exists: used for project cards and first carousel image.
 - No cover but gallery exists: first gallery image becomes the card cover.
-- No media: the built-in project placeholder renders.
-- One image: carousel controls stay hidden.
+- No media: a text-based project preview renders.
+- Image load failure: a readable error and retry button appear.
+- One image: carousel controls are disabled, with a visible image count.
 - Multiple images: carousel controls and swipe navigation are enabled.
 
 Supported image formats are `.webp`, `.avif`, `.jpg`, `.jpeg`, and `.png`.

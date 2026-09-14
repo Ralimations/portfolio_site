@@ -32,7 +32,7 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
 
   return (
     <div className="space-y-8">
-      <div className="flex flex-wrap gap-3" role="list" aria-label="Project filters">
+      <div className="filter-bar inset-panel flex flex-wrap gap-3" role="group" aria-label="Project filters">
         {projectCategories.map((category) => {
           const isActive = activeCategory === category.id;
 
@@ -41,14 +41,11 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
               key={category.id}
               type="button"
               onClick={() => setActiveCategory(category.id)}
-              className={[
-                "min-h-11 rounded-full border px-4 py-2 font-code text-xs uppercase tracking-[0.12em] transition-all duration-200 active:scale-[0.98]",
-                isActive
-                  ? "gradient-surface border-transparent text-white shadow-[var(--shadow-accent)]"
-                  : "border-[var(--border)] bg-white text-[var(--muted-foreground)] hover:-translate-y-0.5 hover:border-[rgba(0,82,255,0.28)] hover:text-[var(--foreground)] hover:shadow-md",
-              ].join(" ")}
+              className="neo-control"
+              disabled={category.id !== "all" && !projects.some((project) => project.category === category.id)}
               aria-pressed={isActive}
             >
+              <span className="filter-check" aria-hidden="true">{isActive ? "✓" : ""}</span>
               {category.shortLabel}
             </button>
           );
@@ -59,7 +56,13 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
         {filteredProjects.length} {filteredProjects.length === 1 ? "project" : "projects"} shown
       </p>
 
-      <div className="grid gap-6 lg:grid-cols-3">
+      {filteredProjects.length === 0 ? (
+        <div className="inset-panel rounded-3xl p-8 text-center">
+          <h3 className="text-xl font-semibold">No projects in this category yet.</h3>
+          <button type="button" className="neo-control mt-5" onClick={() => setActiveCategory("all")}>Show all projects</button>
+        </div>
+      ) : null}
+      <div className="grid gap-7 md:grid-cols-2 lg:grid-cols-3">
         {filteredProjects.map((project, index) => (
           <article
             key={project.id}
@@ -98,7 +101,7 @@ export function ProjectExplorer({ projects }: ProjectExplorerProps) {
               </div>
               <Link
                 href={`/projects/${project.slug}`}
-                className="group/link justify-self-start rounded-xl px-4 py-3 text-sm font-semibold text-[var(--accent)] transition hover:bg-[rgba(0,82,255,0.06)]"
+                className="group/link justify-self-start rounded-xl px-4 py-3 text-sm font-semibold text-[var(--accent)] transition hover:bg-[var(--muted)]"
               >
                 Project Details <span className="inline-block transition group-hover/link:translate-x-1" aria-hidden="true">-&gt;</span>
               </Link>

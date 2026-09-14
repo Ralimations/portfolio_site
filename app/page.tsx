@@ -83,7 +83,7 @@ function Header() {
   ];
 
   return (
-    <header className="sticky top-0 z-30 border-b border-[var(--border)] bg-[rgba(250,250,250,0.82)] backdrop-blur-xl">
+    <header className="site-header">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-4">
         <a href="#top" className="flex min-w-0 items-center gap-3">
           <AccentMark />
@@ -99,10 +99,10 @@ function Header() {
         </div>
 
         <details className="relative lg:hidden">
-          <summary className="cursor-pointer rounded-xl border border-[var(--border)] bg-white px-4 py-2 text-sm font-semibold shadow-sm">
+          <summary className="neo-control">
             Menu
           </summary>
-          <div className="absolute right-0 top-14 grid w-56 gap-1 rounded-2xl border border-[var(--border)] bg-white p-3 shadow-xl">
+          <div className="mobile-menu">
             {links.map((link) => (
               <a key={link.href} href={link.href} className="rounded-xl px-3 py-2 text-sm font-semibold text-[var(--muted-foreground)] hover:bg-[var(--muted)] hover:text-[var(--foreground)]">
                 {link.label}
@@ -119,27 +119,38 @@ export default function Home() {
   const projectsWithMedia = getProjectsWithMedia(projects);
   return (
     <main id="top" className="min-h-screen text-[var(--foreground)]">
+      <a href="#intro" className="skip-link">Skip to content</a>
       <Header />
 
-      <section className="px-5 py-24 sm:py-32 lg:py-36">
-        <div className="mx-auto max-w-6xl">
+      <section id="intro" className="hero-section" tabIndex={-1}>
+        <div className="hero-grid mx-auto max-w-6xl">
           <div>
-            <SectionLabel>{profile.descriptor}</SectionLabel>
-            <h1 className="font-display mt-8 max-w-4xl text-[3.3rem] leading-[1.02] tracking-[-0.02em] sm:text-7xl lg:text-[5.25rem]">
-              Ral Angelo Lluisma
-            </h1>
-            <p className="mt-7 max-w-2xl text-lg leading-8 text-[var(--muted-foreground)] sm:text-xl">
-              Computer Applications graduate from MSU-IIT. I work across software, web and mobile development, AI/ML experiments, automation, data workflows, embedded systems, QA, UI/UX, and technical documentation.
+            <SectionLabel>Software · Systems · Real-world solutions</SectionLabel>
+            <h1 className="font-display hero-title">Ral Angelo<br />Lluisma<span className="text-[var(--accent)]">.</span></h1>
+            <p className="mt-6 max-w-xl text-lg leading-8 text-[var(--muted-foreground)]">
+              I connect software, data, and physical systems to make technical workflows easier to use.
             </p>
-            <div className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <div className="mt-8 flex flex-col gap-4 sm:flex-row">
               <ActionLink href="#projects">View Projects</ActionLink>
-              <ActionLink href="#about" variant="secondary">About My Background</ActionLink>
+              <ActionLink href="#contact" variant="secondary">Let’s connect</ActionLink>
             </div>
-            <div className="mt-4 flex flex-wrap gap-x-5 gap-y-2 text-sm font-semibold text-[var(--muted-foreground)]">
-              <a className="hover:text-[var(--accent)]" href={profile.githubUrl} target="_blank" rel="noreferrer noopener">GitHub</a>
-              <a className="hover:text-[var(--accent)]" href={profile.linkedInUrl} target="_blank" rel="noreferrer noopener">LinkedIn</a>
-            </div>
+            <div className="hero-note"><span>{profile.location}</span><span>Computer Applications · MSU-IIT</span></div>
           </div>
+          <aside className="profile-panel soft-card" aria-label="Background at a glance">
+            <div className="flex items-center justify-between gap-5">
+              <div className="profile-monogram inset-panel" aria-hidden="true">ral.</div>
+              <span className="font-code text-xs text-[var(--muted-foreground)]">PORTFOLIO<br />2026</span>
+            </div>
+            <p className="mt-7 text-xl font-semibold">Curious by nature.<br />Practical by approach.</p>
+            <dl>
+              <div><dt>BACKGROUND</dt><dd>{profile.descriptor}</dd></div>
+              <div><dt>FOCUS</dt><dd>Software, AI & automation, embedded systems</dd></div>
+            </dl>
+            <div className="mt-4 flex gap-3">
+              <ActionLink href={profile.githubUrl} variant="secondary" external>GitHub</ActionLink>
+              <ActionLink href={profile.linkedInUrl} variant="secondary" external>LinkedIn</ActionLink>
+            </div>
+          </aside>
         </div>
       </section>
 
@@ -159,7 +170,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section id="selected-work" className="dark-texture px-5 py-28 text-white sm:py-36">
+      <section id="selected-work" className="featured-section">
         <div className="mx-auto max-w-6xl">
           <div className="flex flex-col justify-between gap-8 lg:flex-row lg:items-end">
             <div>
@@ -168,14 +179,14 @@ export default function Home() {
                 Selected Projects
               </h2>
             </div>
-            <p className="max-w-md text-lg leading-8 text-white/70">
-              The strongest and most complete projects are presented first, with the full library available below.
+            <p className="max-w-md text-lg leading-8 text-[var(--muted-foreground)]">
+              A closer look at connected systems, useful tools, and the work behind them.
             </p>
           </div>
           <div className="mt-12 grid gap-6 lg:grid-cols-3">
             {projectsWithMedia.filter((project) => project.featured).slice(0, 3).map((project) => (
-              <article key={project.id} className="group rounded-[1.6rem] bg-gradient-to-br from-[var(--accent)] via-[var(--accent-secondary)] to-[var(--accent)] p-[1px] transition duration-300 hover:-translate-y-1 hover:shadow-[var(--shadow-accent-lg)]">
-                <div className="h-full overflow-hidden rounded-[calc(1.6rem-1px)] bg-white text-[var(--foreground)]">
+              <article key={project.id} className="featured-card soft-card group">
+                <div className="h-full overflow-hidden rounded-[20px] text-[var(--foreground)]">
                   <div className="aspect-[16/10] border-b border-[var(--border)]">
                     <ProjectVisual
                       media={project.media}
@@ -225,7 +236,7 @@ export default function Home() {
               </h2>
             </div>
             <p className="text-lg leading-8 text-[var(--muted-foreground)]">
-              Every project card starts with the outcome, then exposes category, year, status, and the most relevant technologies without turning the page into a technical archive.
+              Explore my work across software, automation, and embedded systems. Choose a discipline to find the projects that interest you.
             </p>
           </div>
           <ProjectExplorer projects={projectsWithMedia} />
@@ -245,7 +256,7 @@ export default function Home() {
             <div className="mt-8 flex flex-wrap items-center gap-2 font-code text-[10px] uppercase tracking-[0.12em] text-[var(--accent)] sm:gap-3 sm:text-xs">
               {['Requirements', 'Planning', 'Workflow', 'Implement', 'Test', 'Validate', 'Document'].map((step, index) => (
                 <span key={step} className="inline-flex items-center gap-2">
-                  <span className="rounded-full border border-[rgba(0,82,255,0.2)] bg-[rgba(0,82,255,0.06)] px-3 py-2">{step}</span>
+                  <span className="rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-2">{step}</span>
                   {index < 6 ? <span aria-hidden="true">-&gt;</span> : null}
                 </span>
               ))}
@@ -260,7 +271,7 @@ export default function Home() {
             <SectionLabel inverted>Implementation Mindset</SectionLabel>
             <h2 className="font-display mt-6 text-4xl leading-tight sm:text-5xl">Turning broad processes into structured systems.</h2>
           </div>
-          <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-3 sm:grid-cols-2">
             {['Business problem', 'Requirements', 'Workflow', 'Implementation', 'Testing', 'Documentation', 'Iteration'].map((step, index) => (
               <div key={step} className="rounded-2xl border border-white/10 bg-white/10 p-5">
                 <p className="font-code text-xs text-white/50">0{index + 1}</p>
@@ -332,7 +343,7 @@ export default function Home() {
                     <h3 className="text-xl font-semibold tracking-[-0.01em]">{item.role}</h3>
                     <p className="mt-1 text-sm font-medium text-[var(--muted-foreground)]">{item.organization}</p>
                   </div>
-                  <p className="font-code rounded-full border border-[rgba(0,82,255,0.18)] bg-[rgba(0,82,255,0.06)] px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-[var(--accent)]">{item.date}</p>
+                  <p className="font-code rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-1.5 text-xs uppercase tracking-[0.12em] text-[var(--accent)]">{item.date}</p>
                 </div>
                 <ul className="mt-6 grid gap-3">
                   {item.points.map((point) => (

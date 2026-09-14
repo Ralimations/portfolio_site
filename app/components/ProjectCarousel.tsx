@@ -1,12 +1,11 @@
 "use client";
 
-/* eslint-disable @next/next/no-img-element */
-
 import { useRef, useState } from "react";
-import type { ProjectImage } from "@/app/lib/project-assets";
+import { ProjectImage } from "@/app/components/ProjectImage";
+import type { ProjectImage as ProjectImageData } from "@/app/lib/project-assets";
 
 type ProjectCarouselProps = {
-  images: ProjectImage[];
+  images: ProjectImageData[];
   title: string;
 };
 
@@ -25,20 +24,7 @@ export function ProjectCarousel({ images, title }: ProjectCarouselProps) {
   }
 
   if (!currentImage) {
-    return (
-      <div
-        className="relative min-h-[320px] overflow-hidden rounded-[2rem] border border-[var(--border)] bg-[var(--muted)] shadow-[var(--shadow-card)]"
-        role="img"
-        aria-label={`${title} project media placeholder`}
-      >
-        <div className="absolute left-8 top-8 h-32 w-32 rounded-full bg-[rgba(0,82,255,0.12)] blur-2xl" />
-        <div className="absolute right-10 top-12 h-32 w-32 rounded-[2rem] gradient-surface shadow-[var(--shadow-accent)]" />
-        <div className="absolute bottom-10 left-12 h-40 w-40 rounded-full border border-dashed border-[rgba(0,82,255,0.35)] animate-rotate-slow" />
-        <p className="absolute bottom-6 right-6 rounded-2xl border border-[var(--border)] bg-white px-5 py-4 text-xl font-semibold shadow-lg">
-          Media pending
-        </p>
-      </div>
-    );
+    return <div className="inset-panel grid min-h-[320px] content-center gap-3 rounded-[2rem] p-8 text-center"><p className="text-xl font-semibold">Project gallery</p><p className="text-[var(--muted-foreground)]">Images for {title} are not available yet.</p></div>;
   }
 
   return (
@@ -68,38 +54,24 @@ export function ProjectCarousel({ images, title }: ProjectCarouselProps) {
       }}
     >
       <div className="relative overflow-hidden rounded-[2rem] border border-[var(--border)] bg-white shadow-[var(--shadow-card)]">
-        <img
+        <ProjectImage
+          key={currentImage.src}
           src={currentImage.src}
           alt={currentImage.alt}
           className="aspect-[16/10] w-full object-cover"
-          loading="eager"
+          priority
         />
 
-        {hasMultipleImages ? (
-          <div className="absolute inset-x-4 top-1/2 flex -translate-y-1/2 justify-between">
-            <button
-              type="button"
-              onClick={goToPrevious}
-              className="grid h-12 w-12 place-items-center rounded-full bg-white/90 text-xl font-semibold text-[var(--accent)] shadow-lg backdrop-blur transition hover:-translate-y-0.5 active:scale-[0.98]"
-              aria-label="Previous project image"
-            >
-              &lt;
-            </button>
-            <button
-              type="button"
-              onClick={goToNext}
-              className="grid h-12 w-12 place-items-center rounded-full bg-white/90 text-xl font-semibold text-[var(--accent)] shadow-lg backdrop-blur transition hover:-translate-y-0.5 active:scale-[0.98]"
-              aria-label="Next project image"
-            >
-              &gt;
-            </button>
-          </div>
-        ) : null}
+      </div>
+      <div className="flex items-center justify-between gap-3" aria-label="Gallery controls">
+        <button type="button" onClick={goToPrevious} disabled={!hasMultipleImages} className="neo-control" aria-label="Previous project image">← <span className="hidden sm:inline">Previous</span></button>
+        <p role="status" className="text-sm text-[var(--muted-foreground)]">Image {currentIndex + 1} of {images.length}</p>
+        <button type="button" onClick={goToNext} disabled={!hasMultipleImages} className="neo-control" aria-label="Next project image"><span className="hidden sm:inline">Next</span> →</button>
       </div>
 
       <div className="flex flex-wrap items-center justify-between gap-3">
         <p className="font-code text-xs uppercase tracking-[0.15em] text-[var(--muted-foreground)]">{currentImage.name}</p>
-        <p className="font-code rounded-full border border-[rgba(0,82,255,0.18)] bg-[rgba(0,82,255,0.06)] px-3 py-2 text-xs uppercase tracking-[0.12em] text-[var(--accent)]">
+        <p className="font-code rounded-full border border-[var(--border)] bg-[var(--muted)] px-3 py-2 text-xs uppercase tracking-[0.12em] text-[var(--accent)]">
           {currentIndex + 1} / {images.length}
         </p>
       </div>
