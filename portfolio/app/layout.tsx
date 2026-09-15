@@ -10,13 +10,15 @@ const siteUrl = process.env.SITE_URL
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: "Ral Angelo Lluisma — Software, Hardware & Useful Systems",
+  applicationName: "solutionsbyral",
+  title: "solutionsbyral — Ral Angelo Lluisma",
   description: "Computer Applications graduate building practical systems with embedded technology, computer vision, AI, and software. Explore Ral’s projects and engineering decisions.",
   openGraph: {
     type: "website",
-    title: "Ral Angelo Lluisma — Useful Systems",
+    siteName: "solutionsbyral",
+    title: "solutionsbyral — Software, Hardware & Useful Systems",
     description: "Software. Hardware. Useful systems. Explore projects in computer vision, workflow automation, and local AI.",
-    images: [{ url: "/social-preview.png", width: 1200, height: 630, alt: "Ral Angelo Lluisma — Software. Hardware. Useful systems." }],
+    images: [{ url: "/social-preview.png", width: 1200, height: 630, alt: "solutionsbyral — Software. Hardware. Useful systems." }],
   },
   twitter: { card: "summary_large_image", images: ["/social-preview.png"] },
   icons: {

@@ -9,7 +9,7 @@ import { Environment } from "@/components/motion/Environment";
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const { slug } = await params;
   const project = projects.find(p => p.id === slug);
-  return { title: project ? `${project.title} — Ral Angelo Lluisma` : "Project not found", description: project?.solution, alternates: { canonical: `/projects/${slug}` }, openGraph: { title: project?.title, description: project?.solution, images: ["/social-preview.png"] } };
+  return { title: project ? `${project.title} — ${profile.siteName}` : `Project not found — ${profile.siteName}`, description: project?.solution, alternates: { canonical: `/projects/${slug}` }, openGraph: { siteName: profile.siteName, title: project ? `${project.title} — ${profile.siteName}` : profile.siteName, description: project?.solution, images: ["/social-preview.png"] } };
 }
 
 export default async function CaseStudy({ params }: { params: Promise<{ slug: string }> }) {

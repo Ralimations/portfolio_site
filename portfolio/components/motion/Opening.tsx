@@ -1,6 +1,7 @@
 "use client";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { profile } from "@/data/profile";
+import { LetsTalk } from "@/components/navigation/LetsTalk";
 
 const QUERY = "I need a solution to a problem!";
 type Phase = "idle" | "typing" | "submit" | "leaving";
@@ -40,7 +41,9 @@ export function Opening() {
       if (content) content.inert = true;
       document.documentElement.classList.add("intro-open");
     });
-    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") enter(); };
+    const escape = (event: KeyboardEvent) => {
+      if (event.key === "Escape" && !document.querySelector('[data-slot="popover-content"][data-state="open"]')) enter();
+    };
     const preference = () => { if (reduce.matches) enter(); };
     document.addEventListener("keydown", escape);
     reduce.addEventListener("change", preference);
@@ -72,7 +75,7 @@ export function Opening() {
 
   if (!visible) return null;
   return <section ref={opening} tabIndex={-1} inert={phase === "leaving"} aria-hidden={phase === "leaving"} className={`opening ${phase}`} aria-label="Find a solution, portfolio introduction">
-    <div className="opening-top"><span className="wordmark">RAL<span>.</span></span><a href={`mailto:${profile.email}`}>Contact ↗</a></div>
+    <div className="opening-top"><span className="wordmark" aria-label={profile.siteName}>solutionsby<span>ral</span></span><LetsTalk /></div>
     <div className="opening-search">
       <p className="eyebrow">A GOOD PROJECT STARTS WITH A QUESTION.</p>
       <form onSubmit={e => { e.preventDefault(); enter(); }} className="search-form">

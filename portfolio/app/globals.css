@@ -34,13 +34,17 @@ ul,ol{margin:0;padding:0;list-style:none}
 .skip-link{position:fixed;top:10px;left:20px;background:var(--accent);color:var(--bg);padding:10px 20px;z-index:110;transform:translateY(-150%)}
 .skip-link:focus{transform:translateY(0)}
 .site-header{height:88px;display:flex;align-items:center;justify-content:space-between;gap:24px;padding:0 var(--gutter);position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--line)}
-.wordmark{font-size:1.65rem;font-weight:900;letter-spacing:-.08em;display:flex;align-items:baseline;line-height:1}
+.wordmark{font-size:1.45rem;font-weight:900;letter-spacing:-.055em;display:flex;align-items:baseline;line-height:1;white-space:nowrap}
 .wordmark>span:first-child{color:var(--accent)}
 .wordmark .wordmark-caption{font-size:.75rem;font-weight:600;letter-spacing:.05em;margin-left:13px}
 .site-header nav{display:flex;gap:30px;margin-left:auto}
 .site-header nav a,.header-email{font-size:.75rem;text-transform:uppercase;font-weight:600;letter-spacing:.06em;min-height:44px;display:flex;align-items:center}
 .site-header nav a[aria-current],.site-header nav a:hover{color:var(--accent)}
 .header-email{margin-left:36px;gap:22px;border-left:1px solid var(--line);padding-left:30px}.header-email span{color:var(--accent);font-size:1.3rem}
+.lets-talk{display:inline-flex;align-items:center;gap:16px;min-height:44px;font-size:.75rem;font-weight:600;white-space:nowrap}
+.lets-talk>span{color:var(--accent);font-size:1.3rem}.lets-talk:hover,.lets-talk[data-state=open]{color:var(--accent)}
+.email-popover{position:relative;z-index:70;width:min(360px,calc(100vw - 32px));padding:24px;background:var(--surface);color:var(--fg);border:1px solid var(--line);border-top:2px solid var(--accent);border-radius:0;box-shadow:0 12px 35px rgb(0 0 0 / 25%)}
+.email-popover .eyebrow{color:var(--muted)}.revealed-email{display:block;margin-top:12px;font-size:1rem;overflow-wrap:anywhere;text-decoration:underline}.revealed-email:hover{color:var(--accent)}.email-popover .text-link{margin-top:18px;color:var(--accent)}
 .contact-rail{position:fixed;right:0;top:44%;z-index:25;writing-mode:vertical-rl;background:var(--bg);border-left:1px solid var(--line);padding:19px 10px}
 .contact-links{display:flex;flex-wrap:wrap;gap:28px;font-size:.875rem;font-weight:600}
 .contact-links a{min-height:44px;display:inline-flex;align-items:center;gap:13px}
@@ -111,3 +115,4 @@ main,.site-footer{max-width:1800px;margin-inline:auto}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}.custom-cursor{display:none}.opening{display:none}.intro-open{overflow:auto}.intro-open #portfolio-content{visibility:visible}.arriving{opacity:1;transform:none}}
 @media(pointer:coarse),(hover:none){.custom-cursor{display:none}}
 @media print{.site-header,.contact-rail,.opening,.environment,.custom-cursor,.case-toc,.hero-actions,.site-footer{display:none}body{background:white;color:black}.section{break-inside:avoid}.project-row{break-inside:avoid}.muted,.solution,.technology-list{color:#333!important}a{text-decoration:underline}}
+@media(max-width:900px){.site-header{height:auto;min-height:100px;display:grid;grid-template-columns:minmax(0,1fr) auto;gap:0 12px;padding-top:10px;padding-bottom:4px}.site-header .wordmark{font-size:1.2rem}.site-header .header-email{display:inline-flex;grid-column:2;grid-row:1;margin:0;padding:0;border:0;gap:8px}.site-header nav{grid-column:1/-1;grid-row:2;justify-content:space-between;flex-wrap:wrap;gap:0 16px;margin:0}.site-header nav a{font-size:.75rem}.opening-top .wordmark{font-size:1.2rem}.opening-top{gap:12px}.opening-top .lets-talk{gap:8px}}

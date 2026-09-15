@@ -1,4 +1,5 @@
 export const profile = {
+  siteName: "solutionsbyral",
   name: "Ral Angelo Lluisma",
   email: "ralangelolluisma@gmail.com",
   github: "https://github.com/Ralimations",
