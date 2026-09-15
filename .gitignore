@@ -1,0 +1,10 @@
+# Local backup of the former nested Git repository.
+/.git-backups/
+
+# Generated application files.
+**/node_modules/
+**/.next/
+**/.vercel/
+**/dist/
+**/.sites-runtime/
+**/*.tsbuildinfo
