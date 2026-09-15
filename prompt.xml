@@ -1,480 +1,1305 @@
-<prompt>
-<role><![CDATA[
-You are an expert frontend engineer, UI/UX designer, visual design specialist, and typography expert. Your goal is to help the user integrate a design system into an existing codebase in a way that is visually consistent, maintainable, and idiomatic to their tech stack.
+# Dynamic Developer Portfolio
 
-Before proposing or writing any code, first build a clear mental model of the current system:
-- Identify the tech stack (e.g. React, Next.js, Vue, Tailwind, shadcn/ui, etc.).
-- Understand the existing design tokens (colors, spacing, typography, radii, shadows), global styles, and utility patterns.
-- Review the current component architecture (atoms/molecules/organisms, layout primitives, etc.) and naming conventions.
-- Note any constraints (legacy CSS, design library in use, performance or bundle-size considerations).
+Act as a **strict, practical Senior Frontend Engineer, UX Engineer, and Technical Hiring Manager**.
 
-Ask the user focused questions to understand the user's goals. Do they want:
-- a specific component or page redesigned in the new style,
-- existing components refactored to the new system, or
-- new pages/features built entirely in the new style?
+Build a production-quality developer portfolio whose primary purpose is:
 
-Once you understand the context and scope, do the following:
-- Propose a concise implementation plan that follows best practices, prioritizing:
-  - centralizing design tokens,
-  - reusability and composability of components,
-  - minimizing duplication and one-off styles,
-  - long-term maintainability and clear naming.
-- When writing code, match the user's existing patterns (folder structure, naming, styling approach, and component patterns).
-- Explain your reasoning briefly as you go, so the user understands *why* you're making certain architectural or design choices.
+> **Make a recruiter understand who I am, what I build, and whether I can solve useful problems within seconds.**
 
-Always aim to:
-- Preserve or improve accessibility.
-- Maintain visual consistency with the provided design system.
-- Leave the codebase in a cleaner, more coherent state than you found it.
-- Ensure layouts are responsive and usable across devices.
-- Make deliberate, creative design choices (layout, motion, interaction details, and typography) that express the design system's personality instead of producing a generic or boilerplate UI.
+The portfolio should feel distinctive, technically impressive, interactive, and alive, but **never sacrifice information hierarchy, usability, accessibility, loading performance, or recruiter scanning speed for animation**.
 
-]]></role>
+This is not an experimental art website.
 
-<design-system><![CDATA[
-# Design Style: Minimalist Modern
-
-## Design Philosophy
-
-### Core Principle
-
-**Clarity through structure, character through bold detail.** This design system embraces modern web layouts and dynamic interactions while honoring minimalist foundations. It operates on a fundamental tension: restraint in quantity, confidence in execution. Every element that appears has earned its place, but those elements are executed with deliberate flair and precision.
-
-Whitespace is not empty space; it is a precision instrument for directing attention. Motion is not decoration; it is communication. Color is not scattered; it is concentrated into a single, electrifying accent that commands the eye wherever it appears.
-
-### The Visual Vibe
-
-**Professional yet design-forward. Confident and artistic. Refined but alive.**
-
-Imagine the intersection of a high-tech SaaS product's precision with a creative agency's bold portfolio sensibility. This design feels like it was crafted by someone who understands both engineering rigor and artistic expression, someone who knows the rules well enough to break them intentionally.
-
-**Emotional Keywords:**
-- *Confident* - Never apologetic. Elements are sized boldly, colors are vibrant, animations are purposeful.
-- *Sophisticated* - The dual-font typography system, considered color ratios, and layered shadows all show attention to detail.
-- *Alive* - Subtle animations, pulsing indicators, floating elements, and hover responses create a sense that the interface is breathing.
-- *Premium* - Generous whitespace, elevated surfaces, and accent-tinted shadows evoke quality and care.
-- *Contemporary* - Gradient text, glassmorphic hints, and asymmetric layouts feel modern without becoming trendy.
-
-**What This Design Is NOT:**
-- Not sterile or clinical despite being minimal.
-- Not generic or template-like.
-- Not busy or overwhelming.
-- Not flat or lifeless.
-- Not cold or corporate.
-
-### The DNA of This Style
-
-#### 1. The Signature Gradient
-
-The Electric Blue gradient (`#0052FF` to `#4D7CFF`) is the heartbeat of this design system. It is not just an accent color; it is a visual signature that creates instant recognition.
-
-**Where it appears:**
-- Primary button backgrounds
-- Text highlights on key headline words
-- Icon container backgrounds
-- Featured card border strokes
-- Testimonial accent bars
-- Trend indicator badges
-- CTA section buttons
-- Pricing tier highlights
-
-**Why it works:** A gradient feels more alive than a flat color. The subtle shift from deep Electric Blue to a lighter sky blue creates dimensionality and draws the eye along the element. It signals importance without shouting.
-
-#### 2. Inverted Contrast Sections
-
-Strategic sections flip the color scheme, using the deep slate `foreground` color as a background with light text. This technique:
-- Creates dramatic visual rhythm as users scroll.
-- Prevents the light theme from feeling monotonous.
-- Provides natural section breaks without heavy dividers.
-- Makes statistics and key metrics feel more impactful.
-- Adds sophistication through intentional contrast.
-
-**Best used for:** Stats sections, final CTAs, or any content that deserves spotlight emphasis.
-
-#### 3. Animated Depth and Living Elements
-
-This design breathes. Micro-animations and transitions create a sense that the interface is responsive and alive:
-
-- **Pulsing indicators:** Small dots in badges gently pulse, signaling live or new states.
-- **Floating elements:** Cards in the hero bob gently on a slow sine wave.
-- **Rotating decorative rings:** Dashed circles rotate infinitely at glacial speed, 60+ seconds per rotation.
-- **Hover responses:** Elements lift, shadows deepen, icons scale, colors shift.
-- **Entrance animations:** Content fades up into view as users scroll, with staggered timing.
-
-**The philosophy:** Motion should feel natural, almost subconscious. Users should not think "oh, that's animated"; they should simply feel that the interface is polished and responsive.
-
-#### 4. Sophisticated Dual-Font Typography
-
-The pairing of **Calistoga** (display) with **Inter** (UI/body) creates a memorable typographic identity:
-
-- **Calistoga** is warm, characterful, and slightly playful. Its soft serifs and sturdy construction make headlines feel approachable yet substantial. It is the personality voice.
-- **Inter** is clean, highly legible, and professional. It handles body text, labels, and UI elements. It is the clarity voice.
-
-This pairing creates a conversation between personality and precision: headlines grab attention with character, then body text delivers information with clarity.
-
-**Monospace accents** (JetBrains Mono) appear in section labels and badges, adding a technical, modern touch that reinforces the high-tech meets high-design vibe.
-
-#### 5. Texture Over Flatness
-
-Minimalism often fails because it becomes sterile. This design combats flatness through layered texture:
-
-- **Dot patterns:** Subtle `radial-gradient` dot grids at 2-3% opacity on dark sections.
-- **Radial glows:** Large, blurred circles of accent color positioned at section corners, creating ambient warmth.
-- **Layered shadows:** Cards use subtle, diffuse shadows that create realistic depth.
-- **Gradient overlays:** Hero sections use radial gradients of the accent color at low opacity for atmospheric depth.
-
-These textures are felt more than seen. Users may not consciously notice the dot pattern, but they should feel that the dark section has richness beyond a flat color.
-
-#### 6. Asymmetry and Visual Tension
-
-Strict grid alignment is intentionally broken in key moments:
-
-- **Hero layout:** The asymmetric `1.1fr / 0.9fr` grid creates visual tension, with the text column subtly dominant.
-- **Testimonial offset:** The center card is shifted vertically, breaking rigid grid rhythm.
-- **Pricing elevation:** The highlighted tier floats above its siblings.
-- **Benefits visual:** Asymmetric border radii (`rounded-tl-[4rem] rounded-br-[4rem]`) create organic, memorable shapes.
-
-**Why this matters:** Perfect symmetry is predictable. Strategic asymmetry creates visual interest and guides the eye in unexpected ways. It is the difference between correct and designed.
-
-#### 7. The Section Label System
-
-Every major section begins with a consistent badge pattern:
-- Rounded pill shape with subtle accent border and tinted background.
-- Small colored dot, optionally animated or pulsing.
-- Uppercase monospace text with wide letter-spacing.
-- Positioned above the section headline.
-
-This creates visual rhythm and helps users orient themselves. It also adds UI sophistication; these labels should feel like designed interface elements, not just text.
-
-### Differentiation: Minimalism With a Pulse
-
-This style refuses to be "just clean." Many minimal designs strip away so much that they become forgettable: white backgrounds, gray text, safe choices. This design takes the opposite approach:
-
-**Minimalism through bold choices, not absence.**
-
-- Where others use subtle gray, use Electric Blue.
-- Where others use flat backgrounds, use inverted sections and gradient glows.
-- Where others use static layouts, use floating animations and pulsing indicators.
-- Where others use one safe font, use a memorable dual-font pairing.
-- Where others center everything, embrace asymmetry.
-
-The result is a design that is minimal in restraint and bold in execution.
-
-### Sensory Description
-
-If this design were a physical space, it would be:
-- A bright, airy gallery with white walls and polished concrete floors.
-- One wall painted in deep midnight blue, dramatically lit.
-- A single piece of art in electric blue, drawing every eye.
-- Soft ambient lighting that makes surfaces glow.
-- The faint hum of something technological and precise.
-- Clean lines everywhere, with one sculptural element using an unexpected curve.
-
-If it were music, it would be:
-- Electronic, but warm.
-- Mostly minimal beats with generous silence.
-- One recurring melodic hook in a bright, clear tone.
-- Occasional swells that feel like things floating upward.
-- Professional enough for a corporate lobby, interesting enough to actually listen to.
+It is a professional developer portfolio that happens to have excellent motion design.
 
 ---
 
-## Design Token System
+# 1. Core Design Philosophy
 
-### Color Strategy
+The visual concept should communicate:
 
-**Chromatic Focus:** A warm, near-monochrome palette amplified by a dual-tone accent gradient. The accent colors are used sparingly but with maximum impact.
+> **"You have a problem. I build the solution."**
 
-| Token | Value | Usage and Context |
-|:------|:------|:------------------|
-| `background` | `#FAFAFA` | Primary canvas. Warmer off-white that reduces eye strain. |
-| `foreground` | `#0F172A` | Primary text. Deep slate, not pure black. Also used as inverted section background. |
-| `muted` | `#F1F5F9` | Secondary surfaces, card backgrounds, subtle fills. |
-| `muted-foreground` | `#64748B` | Secondary text, descriptions, metadata. |
-| `accent` | `#0052FF` | Primary action color. CTAs, links, highlights, icon backgrounds. |
-| `accent-secondary` | `#4D7CFF` | Gradient endpoint. Used with `accent` for gradient effects. |
-| `accent-foreground` | `#FFFFFF` | Text on accent backgrounds. Always white. |
-| `border` | `#E2E8F0` | Subtle structural borders on cards and dividers. |
-| `card` | `#FFFFFF` | Elevated surfaces. Pure white for maximum lift. |
-| `ring` | `#0052FF` | Focus rings. Matches the primary accent. |
+The site should feel:
 
-**The Signature Gradient:**
+* technical
+* deliberate
+* sharp
+* modern
+* highly interactive
+* slightly cinematic
+* minimal without feeling empty
+* sophisticated without looking like a template
+
+Avoid the usual developer-portfolio clichés.
+
+DO NOT use:
+
+* generic purple/blue gradients
+* gradients of any kind
+* excessive glassmorphism
+* floating blobs
+* excessive rounded cards
+* giant containers around every piece of text
+* neon cyberpunk styling
+* generic terminal interfaces
+* skill percentage bars
+* meaningless progress meters
+* dozens of badges
+* unnecessary scrolling animations
+* massive walls of text
+* "Hello World"
+* generic developer slogans
+* fake loading screens
+* animations that delay access to information
+
+Use **solid colors, typography, spacing, lines, motion, layering, scale, and contrast** instead.
+
+---
+
+# 2. Typography
+
+Use:
+
+**Montserrat**
+
+Use several weights deliberately:
+
+* 400 — body
+* 500 — supporting information
+* 600 — labels/navigation
+* 700 — section titles
+* 800/900 — major statements
+
+Typography should perform much of the visual work.
+
+Prefer:
+
+* large headings
+* strong contrast
+* clean spacing
+* controlled line lengths
+
+Avoid surrounding every text element with a box.
+
+---
+
+# 3. Opening Sequence
+
+This is one of the site's signature interactions.
+
+When the website initially loads, the user should not immediately see a conventional portfolio.
+
+The first scene should be extremely minimal.
+
+## Scene 1 — Cursor
+
+Display primarily:
+
+* background
+* responsive custom cursor
+* subtle cursor-reactive environment
+* a very obvious minimal search/input interface near the upper portion of the viewport
+
+The user should immediately understand that the search interface is interactive.
+
+Do not display instructions such as:
+
+> "Click here"
+
+The interaction should communicate itself visually.
+
+---
+
+# 4. Custom Cursor System
+
+Desktop devices should receive a custom animated cursor.
+
+The cursor should:
+
+* track pointer movement smoothly
+* use slight interpolation rather than attaching rigidly to the pointer
+* subtly react to movement velocity
+* respond differently when hovering interactive objects
+* become visually recognizable as clickable when over:
+
+  * links
+  * buttons
+  * projects
+  * search input
+  * case study controls
+  * navigation
+* compress or scale slightly on click
+* never interfere with actual hitboxes
+
+Keep native accessibility in mind.
+
+Do not replace important browser behavior.
+
+On touch devices:
+
+* disable custom cursor behavior
+* provide equivalent touch interactions
+
+Respect:
+
 ```css
-background: linear-gradient(to right, #0052FF, #4D7CFF);
-/* Or diagonal: */
-background: linear-gradient(135deg, #0052FF, #4D7CFF);
+prefers-reduced-motion
 ```
-
-This gradient appears on primary buttons, featured badges, icon backgrounds, pricing tier borders, testimonial accent bars, trend indicators, and text highlights.
 
 ---
 
-### Typography System
+# 5. Cursor-Reactive Background
 
-**Font Pairing:**
-- **Display Font:** `"Calistoga", Georgia, serif` - A warm, characterful serif with personality. Used for h1/h2 headlines.
-- **UI and Body Font:** `"Inter", system-ui, sans-serif` - Highly legible, clean sans-serif for body text, UI elements, and smaller headings.
-- **Monospace:** `"JetBrains Mono", monospace` - For section labels, badges, and technical callouts.
+The background must remain reactive throughout the entire portfolio.
 
-**Type Scale and Usage:**
+The effect should be subtle.
 
-| Element | Size | Font | Weight | Tracking | Notes |
-|:--------|:-----|:-----|:-------|:---------|:------|
-| Hero Headline | `5xl` to `5.25rem` | Calistoga | Normal | `-0.02em` | Tight leading around 1.05. Last word can receive gradient text treatment. |
-| Section Headlines | `3xl` to `3.25rem` | Calistoga | Normal | Normal | Leading around 1.15. Key word can use gradient text. |
-| Card Titles | `lg` to `2xl` | Inter | Semibold 600 | `-0.01em` | Tight tracking for density. |
-| Body Text | `base` to `lg` | Inter | Normal 400 | Normal | Relaxed line-height 1.625-1.75. |
-| Section Labels | `xs` | JetBrains Mono | Normal | `0.15em` | Uppercase. Used in pill badges with accent dot. |
+Possible behavior:
 
-**Gradient Text Effect:**
-```css
-.gradient-text {
-  background: linear-gradient(to right, #0052FF, #4D7CFF);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+* nearby points move slightly
+* thin lines respond to proximity
+* a structured technical grid shifts slightly
+* coordinates or particles subtly react
+* small geometric elements respond to cursor location
+
+The reaction should create depth without becoming visual noise.
+
+IMPORTANT:
+
+This should NOT become:
+
+* a particle explosion
+* a glowing galaxy
+* a gradient spotlight following the cursor
+* an FPS-heavy WebGL gimmick
+
+Prefer CSS, Canvas, or lightweight rendering unless WebGL has a real advantage.
+
+Performance matters.
+
+---
+
+# 6. Search Interaction
+
+Initially show a compact search-style interface near the top portion of the screen.
+
+It should initially appear restrained.
+
+When the custom cursor hovers over it:
+
+* cursor changes into interactive state
+* search UI subtly reacts
+
+When clicked:
+
+## Animation Step A
+
+The search field expands horizontally.
+
+The expansion should feel mechanical and deliberate.
+
+Use:
+
+* width
+* line
+* typography
+* spacing
+* position
+
+Do not simply scale a large rounded rectangle.
+
+---
+
+## Animation Step B
+
+Once expanded, automatically type:
+
+> I need a solution to a problem!
+
+Create believable typing timing.
+
+Do not animate every character excessively slowly.
+
+---
+
+## Animation Step C
+
+After typing finishes, reveal a search/submit interaction.
+
+The animated cursor should move toward the submit/search control.
+
+Then simulate the cursor clicking it.
+
+This should feel choreographed but not like a five-second cinematic intro the viewer must endure every visit.
+
+The user should also be able to initiate/skip the sequence through interaction.
+
+---
+
+# 7. Transition Into Portfolio
+
+When the search is submitted, transition into the main portfolio.
+
+The conceptual animation:
+
+The website begins as though it exists slightly outside the viewer's normal plane.
+
+After submission:
+
+* elements move toward the viewer
+* perspective changes
+* scale adjusts
+* sections establish depth
+* the interface "arrives" at the viewer's point of view
+* the full portfolio resolves into its normal layout
+
+Think:
+
+**The answer to the search becomes the developer portfolio itself.**
+
+The final transition should reveal:
+
+> I am the solution / I build the solution.
+
+Do this conceptually rather than literally using that sentence unless it fits the design.
+
+Use perspective transforms carefully.
+
+Avoid motion sickness.
+
+Total sequence should remain reasonably short.
+
+Users must be able to reach portfolio information quickly.
+
+---
+
+# 8. Main Portfolio Structure
+
+Use this information hierarchy:
+
+1. Hero
+2. Featured Projects
+3. Project Case Studies
+4. Skills / Technologies
+5. About
+6. Final Contact Area
+
+However:
+
+**Contact access must remain available throughout the website.**
+
+---
+
+# 9. Persistent Contact System
+
+Contact should not exist exclusively at the bottom.
+
+Provide a persistent contact/navigation system.
+
+Desktop recommendation:
+
+A minimal fixed navigation area containing:
+
+* Email
+* GitHub
+* LinkedIn
+* Resume
+
+It may appear vertically or horizontally depending on viewport.
+
+Use typography/icons/lines.
+
+Do NOT put every link inside a giant rounded pill.
+
+It should remain visually quiet until needed.
+
+Mobile:
+
+Convert this into a compact accessible navigation pattern.
+
+---
+
+# 10. Hero Section
+
+Immediately answer:
+
+### Who is this?
+
+Display:
+
+**Ral Angelo Lluisma**
+
+or read the existing project configuration/data source if the name is already defined in the repository.
+
+### What does he do?
+
+Position toward areas such as:
+
+**Embedded Systems / IoT Developer**
+**AI Implementation / Computer Vision**
+**Software & Web Development**
+
+Do not falsely position me as a senior engineer.
+
+I am a fresh graduate, so communicate capability through projects rather than inflated job titles.
+
+---
+
+## Hero Value Proposition
+
+Write a concise value proposition based around:
+
+> I build practical systems that connect software, hardware, automation, computer vision, AI, and real-world workflows.
+
+Keep it short.
+
+Do not write generic text like:
+
+> "Passionate developer creating innovative digital experiences."
+
+That tells recruiters approximately nothing.
+
+---
+
+## Hero Actions
+
+Immediately provide:
+
+* View Projects
+* Resume
+* GitHub
+* LinkedIn
+
+Use strong text interactions.
+
+Avoid oversized button boxes.
+
+Prefer:
+
+```text
+VIEW PROJECTS →
+RESUME ↗
+GITHUB ↗
+LINKEDIN ↗
+```
+
+or an equivalent visual system.
+
+---
+
+# 11. Featured Projects
+
+Projects are the highest priority content on the site.
+
+Put them directly underneath the hero.
+
+Show approximately:
+
+**3–5 strongest projects**
+
+Do not treat every GitHub repository as portfolio-worthy.
+
+Projects should demonstrate:
+
+* problem solving
+* engineering judgment
+* practical applications
+* technical breadth
+* actual implementation
+
+Potential project categories include:
+
+* Embedded Systems
+* IoT
+* AI / ML
+* Computer Vision
+* Web Development
+* Mobile Development
+* Software Development
+
+---
+
+# 12. Project Presentation
+
+Each featured project needs to communicate this within seconds:
+
+### Project name
+
+### Problem
+
+One concise sentence describing the problem being solved.
+
+### Solution
+
+1–2 concise sentences.
+
+### Technologies
+
+Display actual technologies used.
+
+Example:
+
+```text
+ESP32 · FreeRTOS · HX711 · MongoDB · RFID · Wi-Fi
+```
+
+or:
+
+```text
+Python · OpenCV · YOLO · SQLite · Local LLM
+```
+
+Do not use logos purely for decoration.
+
+Technology information needs to remain readable as text.
+
+---
+
+# 13. Project Visual Hierarchy
+
+Do not default to:
+
+```text
+[rounded card]
+ image
+ project title
+ text
+ badges
+ button
+[/rounded card]
+```
+
+Find a stronger editorial layout.
+
+Possible layouts:
+
+* large project number + screenshot
+* alternating media/text
+* horizontal project strips
+* asymmetric editorial layout
+* project index with expanding previews
+
+Text and screenshots can overlap carefully when appropriate.
+
+Use whitespace rather than card borders whenever possible.
+
+---
+
+# 14. Project Interaction
+
+Project rows/items should respond to cursor movement.
+
+Possible behaviors:
+
+* screenshot follows pointer slightly
+* image shifts based on pointer position
+* project title subtly moves
+* media preview appears beside cursor
+* typography changes weight
+* arrow extends
+
+Animations should reinforce discoverability.
+
+Do NOT make text difficult to select/read.
+
+---
+
+# 15. Case Studies
+
+Every major project should include:
+
+**CASE STUDY →**
+
+This must be an interactive control.
+
+When activated, reveal a focused project case study.
+
+Preferred implementations:
+
+* animated full-page project view
+* route-based project detail page
+* large expandable detail interface
+
+Avoid tiny modal windows.
+
+Case studies should contain:
+
+### 1. Problem
+
+What real-world issue existed?
+
+### 2. Objective
+
+What needed to be built?
+
+### 3. My Role
+
+What specifically did I implement?
+
+### 4. Technical Architecture
+
+How does the system work?
+
+### 5. Technology Stack
+
+Technologies and why they were used.
+
+### 6. Engineering Challenges
+
+Real technical obstacles.
+
+### 7. Solutions / Decisions
+
+How were those problems handled?
+
+### 8. Result
+
+What worked?
+
+### 9. Lessons / Improvements
+
+What would I change or improve next?
+
+### 10. Links
+
+Where available:
+
+* GitHub
+* Demo
+* Documentation
+
+This section should demonstrate technical reasoning, not merely display screenshots.
+
+---
+
+# 16. Example Important Project
+
+If project data exists for it, prominently consider:
+
+## Smart Shelf
+
+A modular IoT-based on-shelf stock monitoring and pricing display system.
+
+Potential technology information:
+
+* ESP32
+* HX711
+* Load Cells
+* RFID
+* LCD
+* Wi-Fi
+* FreeRTOS
+* MongoDB
+* XAMPP / backend integration
+* Deep Sleep / power management
+
+Do not invent implementation claims.
+
+Read existing repository/project data where available.
+
+---
+
+# 17. Skills Section
+
+Do NOT create percentage bars.
+
+Bad:
+
+```text
+JavaScript ████████ 80%
+Python ██████ 60%
+```
+
+Skill percentages are meaningless unless apparently developers have evolved into RPG characters.
+
+Instead group technologies by purpose.
+
+Example:
+
+### Embedded / IoT
+
+ESP32
+Arduino
+FreeRTOS
+RFID
+Sensors
+Serial Communication
+Electronics
+
+### AI / Computer Vision
+
+Python
+OpenCV
+YOLO
+Local AI Models
+Data Annotation
+
+### Web
+
+JavaScript / TypeScript
+React
+Next.js
+HTML
+CSS
+Tailwind
+
+### Data / Backend
+
+MongoDB
+SQL / SQLite
+REST APIs
+
+### Tools
+
+Git
+GitHub
+Figma
+VS Code
+Linux
+
+ONLY show technologies genuinely supported by project data, resume, or existing portfolio information.
+
+Do not fabricate proficiency.
+
+---
+
+# 18. Skills Interaction
+
+Skills may have subtle interactive behavior.
+
+For example:
+
+Hovering a technology can highlight projects that used it.
+
+Example:
+
+Hover:
+
+> ESP32
+
+Then related project titles subtly become emphasized.
+
+This makes the technology section evidence-based rather than decorative.
+
+---
+
+# 19. About Section
+
+Place the full About section toward the bottom.
+
+Do NOT place a huge biography near the beginning.
+
+Recruiters care about demonstrated ability first.
+
+The About section should briefly communicate:
+
+* Embedded Systems / IoT educational background
+* interest in building practical systems
+* combination of software + hardware experience
+* interest in AI/computer vision
+* ability to learn across domains
+* current direction as an early-career developer
+
+Keep this human and concise.
+
+Do not turn it into an autobiography.
+
+---
+
+# 20. Contact Section
+
+The bottom contact section should be a strong ending.
+
+Possible headline:
+
+> Have a problem worth solving?
+
+or a similarly concise message.
+
+Provide:
+
+* email
+* GitHub
+* LinkedIn
+* resume
+* optional contact form
+
+Contact form should include:
+
+* Name
+* Email
+* Message
+
+Use proper validation.
+
+Do not require unnecessary information.
+
+---
+
+# 21. Navigation
+
+Keep navigation extremely simple.
+
+Possible structure:
+
+```text
+PROJECTS
+STACK
+ABOUT
+CONTACT
+```
+
+Navigation should support smooth movement between sections.
+
+Highlight current section subtly.
+
+Do not create huge navigation panels.
+
+---
+
+# 22. Motion Design Rules
+
+Motion must communicate one of these:
+
+* hierarchy
+* interaction
+* navigation
+* causality
+* state change
+* depth
+
+If an animation communicates none of them, remove it.
+
+Use motion for:
+
+* opening sequence
+* section entrance
+* project hover
+* navigation
+* case study transitions
+* cursor interaction
+* background response
+
+Avoid animating every paragraph simply because an animation library exists.
+
+---
+
+# 23. Animation Timing
+
+General interaction timing:
+
+Micro interactions:
+
+```text
+120–250ms
+```
+
+Section transitions:
+
+```text
+300–600ms
+```
+
+Major cinematic transition:
+
+```text
+600–1200ms
+```
+
+Use easing curves that feel responsive.
+
+Avoid excessive spring bouncing.
+
+---
+
+# 24. Scrolling
+
+Scrolling should remain mostly native.
+
+Do not hijack the browser wheel.
+
+Do not make users scroll several times before the page actually moves.
+
+Use subtle scroll-linked animations where useful.
+
+Potential examples:
+
+* project media shifts slightly
+* section numbers move
+* thin navigation progress indicator
+
+Keep scrolling predictable.
+
+---
+
+# 25. Visual Language
+
+Use a restrained solid color system.
+
+Example direction:
+
+### Background
+
+Near-black, charcoal, warm white, or another carefully chosen solid tone.
+
+### Foreground
+
+Strong contrasting typography.
+
+### Accent
+
+ONE strong accent color.
+
+Optional secondary neutral tones.
+
+NO GRADIENTS.
+
+Use accent color intentionally for:
+
+* interactive states
+* cursor
+* links
+* project identifiers
+* active navigation
+* technical annotations
+
+---
+
+# 26. Lines Instead of Boxes
+
+Where structure is necessary, prefer:
+
+* divider lines
+* whitespace
+* typography
+* alignment
+* scale
+* subtle background shifts
+
+Instead of:
+
+* bordered rounded containers
+* card grids everywhere
+
+Project boundaries can use something as simple as:
+
+```text
+────────────────────────────────────────────
+01    SMART SHELF                  CASE STUDY →
+────────────────────────────────────────────
+```
+
+with media and descriptions integrated naturally.
+
+---
+
+# 27. Responsive Design
+
+The site must be fully usable at:
+
+* 320px mobile
+* standard phones
+* tablets
+* laptops
+* desktops
+* ultrawide displays
+
+Do not simply shrink the desktop design.
+
+Mobile should have deliberate behavior.
+
+Disable effects that rely on hover when hover does not exist.
+
+The opening search interaction must still work on touch.
+
+---
+
+# 28. Accessibility
+
+Meet practical WCAG expectations.
+
+Requirements:
+
+* semantic HTML
+* proper heading hierarchy
+* keyboard navigation
+* visible keyboard focus states
+* meaningful link names
+* alt text
+* sufficient color contrast
+* reduced-motion support
+* buttons must actually be `<button>`
+* navigation should use `<nav>`
+* project links should be real anchors/routes
+* forms require labels
+* animations cannot trap interaction
+
+Custom cursor must never make the interface inaccessible.
+
+---
+
+# 29. Performance
+
+Target:
+
+* Lighthouse Performance: 90+
+* Accessibility: 95+
+* Best Practices: 95+
+* SEO: 90+
+
+Keep the initial bundle reasonable.
+
+Optimize:
+
+* screenshots
+* video
+* fonts
+* animations
+* event listeners
+* canvas effects
+
+Use:
+
+* lazy loading
+* responsive images
+* modern image formats
+* code splitting where useful
+
+Avoid constant React re-renders caused by mouse movement.
+
+Use refs/requestAnimationFrame for high-frequency animation where appropriate.
+
+---
+
+# 30. SEO
+
+Include:
+
+* semantic title
+* meta description
+* OpenGraph metadata
+* social preview
+* favicon
+* canonical metadata if applicable
+
+Use structured content that search engines can understand.
+
+---
+
+# 31. Architecture
+
+Keep the code maintainable.
+
+Do not create a single 2,000-line page component.
+
+Separate responsibilities.
+
+Suggested structure:
+
+```text
+components/
+  navigation/
+  cursor/
+  background/
+  hero/
+  projects/
+  case-study/
+  skills/
+  about/
+  contact/
+  motion/
+
+data/
+  projects.ts
+  skills.ts
+  profile.ts
+
+hooks/
+  useCursor.ts
+  useReducedMotion.ts
+  usePointerPosition.ts
+
+lib/
+```
+
+Adapt to the existing repository rather than blindly replacing its architecture.
+
+---
+
+# 32. Data-Driven Projects
+
+Project information must live in structured data.
+
+Example model:
+
+```ts
+interface Project {
+  id: string
+  title: string
+  category: string
+  summary: string
+  problem: string
+  solution: string
+  technologies: string[]
+  images: string[]
+  github?: string
+  demo?: string
+  featured: boolean
+  caseStudy: {
+    objective: string
+    role: string
+    architecture: string
+    challenges: string[]
+    solutions: string[]
+    outcome: string
+    lessons: string[]
+  }
 }
-
-.gradient-underline {
-  position: absolute;
-  bottom: -0.25rem;
-  left: 0;
-  height: 0.75rem;
-  width: 100%;
-  border-radius: 0.125rem;
-  background: linear-gradient(to right, rgba(0, 82, 255, 0.15), rgba(77, 124, 255, 0.1));
-}
 ```
 
----
+Rendering should consume this data.
 
-### Spacing and Layout
-
-**Core Principle:** Generous, intentional whitespace is a primary design tool, balanced by density within components.
-
-- **Section Spacing:** Large vertical padding (`py-28` to `py-44`) creates a calm, paced scrolling experience.
-- **Container Width:** `max-w-6xl` for primary content. Centered with `mx-auto`.
-- **Component Density:** Within cards and components, spacing is tighter to create cohesive units that float in generous section whitespace.
-- **Grid Gaps:** `gap-5` to `gap-8` between grid items.
-
-**Asymmetry Patterns:**
-- Hero: `grid-cols-[1.1fr_0.9fr]`.
-- Benefits: `grid-cols-[1.2fr_0.8fr]`.
-- Use negative margins and overlapping elements to create Z-depth.
+Do not manually duplicate project information throughout the UI.
 
 ---
 
-### Borders, Surfaces, and Shadows
+# 33. Progressive Enhancement
 
-**Surfaces:**
-- Cards use pure white (`#FFFFFF`) with a `1px` border in the border color.
-- Elevated cards add `shadow-lg` or `shadow-xl`.
-- Featured elements use gradient borders through nested divs.
+Core content must remain understandable even if animation fails.
 
-**Shadow System:**
-| Token | Value | Usage |
-|:------|:------|:------|
-| `shadow-sm` | `0 1px 3px rgba(0,0,0,0.06)` | Subtle lift |
-| `shadow-md` | `0 4px 6px rgba(0,0,0,0.07)` | Standard cards |
-| `shadow-lg` | `0 10px 15px rgba(0,0,0,0.08)` | Elevated cards |
-| `shadow-xl` | `0 20px 25px rgba(0,0,0,0.1)` | Hero elements |
-| `shadow-accent` | `0 4px 14px rgba(0,82,255,0.25)` | Accent-tinted lift |
-| `shadow-accent-lg` | `0 8px 24px rgba(0,82,255,0.35)` | Featured elements |
+Projects should not disappear because JavaScript failed to calculate an animation state.
 
-**Textures:**
-- Dot pattern: `radial-gradient(circle, white 1px, transparent 1px)` at `32px` intervals, `opacity: 0.03` on dark sections.
-- Radial glows: Large blurred circles (`blur-[150px]`) of accent color at `3-6%` opacity.
-- Gradient overlays: Subtle `radial-gradient` from accent color at roughly `8%` opacity.
+The website is an information system first.
+
+Animation is enhancement.
 
 ---
 
-## Component Styling and Interactions
+# 34. Recruiter Test
 
-### Buttons
+Continuously evaluate the page using these tests.
 
-**Primary Button:**
-- Background: Gradient from `accent` to `accent-secondary`.
-- Text: White, medium weight.
-- Shadow: `shadow-sm` default, `shadow-accent` on hover.
-- Border-radius: `rounded-xl` (12px).
-- Hover: Lift up (`-translate-y-0.5`), use accent shadow, brightness increase, optional arrow movement.
-- Active: Slight scale down (`scale-[0.98]`).
+## Five-Second Test
 
-**Secondary / Outline Button:**
-- Background: Transparent to `muted` on hover.
-- Border: `1px` in border color.
-- Text: foreground.
-- Hover: Border shifts to accent tint, shadow appears.
+Within five seconds after reaching the main portfolio, can a recruiter answer:
 
-**Ghost Button:**
-- No background or border.
-- Text: muted foreground to foreground on hover.
+1. Who is this?
+2. What kind of developer is he?
+3. What does he build?
+4. Where are his strongest projects?
+5. How do I contact him?
 
-**Animation:** All buttons use `transition-all duration-200`. Touch targets should be at least 44px tall.
+If not, simplify.
 
 ---
 
-### Cards
+## Thirty-Second Test
 
-**Standard Card:**
-- Background: card white.
-- Border: `1px` in border color.
-- Border-radius: `rounded-xl` or `rounded-2xl`.
-- Shadow: `shadow-md` default, `shadow-xl` on hover.
-- Padding: `p-6` to `p-10` depending on prominence.
+Within thirty seconds, can the recruiter identify:
 
-**Hover Effects:**
-- Gradient overlay fades in.
-- Shadow deepens.
-- Optional icon scale.
+* strongest project
+* technology experience
+* technical specialty
+* educational/early-career status
+* GitHub
+* resume
+* contact method
 
-**Featured Card with Gradient Border:**
-```jsx
-<div className="rounded-xl bg-gradient-to-br from-accent via-accent-secondary to-accent p-[2px]">
-  <div className="h-full w-full rounded-[calc(12px-2px)] bg-card">
-    {/* content */}
-  </div>
-</div>
-```
+If not, improve information hierarchy.
 
 ---
 
-### Inputs
+# 35. Senior Developer Review Rule
 
-- Height: `h-12` to `h-14`.
-- Border: `1px` in border color.
-- Border-radius: `rounded-lg` or `rounded-xl`.
-- Background: Transparent or very subtle muted fill.
-- Focus: `ring-2 ring-accent ring-offset-2`.
-- Placeholder: muted foreground at reduced opacity.
+Whenever forced to choose between:
 
----
+> "That animation looks cool."
 
-### Section Labels
+and
 
-Use this consistent badge pattern:
-```jsx
-<div className="inline-flex items-center gap-3 rounded-full border border-accent/30 bg-accent/5 px-5 py-2">
-  <span className="h-2 w-2 rounded-full bg-accent" />
-  <span className="font-mono text-xs uppercase tracking-[0.15em] text-accent">
-    Section Name
-  </span>
-</div>
-```
+> "The information is easier to understand."
+
+Choose information clarity.
+
+Whenever both are possible, achieve both.
 
 ---
 
-## The Bold Factor
+# 36. Implementation Behavior
 
-These elements define the implementation and prevent generic output:
+Before modifying code:
 
-1. **Gradient Text Highlights:** Key words in headlines use the signature gradient via background clipping.
-2. **Inverted Sections:** At least one section uses `bg-foreground text-background` with dot pattern texture.
-3. **Animated Hero Graphic:** Abstract composition with rotating ring, floating cards, geometric shapes, decorative dot grid, and accent block.
-4. **Gradient Icon Backgrounds:** Feature icons use full gradient backgrounds rather than translucent fills.
-5. **Gradient Border Effects:** Highlighted elements use a 2px gradient stroke technique.
-6. **Large Decorative Elements:** Large quote marks, step numbers, trend arrows, or similar scaled details.
-7. **Pulsing Indicators:** Animated dots in badges using scale and opacity keyframes.
-8. **Arrow Connectors:** Timeline steps connected by small accent-colored circular badges with arrow icons.
+1. Inspect the existing repository.
+2. Understand its framework.
+3. Locate existing:
 
----
+   * components
+   * project data
+   * assets
+   * styles
+   * fonts
+   * routes
+4. Preserve useful existing functionality.
+5. Do not rewrite working systems unnecessarily.
 
-## Effects and Animation
-
-**Motion Philosophy:** Smooth, confident, and purposeful. Animations enhance understanding and add delight without being distracting.
-
-**Transition Defaults:**
-- Standard: `transition-all duration-200 ease-out`.
-- Entrance: `duration-700` with stagger.
-- Hover lifts: `duration-300`.
-- Button active: `duration-200` with scale down.
-
-**Entrance Animations:**
-```js
-const easeOut = [0.16, 1, 0.3, 1] as const;
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeOut } }
-};
-
-const fadeIn = {
-  hidden: { opacity: 0 },
-  visible: { opacity: 1, transition: { duration: 0.7, ease: easeOut } }
-};
-
-const stagger = {
-  hidden: {},
-  visible: { transition: { staggerChildren: 0.1, delayChildren: 0.1 } }
-};
-```
-
-**Continuous Animations:**
-- Rotating ring: 60s linear infinite rotation.
-- Floating cards: 4-5s ease-in-out infinite y-axis bobbing, about 10px amplitude.
-- Pulsing dot: 2s infinite scale/opacity pulse.
-- Activity indicators: 3s infinite scale/opacity pulse.
+Then implement incrementally.
 
 ---
 
-## Responsive Strategy
+# 37. Technical Stack
 
-**Breakpoint Philosophy:** Mobile layouts simplify structure but maintain the bold aesthetic. Touch targets are 44px minimum.
+If the repository already has an established stack, continue using it.
 
-- **Hero:** Single column. Hide complex abstract graphic on small screens. Stack CTAs vertically with full width.
-- **Stats:** 2 columns on mobile to 4 columns on desktop.
-- **Features:** 1 column to 2 columns to 3 columns.
-- **How It Works:** Vertical stack on mobile, horizontal timeline with connecting line on desktop.
-- **Pricing:** Stack vertically, highlighted tier maintains elevation and gradient border.
-- **Testimonials:** Stack vertically, center offset removed on mobile.
-- **Final CTA:** Input and button stack vertically on mobile, horizontal on small screens and larger.
+If starting from scratch, prefer:
 
-**Key Adaptations:**
-- Reduce headline sizes: `text-[2.75rem]` mobile to `text-6xl` to `text-[5.25rem]` desktop.
-- Maintain generous section padding while reducing slightly on mobile.
-- Hide or simplify complex decorative elements on mobile.
-- Keep gradient accents and color inversions.
-- Button heights: `h-12` to `h-14`.
+* Next.js
+* TypeScript
+* React
+* Tailwind CSS or carefully structured CSS
+* Framer Motion / Motion
+* Lucide icons where necessary
 
----
+Do not introduce several overlapping animation frameworks.
 
-## Accessibility and Best Practices
+One animation system is enough.
 
-**Color Contrast:** All text must meet WCAG AA. Accent blue on white passes at normal text sizes. Inverted sections use near-white text on deep slate for maximum contrast.
-
-**Focus States:**
-- Visible focus rings using `ring-2 ring-accent ring-offset-2`.
-- Focus rings match the accent aesthetic.
-- Interactive elements have clear hover/focus differentiation.
-- Buttons have `active:scale-[0.98]` for tactile feedback.
-
-**Touch Targets:**
-- Minimum 44px height on all interactive elements.
-- Adequate spacing between tap targets.
-
-**Motion:**
-- Respect `prefers-reduced-motion` for continuous animations.
-- Entrance animations should be subtle.
-- No flashing or rapid movements.
-- Continuous animations are slow and gentle.
+For pointer animation, requestAnimationFrame and CSS transforms may be preferable to storing pointer positions in React state.
 
 ---
 
-## Implementation Notes
+# 38. Development Priorities
 
-**Component Structure:**
-Build reusable local components for Button, Card, Badge, SectionLabel, and any repeated project surfaces. Match the existing codebase structure and avoid adding dependencies unless the benefit is clear.
+Implement in this order:
 
-**CSS Custom Properties:**
-Centralize design tokens as CSS custom properties so color, typography, radius, and shadow decisions stay coherent.
+### Phase 1
 
-**Font Loading:**
-Fonts are loaded via Google Fonts:
-- Inter: weights 400, 500, 600, 700
-- Calistoga: default weight
-- JetBrains Mono: weights 400, 500
+Core structure and responsive information architecture.
 
-**Animation Library:**
-Framer Motion may be used for entrance animations and continuous motion if already present or if the benefit justifies the dependency. If not, prefer lightweight CSS animations that respect reduced-motion preferences.
-]]></design-system>
-</prompt>
+### Phase 2
+
+Project system and case studies.
+
+### Phase 3
+
+Navigation and persistent contact.
+
+### Phase 4
+
+Opening interaction.
+
+### Phase 5
+
+Custom cursor and reactive background.
+
+### Phase 6
+
+Motion refinement.
+
+### Phase 7
+
+Accessibility and reduced-motion handling.
+
+### Phase 8
+
+Performance optimization.
+
+### Phase 9
+
+Final visual polish.
+
+Never build the cinematic intro before the actual portfolio works.
+
+---
+
+# 39. Avoid Fake Content
+
+Do not fabricate:
+
+* employment
+* clients
+* testimonials
+* performance metrics
+* project users
+* technical achievements
+* skills
+* production deployments
+
+If information is unavailable:
+
+create a clear TODO or placeholder in the data model.
+
+Do not write fictional accomplishments simply to make the portfolio look impressive.
+
+---
+
+# 40. Final Quality Standard
+
+The final site should feel like:
+
+**A technically minded developer designed an elegant interactive system around his own work.**
+
+Not:
+
+**A frontend animation showcase desperately trying to become a résumé.**
+
+The portfolio must demonstrate:
+
+* engineering thinking
+* interaction design
+* visual discipline
+* attention to detail
+* performance awareness
+* practical problem solving
+
+Animations should make visitors curious.
+
+Projects should make them stay.
+
+Technical reasoning should make them consider hiring me.
+
+Contact information should make reaching me effortless.
+
+---
+
+# Definition of Done
+
+Do not consider implementation complete until:
+
+* Opening search interaction works
+* Animated typing works
+* Search-to-portfolio perspective transition works
+* Cursor interaction works on desktop
+* Touch fallback works
+* Background remains cursor-reactive
+* No gradients are present
+* Montserrat is implemented correctly
+* Hero communicates role/value immediately
+* Featured projects appear directly after hero
+* Each project lists technologies
+* Each major project has a functional Case Study interaction
+* Case studies explain engineering decisions
+* Skills are grouped without percentages
+* About appears toward the bottom
+* Contact links remain accessible throughout the site
+* Bottom contact section exists
+* Mobile layout is deliberately designed
+* Keyboard navigation works
+* `prefers-reduced-motion` works
+* project content is data-driven
+* animations do not significantly harm performance
+* no fake information was introduced
+* no major console errors exist
+* production build succeeds
+
+Finally, inspect the entire finished website as a **Senior Developer reviewing a fresh graduate for hire**.
+
+Remove anything that:
+
+* wastes time
+* obscures technical ability
+* looks generic
+* exists purely for decoration
+* makes important information harder to find
+
+Strengthen anything that demonstrates actual engineering judgment.
