@@ -1,7 +1,11 @@
+import type { ProjectCategoryId } from "./categories";
+
 export interface Project {
   id: string;
   title: string;
   category: string;
+  categoryIds: ProjectCategoryId[];
+  thumbnail?: string;
   period: string;
   status: string;
   problem: string;
@@ -11,7 +15,7 @@ export interface Project {
   featured: boolean;
   github?: string;
   demo?: string;
-  caseStudy: {
+  caseStudy?: {
     objective: string;
     role: string;
     architecture: string;
@@ -25,7 +29,7 @@ export interface Project {
 
 export const projects: Project[] = [
   {
-    id: "guided-pose", title: "Guided Pose", category: "Computer vision / Embedded systems",
+    id: "guided-pose", title: "Guided Pose", category: "Computer vision / Embedded systems", categoryIds: ["computer-vision-embedded"],
     period: "SEP — DEC 2025", status: "Functional prototype", featured: true,
     github: "https://github.com/Ralimations/guided-pose-program",
     problem: "Exercise instructions alone cannot tell a student when their posture needs correcting.",
@@ -44,7 +48,7 @@ export const projects: Project[] = [
     }, evidence: "CV · Guided Pose Program, September–December 2025",
   },
   {
-    id: "shorts-manager", title: "Ralskies Shorts Manager", category: "Desktop software / Workflow automation",
+    id: "shorts-manager", title: "Ralskies Shorts Manager", category: "Desktop software / Workflow automation", categoryIds: ["desktop-automation"],
     period: "IN DEVELOPMENT", status: "In progress", featured: true,
     github: "https://github.com/Ralimations/ralskies-shorts-helper",
     problem: "A publishing workflow needs to keep local media, tracker records, and uploaded videos matched without duplicating files.",
@@ -64,7 +68,7 @@ export const projects: Project[] = [
     }, evidence: "CV and earlier portfolio project record · Ralskies Shorts Manager & Scheduler",
   },
   {
-    id: "aria-studio", title: "A.R.I.A. Studio", category: "Web development / Creator analytics",
+    id: "aria-studio", title: "A.R.I.A. Studio", category: "Web development / Creator analytics", categoryIds: ["web-development", "ai-data"],
     period: "MAR — APR 2026", status: "Developed workspace", featured: true,
     github: "https://github.com/Ralimations/tuberskies",
     problem: "Creator performance data needs to become clear priorities, not just another collection of numbers.",
@@ -84,8 +88,8 @@ export const projects: Project[] = [
     }, evidence: "CV · A.R.I.A. Studio / Tuberskies, March–April 2026",
   },
   {
-    id: "local-ai-chatbot", title: "Local AI Analytics", category: "AI implementation / Data exploration",
-    period: "OJT PROJECT · 2026", status: "Proof of concept", featured: true,
+    id: "local-ai-chatbot", title: "Local AI Analytics", category: "AI implementation / Data exploration", categoryIds: ["ai-data"],
+    period: "OJT PROJECT · 2026", status: "Proof of concept", featured: false,
     problem: "Natural-language data exploration must work within the limits of locally hosted models and hardware.",
     solution: "An interactive Streamlit chatbot prototype connecting natural-language questions with data exploration and analytics workflows.",
     technologies: ["Python", "Streamlit", "Local LLMs", "API integration"],
@@ -103,67 +107,33 @@ export const projects: Project[] = [
     }, evidence: "CV · Streamlit AI Data Analytics Chatbot",
   },
   {
-    id: "ralskies", title: "Ralskies", category: "Web development / Creator website",
-    period: "UPDATED SEP 28, 2026", status: "Deployed website", featured: true,
+    id: "ralskies", title: "Ralskies Artist Website", category: "Web development / Artist website", categoryIds: ["web-development"],
+    period: "WEB PROJECT", status: "Live website", featured: false,
     github: "https://github.com/Ralimations/Ralskies-OFFICIAL-WEBSITE", demo: "https://ralskies.vercel.app",
-    problem: "The latest visible update adds a donation section to the website.",
-    solution: "A deployed creator website with a recent update adding donation support.",
-    technologies: ["Web development", "Vercel"], flow: ["Creator website", "Donation section", "Deployed site"],
-    caseStudy: {
-      objective: "Present the Ralskies website and its donation section.",
-      role: "The visible repository activity describes an update adding a donation section.",
-      architecture: "The supplied project record identifies a Vercel deployment and GitHub repository; implementation details have not been supplied.",
-      decisions: [{ title: "Add donation support", detail: "The latest visible repository update describes adding a donation section to the website." }],
-      outcome: "The website is deployed at ralskies.vercel.app.",
-      next: "Suggested next step: document the donation flow and implementation details.",
-    }, evidence: "User-provided project screenshot · deployment, repository, and update summary",
+    thumbnail: "/projects/ralskies.png",
+    problem: "Bring an artist’s music, performances, and collaboration opportunities together in one place.",
+    solution: "An artist website for Ralskies, showcasing music and live performances with community links, donation support, and collaboration enquiries.",
+    technologies: ["HTML", "CSS", "JavaScript", "Vite", "Vercel"], flow: ["Artist introduction", "Music & performances", "Community & collaborations"],
+    evidence: "Owner-provided reference, homepage capture, and local project source",
   },
   {
-    id: "solutions-with-ral", title: "Solutions With Ral", category: "Web development / Personal brand",
-    period: "UPDATED SEP 15, 2026", status: "Deployed website", featured: true,
+    id: "solutions-with-ral", title: "solutionswithral Portfolio", category: "Web development / Portfolio", categoryIds: ["web-development"],
+    period: "WEB PROJECT", status: "Live website", featured: false,
     github: "https://github.com/Ralimations/portfolio_site", demo: "https://solutionswithral.vercel.app",
-    problem: "The project update focused on site branding and navigation components.",
-    solution: "A deployed website with recent work on branding and navigation.",
-    technologies: ["Web development", "Vercel"], flow: ["Brand identity", "Navigation", "Deployed site"],
-    caseStudy: {
-      objective: "Present the Solutions With Ral website and its branding and navigation work.",
-      role: "The visible repository activity describes an update to site branding and navigation components.",
-      architecture: "The supplied project record identifies a Vercel deployment and GitHub repository; implementation details have not been supplied.",
-      decisions: [{ title: "Refine site identity", detail: "The visible update summary identifies branding and navigation components as its focus." }],
-      outcome: "The website is deployed at solutionswithral.vercel.app.",
-      next: "Suggested next step: document the design and technical choices behind the update.",
-    }, evidence: "User-provided project screenshot · deployment, repository, and update summary",
+    thumbnail: "/projects/solutions-with-ral.png",
+    problem: "Make projects, technical skills, and contact information easy to explore.",
+    solution: "A personal portfolio presenting software, hardware, and AI projects through case studies, a technology stack, and direct contact links.",
+    technologies: ["Next.js", "React", "TypeScript", "CSS", "Vercel"], flow: ["Introduction", "Featured projects", "Skills & contact"],
+    evidence: "Owner-provided reference, homepage capture, and portfolio source",
   },
   {
-    id: "luxury-presence-test", title: "Luxury Presence Test", category: "Web development / Website prototype",
-    period: "UPDATED SEP 10, 2026", status: "Deployed prototype", featured: true,
+    id: "luxury-presence-test", title: "Marci Metzger Real Estate", category: "Web development / Real estate", categoryIds: ["web-development"],
+    period: "WEB PROJECT", status: "Live prototype", featured: false,
     github: "https://github.com/Ralimations/luxury-presence-test", demo: "https://luxury-presence-test-chi.vercel.app",
-    problem: "The latest visible update focuses on simplifying project documentation and preparing for subsequent work.",
-    solution: "A deployed website prototype with a recent documentation and preparation pass.",
-    technologies: ["Web development", "Vercel"], flow: ["Website prototype", "Documentation update", "Deployed site"],
-    caseStudy: {
-      objective: "Present the Luxury Presence Test website prototype.",
-      role: "The visible repository activity describes simplifying project documentation and preparing the project for subsequent work.",
-      architecture: "The supplied project record identifies a Vercel deployment and GitHub repository; implementation details have not been supplied.",
-      decisions: [{ title: "Simplify project documentation", detail: "The latest visible update summary calls out documentation and project preparation." }],
-      outcome: "The prototype is deployed at luxury-presence-test-chi.vercel.app.",
-      next: "Suggested next step: add a product brief and document the intended next stage.",
-    }, evidence: "User-provided project screenshot · deployment, repository, and update summary",
-  },
-  {
-    id: "vocal-warmup-helper", title: "Vocal Warmup Helper", category: "Web development / Voice practice",
-    period: "UPDATED AUG 28, 2026", status: "Deployed project", featured: true,
-    github: "https://github.com/Ralimations/vocal-warmup-helper", demo: "https://vocal-warmup-helper.vercel.app",
-    problem: "The visible project update adds browser diagnostics for troubleshooting.",
-    solution: "A deployed vocal warmup project with a recent browser diagnostics update.",
-    technologies: ["Web development", "Vercel"], flow: ["Vocal warmup", "Browser diagnostics", "Deployed site"],
-    caseStudy: {
-      objective: "Present the Vocal Warmup Helper and its browser diagnostics update.",
-      role: "The visible repository activity describes adding browser diagnostics.",
-      architecture: "The supplied project record identifies a Vercel deployment and GitHub repository; implementation details have not been supplied.",
-      decisions: [{ title: "Add browser diagnostics", detail: "The visible update summary identifies diagnostics as the focus." }],
-      outcome: "The project is deployed at vocal-warmup-helper.vercel.app.",
-      next: "Suggested next step: document the warmup workflow and the information reported by diagnostics.",
-    }, evidence: "User-provided project screenshot · deployment, repository, and update summary",
+    thumbnail: "/projects/luxury-presence-test.png",
+    problem: "Introduce a real estate agent and give prospective buyers a clear route to finding a home or making contact.",
+    solution: "A real estate website prototype for Marci Metzger in Pahrump, Nevada, with an agent introduction, home discovery, a gallery, and contact calls to action.",
+    technologies: ["React", "TypeScript", "Vite", "Vercel"], flow: ["Meet the agent", "Explore homes", "Get in touch"],
+    evidence: "Owner-provided reference, homepage capture, and local project source",
   },
 ];

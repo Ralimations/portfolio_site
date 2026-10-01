@@ -2,6 +2,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 import { projects } from "@/data/projects";
+import { ProjectThumbnail } from "@/components/projects/ProjectThumbnail";
+import { projectCategories } from "@/data/categories";
 import { profile } from "@/data/profile";
 import { Navigation } from "@/components/navigation/Navigation";
 import { Environment } from "@/components/motion/Environment";
@@ -16,6 +18,20 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
   const { slug } = await params;
   const project = projects.find(p => p.id === slug);
   if (!project) notFound();
+  if (!project.caseStudy) {
+    const category = projectCategories.find(item => item.id === project.categoryIds[0])!;
+    return <><Environment /><Navigation /><main id="main" tabIndex={-1} className="case-study">
+      <Link href={`/projects/category/${category.id}`} className="text-link back-link">← {category.title}</Link>
+      <header className="case-header"><p className="eyebrow">{project.category}</p><h1>{project.title}</h1><p className="case-summary">{project.solution}</p><div className="case-meta"><span>{project.status}</span></div></header>
+      <div className="website-overview">
+        {project.thumbnail && <ProjectThumbnail src={project.thumbnail} title={project.title} />}
+        <div><p className="eyebrow">ABOUT THE PROJECT</p><p className="website-objective">{project.problem}</p>
+          <div className="project-actions">{project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Visit website ↗</a>}{project.github && <a href={project.github} target="_blank" rel="noreferrer">GitHub ↗</a>}</div>
+          <Link className="text-link" href="/#categories">Explore more projects →</Link>
+        </div>
+      </div>
+    </main></>;
+  }
   const next = projects[(projects.indexOf(project) + 1) % projects.length];
   return <><Environment /><Navigation /><main id="main" tabIndex={-1} className="case-study">
     <Link href="/#projects" className="text-link back-link">← All projects</Link>
@@ -28,6 +44,6 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
         <section id="decisions"><p className="eyebrow">04 / ENGINEERING REASONING</p><h2>Challenges & decisions</h2>{project.caseStudy.decisions.map(d => <div className="decision" key={d.title}><h3>{d.title}</h3><p>{d.detail}</p></div>)}</section>
         <section id="result"><p className="eyebrow">05 / WHAT CAME OUT OF IT</p><h2>Result</h2><p>{project.caseStudy.outcome}</p><h3>Lessons & next evaluation</h3><p>{project.caseStudy.next}</p><p className="source-note">Project record: {project.evidence}. Implementation details are limited to the supplied record.</p><div className="contact-links"><a href={profile.resume} target="_blank" rel="noreferrer">Project record in CV ↗</a>{project.github && <a href={project.github} target="_blank" rel="noreferrer">Source code ↗</a>}{project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Live demo ↗</a>}</div></section>
       </div>
-    </div><Link className="next-project" href={`/projects/${next.id}`}><span className="eyebrow">NEXT CASE STUDY</span><span>{next.title} ↗</span></Link>
+    </div><Link className="next-project" href={`/projects/${next.id}`}><span className="eyebrow">NEXT PROJECT</span><span>{next.title} ↗</span></Link>
   </main></>;
 }

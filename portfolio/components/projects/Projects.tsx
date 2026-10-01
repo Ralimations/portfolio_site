@@ -1,11 +1,12 @@
 import Link from "next/link";
 import { projects } from "@/data/projects";
+import { ProjectCategories } from "./ProjectCategories";
 
 export function Projects() {
   return <section id="projects" className="section projects">
-    <div className="section-heading"><p className="eyebrow"><span>01 /</span> SELECTED WORK</p><p className="section-note">From physical movement<br />to everyday workflows.</p></div>
-    <h2>Built around<br /><span className="muted">a real problem.</span></h2>
-    <div className="project-index">{projects.filter(p => p.featured).map((project, index) =>
+    <div className="section-heading"><p className="eyebrow"><span>01 /</span> FEATURED PROGRAMS</p><p className="section-note">From physical movement<br />to everyday workflows.</p></div>
+    <h2>Three programs.<br /><span className="muted">Practical solutions.</span></h2>
+    <div className="project-index">{projects.filter(p => p.featured).slice(0, 3).map((project, index) =>
       <article className={`project-row project-${index}`} key={project.id}>
         <span className="project-number">0{index + 1}</span>
         <div className="project-info"><p className="eyebrow">{project.category}</p>
@@ -22,5 +23,6 @@ export function Projects() {
         </div>
       </article>
     )}</div>
+    <ProjectCategories />
   </section>;
 }
