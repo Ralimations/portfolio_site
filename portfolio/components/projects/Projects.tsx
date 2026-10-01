@@ -13,6 +13,7 @@ export function Projects() {
           <p className="problem">{project.problem}</p><p className="solution">{project.solution}</p>
           <p className="technology-list">{project.technologies.join(" · ")}</p>
           <Link className="text-link case-link" href={`/projects/${project.id}`}>Case study <span>→</span><span className="sr-only">: {project.title}</span></Link>
+          {project.github && <a className="text-link case-link source-link" href={project.github} target="_blank" rel="noreferrer">GitHub <span>↗</span><span className="sr-only">: {project.title}</span></a>}
         </div>
         <div className="project-diagram" aria-label={`${project.title} workflow`}>
           <div className="diagram-meta"><span>WORKFLOW / 0{index + 1}</span><span>{project.status}</span></div>
