@@ -23,13 +23,34 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
     return <><Environment /><Navigation /><main id="main" tabIndex={-1} className="case-study">
       <Link href={`/projects/category/${category.id}`} className="text-link back-link">← {category.title}</Link>
       <header className="case-header"><p className="eyebrow">{project.category}</p><h1>{project.title}</h1><p className="case-summary">{project.solution}</p><div className="case-meta"><span>{project.status}</span></div></header>
-      <div className="website-overview">
+      <div className={`website-overview${project.thumbnail ? "" : " website-overview--text-only"}`}>
         {project.thumbnail && <ProjectThumbnail src={project.thumbnail} title={project.title} />}
-        <div><p className="eyebrow">ABOUT THE PROJECT</p><p className="website-objective">{project.problem}</p>
+        <div>{project.problem ? <><p className="eyebrow">ABOUT THE PROJECT</p><p className="website-objective">{project.problem}</p></> : null}
           <div className="project-actions">{project.demo && <a href={project.demo} target="_blank" rel="noreferrer">Visit website ↗</a>}{project.github && <a href={project.github} target="_blank" rel="noreferrer">GitHub ↗</a>}</div>
           <Link className="text-link" href="/#categories">Explore more projects →</Link>
         </div>
       </div>
+      {project.features?.length ? (
+        <section className="project-features" aria-labelledby="project-features-title">
+          <p className="eyebrow">FEATURES</p>
+          <h2 id="project-features-title">Features</h2>
+          <ul className="project-feature-grid">
+            {project.features.map(feature => <li className="project-feature" key={feature.title}>
+              <h3>{feature.title}</h3>
+              <p>{feature.description}</p>
+            </li>)}
+          </ul>
+        </section>
+      ) : null}
+      {project.downloadUrl && project.downloadFileName && project.downloadNote ? (
+        <section className="project-download" aria-labelledby="project-download-title">
+          <div>
+            <p className="eyebrow">ANDROID APK</p>
+            <p id="project-download-title" className="project-download-note">{project.downloadNote}</p>
+          </div>
+          <a className="download-button" href={project.downloadUrl} download={project.downloadFileName}>Download APK <span aria-hidden="true">↓</span></a>
+        </section>
+      ) : null}
     </main></>;
   }
   const next = projects[(projects.indexOf(project) + 1) % projects.length];
@@ -38,7 +59,7 @@ export default async function CaseStudy({ params }: { params: Promise<{ slug: st
     <header className="case-header"><p className="eyebrow">CASE STUDY / {project.category}</p><h1>{project.title}</h1><p className="case-summary">{project.solution}</p><div className="case-meta"><span>{project.period}</span><span>{project.status}</span></div></header>
     <div className="case-body"><aside className="case-toc"><p className="eyebrow">IN THIS PROJECT</p><nav aria-label="Case study sections">{["problem", "role", "architecture", "decisions", "result"].map(s => <a key={s} href={`#${s}`}>{s === "role" ? "My role" : s}</a>)}</nav><a href={`mailto:${profile.email}?subject=${encodeURIComponent(`Let’s talk about ${project.title}`)}`}>Discuss this project ↗</a></aside>
       <div className="case-sections">
-        <section id="problem"><p className="eyebrow">01 / THE CONTEXT</p><h2>Problem & objective</h2><p>{project.problem}</p><p>{project.caseStudy.objective}</p></section>
+        <section id="problem"><p className="eyebrow">01 / THE CONTEXT</p><h2>Problem & objective</h2>{project.problem ? <p>{project.problem}</p> : null}<p>{project.caseStudy.objective}</p></section>
         <section id="role"><p className="eyebrow">02 / MY CONTRIBUTION</p><h2>My role</h2><p>{project.caseStudy.role}</p></section>
         <section id="architecture"><p className="eyebrow">03 / HOW IT FITS TOGETHER</p><h2>Technical architecture</h2><p>{project.caseStudy.architecture}</p><ol className="architecture-flow">{project.flow.map((step, i) => <li key={step}><span>0{i + 1}</span>{step}<span aria-hidden="true">{i < project.flow.length - 1 ? "↓" : "↗"}</span></li>)}</ol><h3>Technology stack</h3><p className="technology-list">{project.technologies.join(" · ")}</p></section>
         <section id="decisions"><p className="eyebrow">04 / ENGINEERING REASONING</p><h2>Challenges & decisions</h2>{project.caseStudy.decisions.map(d => <div className="decision" key={d.title}><h3>{d.title}</h3><p>{d.detail}</p></div>)}</section>

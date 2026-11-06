@@ -8,13 +8,17 @@ export interface Project {
   thumbnail?: string;
   period: string;
   status: string;
-  problem: string;
+  problem?: string;
   solution: string;
   technologies: string[];
   flow: string[];
   featured: boolean;
   github?: string;
   demo?: string;
+  features?: { title: string; description: string }[];
+  downloadUrl?: string;
+  downloadFileName?: string;
+  downloadNote?: string;
   caseStudy?: {
     objective: string;
     role: string;
@@ -136,5 +140,23 @@ export const projects: Project[] = [
     solution: "A real estate website prototype for Marci Metzger in Pahrump, Nevada, with an agent introduction, home discovery, a gallery, and contact calls to action.",
     technologies: ["React", "TypeScript", "Vite", "Vercel"], flow: ["Meet the agent", "Explore homes", "Get in touch"],
     evidence: "Owner-provided reference, homepage capture, and local project source",
+  },
+  {
+    id: "pesomind", title: "PesoMind", category: "Mobile development / Android app", categoryIds: ["mobile"],
+    period: "2026 — PRESENT", status: "Supervised beta", featured: false,
+    solution: "PesoMind is an offline-first Android personal finance manager for organizing accounts, transactions, budgets, receivables, subscriptions, savings goals, and financial reports.",
+    technologies: ["Kotlin", "Jetpack Compose", "AndroidX", "Room", "SQLite"], flow: [],
+    features: [
+      { title: "Accounts and transactions", description: "Organize accounts and record income, expenses, and transfers." },
+      { title: "Budgets and reports", description: "Manage budgets and review financial reports." },
+      { title: "Receivables and savings", description: "Track receivables, savings goals, and projected interest growth." },
+      { title: "Subscriptions and recurring schedules", description: "Manage subscriptions and recurring schedules. Opt-in reminders open a review form; entries are not posted until confirmed." },
+      { title: "CSV import", description: "Import income, expense, and transfer rows in Add or Merge modes; map or create accounts and review duplicates or uncertain rows." },
+      { title: "Encrypted backups", description: "Create and restore encrypted backups up to 20 MB." },
+    ],
+    downloadUrl: "/projects/pesomind/PesoMind-2.0.0-beta.3-code8-SUPERVISED-DEBUG.apk",
+    downloadFileName: "PesoMind-2.0.0-beta.3-code8-SUPERVISED-DEBUG.apk",
+    downloadNote: "Beta 3 (2.0.0-beta.3, code 8). Debug-signed for supervised synthetic testing only; experimental features are enabled. Public distribution is not approved.",
+    evidence: "PesoMind 2.0.0-beta.3 release-readiness and APK build records",
   },
 ];
