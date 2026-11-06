@@ -192,3 +192,54 @@ body:has(.screenshot-dialog[open]){overflow:hidden}
   .project-download{align-items:stretch;flex-direction:column;gap:18px;margin-top:30px;padding:20px}
   .download-button{width:100%}
 }
+
+/* PesoMind home-page spotlight */
+.peso-spotlight{position:relative;padding:clamp(58px,8vw,112px) var(--gutter);background:var(--surface);border-block:1px solid var(--line);overflow:hidden}
+.peso-spotlight:before{content:"";position:absolute;width:min(58vw,760px);height:min(58vw,760px);right:-16%;top:-38%;border-radius:50%;background:radial-gradient(circle,#0c68d922 0,transparent 70%);pointer-events:none}
+.peso-spotlight-inner{position:relative;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(300px,.95fr);align-items:center;gap:clamp(40px,7vw,104px);max-width:1640px;margin:0 auto}
+.peso-spotlight-copy{min-width:0}
+.peso-spotlight-copy>.eyebrow{color:var(--accent)}
+.peso-brand-panel{display:flex;align-items:center;justify-content:center;width:min(100%,700px);margin:27px 0 23px;padding:clamp(18px,3vw,36px);background:#fff;border:1px solid #d9e3ec}
+.peso-brand-panel img{display:block;width:100%;height:auto}
+.peso-spotlight-summary{max-width:690px;color:var(--muted);font-size:clamp(.95rem,1.3vw,1.1rem);line-height:1.8}
+.peso-feature-list{display:flex;flex-wrap:wrap;gap:9px;margin-top:23px}
+.peso-feature-list li{border:1px solid var(--line);padding:7px 11px;color:var(--muted);font-size:.7rem;line-height:1.4}
+.peso-download-button{display:flex;align-items:center;justify-content:space-between;gap:24px;width:min(100%,610px);min-height:86px;margin-top:29px;padding:20px 24px;background:var(--accent);color:var(--bg);font-size:clamp(1.15rem,2vw,1.55rem);font-weight:800;letter-spacing:-.035em;transition:filter 180ms,transform 180ms}
+.peso-download-button:hover{filter:brightness(1.08);transform:translateY(-2px)}
+.peso-download-button>span:last-child{font-size:1.7rem;font-weight:400}
+.peso-download-note{max-width:610px;margin-top:13px;color:var(--muted);font-size:.7rem;line-height:1.7}
+.peso-carousel-panel{min-width:0;padding:23px 26px 19px;background:linear-gradient(145deg,#eaf6ff 0%,#d5eaff 100%);color:#10243c;border:1px solid #bdd7ef}
+.peso-carousel-header{display:flex;align-items:center;justify-content:space-between;gap:18px;color:#173b5f}
+.peso-carousel-header .eyebrow{font-size:.67rem;letter-spacing:.1em}
+.peso-carousel-header>span{font-size:.72rem;font-weight:700;letter-spacing:.08em}
+.peso-carousel-stage{position:relative;display:flex;justify-content:center;align-items:center;min-height:600px;padding:22px 42px 8px}
+.peso-carousel-figure{display:flex;flex-direction:column;align-items:center;gap:12px;width:270px;margin:0}
+.peso-device-screen{position:relative;width:100%;aspect-ratio:9/20;overflow:hidden;border:7px solid #151a20;border-radius:30px;background:#fff;box-shadow:0 22px 52px #15385835}
+.peso-device-screen img{object-fit:cover}
+.peso-carousel-figure figcaption{color:#183b5b;font-size:.8rem;font-weight:700;letter-spacing:.04em}
+.peso-carousel-arrow{position:absolute;z-index:1;top:50%;display:grid;place-items:center;width:44px;height:44px;border:1px solid #a9c8e3;border-radius:50%;background:#fff;color:#173b5f;font-size:1.45rem;line-height:1;box-shadow:0 5px 16px #15385820;transform:translateY(-50%);transition:background 180ms,transform 180ms}
+.peso-carousel-arrow:hover{background:#f5faff;transform:translateY(-50%) scale(1.05)}
+.peso-carousel-arrow--previous{left:0}
+.peso-carousel-arrow--next{right:0}
+.peso-carousel-dots{display:flex;justify-content:center;gap:10px;margin-top:6px}
+.peso-carousel-dots button{width:9px;height:9px;padding:0;border-radius:50%;background:#90aec9;transition:transform 180ms,background 180ms}
+.peso-carousel-dots button.is-active{background:#135ca1;transform:scale(1.35)}
+@media(max-width:900px){
+  .peso-spotlight-inner{grid-template-columns:1fr;gap:38px}
+  .peso-brand-panel{width:min(100%,640px)}
+  .peso-download-button{width:100%}
+  .peso-carousel-panel{max-width:680px;width:100%;margin-inline:auto}
+}
+@media(max-width:560px){
+  .peso-spotlight{padding-top:48px;padding-bottom:52px}
+  .peso-spotlight-inner{gap:30px}
+  .peso-brand-panel{margin:20px 0;padding:14px}
+  .peso-feature-list{gap:7px;margin-top:18px}
+  .peso-feature-list li{font-size:.64rem;padding:6px 8px}
+  .peso-download-button{min-height:72px;margin-top:23px;padding:16px 18px}
+  .peso-carousel-panel{padding:18px 16px 16px}
+  .peso-carousel-stage{min-height:0;padding:24px 36px 8px}
+  .peso-carousel-figure{width:min(100%,245px)}
+  .peso-device-screen{border-width:6px;border-radius:26px}
+  .peso-carousel-arrow{width:38px;height:38px;font-size:1.25rem}
+}

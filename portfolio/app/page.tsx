@@ -1,6 +1,7 @@
 import { profile, skillGroups } from "@/data/profile";
 import { ContactLinks, Navigation } from "@/components/navigation/Navigation";
 import { Projects } from "@/components/projects/Projects";
+import { PesoMindSpotlight } from "@/components/projects/PesoMindSpotlight";
 import { Opening } from "@/components/motion/Opening";
 import { Environment } from "@/components/motion/Environment";
 
@@ -16,6 +17,7 @@ export default function Home() {
         <div className="hero-bottom"><p>I connect software, hardware, and AI<br className="desktop-break" /> to solve problems beyond the screen.</p><div className="hero-actions"><a className="text-link primary" href="#projects">View projects <span>↓</span></a><a className="text-link" href={profile.resume} target="_blank" rel="noreferrer">Résumé <span>↗</span></a></div></div>
         <div className="hero-footer"><span>COMPUTER APPLICATIONS GRADUATE · 2026</span><div><a href={profile.github} target="_blank" rel="noreferrer">GITHUB ↗</a><a href={profile.linkedin} target="_blank" rel="noreferrer">LINKEDIN ↗</a></div><span className="scroll-caption">EXPLORE THE WORK ↓</span></div>
       </section>
+      <PesoMindSpotlight />
       <Projects />
       <section id="stack" className="section stack"><p className="eyebrow"><span>02 /</span> TOOLS WITH A PURPOSE</p><div className="section-title-row"><h2>Across the stack.<br /><span className="muted">Close to the problem.</span></h2><p>From a sensor’s signal to the interface<br />someone actually uses.</p></div>
         <div className="skill-groups">{skillGroups.map((group, i) => <div key={group.title}><span className="skill-number">0{i + 1}</span><h3>{group.title}</h3><ul>{group.items.map(skill => <li key={skill}>{skill}</li>)}</ul></div>)}</div>
