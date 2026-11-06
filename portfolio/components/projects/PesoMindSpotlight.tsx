@@ -48,7 +48,7 @@ export function PesoMindSpotlight() {
             <span aria-hidden="true">←</span>
           </button>
           <figure className="peso-carousel-figure" aria-live="polite">
-            <div className="peso-device-screen">
+            <div className="peso-screenshot-image">
               <Image src={screenshot.src} alt={`PesoMind ${screenshot.name} screen`} fill sizes="(max-width: 760px) 66vw, 300px" />
             </div>
             <figcaption>{screenshot.name}</figcaption>
